@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/site';
+---
+<Layout title="页面未找到"><div class="empty-state"><span class="eyebrow">404 · PAGE NOT FOUND</span><h1>这页还不在手册里。</h1><p>链接可能已经变更。回到题库，继续探索。</p><a class="button primary" href={url('/questions/')}>返回全部题目 →</a></div></Layout>

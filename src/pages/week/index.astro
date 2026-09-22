@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { allQuestions, weekLabel, categories } from '../../lib/catalog';
+import { url } from '../../lib/site';
+const questions = await allQuestions();
+const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => b - a);
+---
+<Layout title="每周归档"><div class="eyebrow">WEEK ARCHIVE <span class="edition">{weeks.length} WEEKS</span></div><h1>每周一题，持续积累。</h1><p class="page-description">保留每一期的完整问题，也保留探索的顺序。</p><div class="week-cards">{weeks.map(week => { const items = questions.filter(q => q.data.week === week); return <a class="week-card" href={url(`/week/${weekLabel(week)}/`)}><div class="week-card-label"><span class="small-caps">WEEK</span><strong>{weekLabel(week)}</strong></div><div><p class="small-caps">{items[0].data.date} · {items.length} PROBLEMS</p><h2>{items.map(q => q.data.title).join(' / ')}</h2><div class="badges">{[...new Set(items.map(q => q.data.category))].map(category => <span class={`badge category-${category}`}>{categories[category].label}</span>)}</div></div><span class="week-arrow" aria-hidden="true">↗</span></a>; })}</div></Layout>

@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import Icon from '../components/Icon.astro';
+import { allQuestions, categories, weekLabel } from '../lib/catalog';
+import { url, repoUrl, siteName, base } from '../lib/site';
+interface Props { title: string; description?: string; }
+const { title, description = '由社区共同维护的量化面试题知识库。按周、主题和难度阅读题目，通过 GitHub 贡献解答与修订。' } = Astro.props;
+const questions = await allQuestions();
+const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => b - a);
+const path = Astro.url.pathname.slice(base.length).replace(/\/$/, '') || '/';
+const active = (route: string) => path === route || (route !== '/' && path.startsWith(route + '/'));
+const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'grid', '全部题目', 'Question bank'], ['/week', 'calendar', '每周归档', 'Week archive'] ];
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{title} · QTIA Handbook</title><meta name="description" content={description}/>
+    <meta name="theme-color" content="#263bb4"/>
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')}/>
+    <meta property="og:title" content={`${title} · QTIA Handbook`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>
+    <noscript><style is:inline>#menu-toggle{display:none}@media(max-width:800px){#sidebar{display:block;position:static;width:100%;height:auto;box-shadow:none}.sidebar-note{display:none}}</style></noscript>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳转到正文</a>
+    <header class="topbar">
+      <a href={url('/')} class="brand" aria-label={siteName}><span class="brand-mark">Q<span>↗</span></span><span>QTIA<span class="brand-sub">OPEN HANDBOOK</span></span></a>
+      <span class="header-caption">Quantitative thinking, shared.</span>
+      <a class="header-github" href={repoUrl}><Icon name="github"/><span>GitHub</span><Icon name="arrow" size={14}/></a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button>
+    </header>
+    <div class="page-shell">
+      <aside id="sidebar" class="sidebar">
+        <nav aria-label="主导航">
+          <p class="nav-label">HANDBOOK</p>
+          {mainLinks.map(([route, icon, label]) => <a class:list={['nav-link', { active: active(route) }]} href={url(route === '/' ? '/' : `${route}/`)} aria-current={active(route) ? 'page' : undefined}><Icon name={icon}/>{label}{route === '/questions' && <span class="nav-count">{questions.length}</span>}</a>)}
+          <p class="nav-label">TOPICS <span>按主题探索</span></p>
+          {Object.entries(categories).map(([key, category]) => <a class:list={['nav-link', { active: active(`/${key}`) }]} href={url(`/${key}/`)} aria-current={active(`/${key}`) ? 'page' : undefined}><span class={`category-dot ${key}`}></span>{category.label}<span class="nav-count">{questions.filter(q => q.data.category === key).length}</span></a>)}
+          <p class="nav-label">COMMUNITY</p>
+          <a class:list={['nav-link', { active: active('/contributors') }]} href={url('/contributors/')} aria-current={active('/contributors') ? 'page' : undefined}><Icon name="people"/>贡献者</a>
+          <a class:list={['nav-link', { active: active('/contributing') }]} href={url('/contributing/')} aria-current={active('/contributing') ? 'page' : undefined}><Icon name="branch"/>参与贡献</a>
+          <p class="nav-label">RECENT WEEKS</p>
+          {weeks.slice(0, 4).map(week => <a class="nav-link week-link" href={url(`/week/${weekLabel(week)}/`)}><span class="mono">{weekLabel(week)}</span>Week {weekLabel(week)}<span class="nav-count">{questions.filter(q => q.data.week === week).length}</span></a>)}
+        </nav>
+        <div class="sidebar-note"><span class="small-caps">BUILT TOGETHER</span><p>一道题，可以有很多种思路。<br/>你的解法，也是下一人的起点。</p><a href={url('/contributing/')}>成为贡献者 <span aria-hidden="true">↗</span></a></div>
+      </aside>
+      <main id="main" tabindex="-1"><div class="content-wrap"><slot/></div>
+        <footer class="footer"><span>QTIA · Open Quant Interview Handbook</span><a href={url('/contributing/')}>共同学习，持续完善 <span aria-hidden="true">↗</span></a></footer>
+      </main>
+    </div>
+    <script>
+      const menu = document.querySelector<HTMLButtonElement>('#menu-toggle');
+      const sidebar = document.querySelector<HTMLElement>('#sidebar');
+      const setOpen = (open: boolean) => {
+        menu?.setAttribute('aria-expanded', String(open));
+        menu?.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+        sidebar?.classList.toggle('is-open', open);
+      };
+      menu?.addEventListener('click', () => setOpen(menu.getAttribute('aria-expanded') !== 'true'));
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setOpen(false); menu?.focus(); } });
+      document.addEventListener('click', event => { if (event.target instanceof Node && !sidebar?.contains(event.target) && !menu?.contains(event.target)) setOpen(false); });
+    </script>
+  </body>
+</html>

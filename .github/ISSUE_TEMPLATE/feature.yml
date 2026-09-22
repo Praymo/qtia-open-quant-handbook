@@ -1,0 +1,17 @@
+name: Feature request
+description: Suggest a small improvement to the handbook.
+title: "[Feature] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What learning or contribution problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested improvement
+      description: Keep the GitHub-first, static-site scope in mind.
+    validations:
+      required: true

@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Badges from '../../components/Badges.astro';
+import Notice from '../../components/Notice.astro';
+import Icon from '../../components/Icon.astro';
+import { allQuestions, weekLabel } from '../../lib/catalog';
+import { url, repoUrl, githubAction } from '../../lib/site';
+export async function getStaticPaths() { return (await allQuestions()).map(question => ({ params: { id: question.data.id }, props: { question } })); }
+const { question } = Astro.props;
+const q = question.data;
+const { Content } = await render(question);
+const solutions = (await getCollection('solutions', item => item.data.question.id === question.id)).sort((a, b) => a.data.order - b.data.order || a.data.date.localeCompare(b.data.date) || a.id.localeCompare(b.id));
+const renderedSolutions = await Promise.all(solutions.map(async solution => ({ ...solution, ...await render(solution) })));
+const questions = await allQuestions();
+const index = questions.findIndex(item => item.id === question.id);
+const previous = questions[index - 1];
+const next = questions[index + 1];
+const source = question.filePath!;
+---
+<Layout title={`${q.id} ${q.title}`} description={q.summary}>
+  <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/questions/')}>题库</a><span>/</span><a href={url(`/week/${weekLabel(q.week)}/`)}>Week {weekLabel(q.week)}</a><span>/</span><span>{q.id}</span></nav>
+  <div class="eyebrow problem-number">PROBLEM {q.id}</div><h1 class="problem-title">{q.title}</h1><p class="problem-english">{q.titleEn}</p>
+  <Badges question={question}/><div class="tags">{q.tags.map(tag => <a href={`${url('/questions/')}?tag=${encodeURIComponent(tag)}`}>#{tag}</a>)}</div>
+  <div class="problem-layout"><article class="problem-article"><section aria-labelledby="statement"><h2 class="article-section-title" id="statement"><span>01</span>Problem statement</h2><div class="prose"><Content/></div></section>
+    {q.contributors.length > 0 && <p class="attribution">题目贡献：{q.contributors.map(username => <a href={`https://github.com/${username}`}>@{username} </a>)}</p>}
+    <section class="solutions-section" aria-labelledby="solutions"><h2 class="article-section-title" id="solutions"><span>02</span>Community Solutions <small>{solutions.length}</small></h2><p class="section-description">欢迎不同方法。每份解答都可以通过 Pull Request 被讨论、验证和改进。</p>
+      {renderedSolutions.length ? renderedSolutions.map(({ data, Content, filePath }, i) => <article class="solution" id={`solution-${i + 1}`}><span class="small-caps">{data.method}</span><h3>Solution {i + 1} — {data.title}</h3><p class="attribution">Contributor: {data.contributors.map(username => <a href={`https://github.com/${username}`}>@{username} </a>)}<span>· {data.date}</span></p><div class="prose"><Content/></div><a class="text-link" href={githubAction('edit', filePath!)}>Improve this solution ↗</a><a class="solution-history" href={githubAction('history', filePath!)}>查看修订历史 ↗</a></article>) : <div class="empty-state solution-empty"><Icon name="branch" size={26}/><h3>No community solution has been submitted yet.</h3><p>你的推导、证明或模拟，可以从这里开始。</p><a class="button primary" href={githubAction('solution', '', q.id)}>Be the first contributor <span aria-hidden="true">↗</span></a></div>}
+    </section><Notice/>
+  </article><aside class="problem-aside"><p class="nav-label">ON THIS PAGE</p><a href="#statement">Problem statement</a><a href="#solutions">Community Solutions</a><div class="aside-rule"></div><p class="nav-label">BUILD THIS HANDBOOK</p><a class="button primary" href={githubAction('solution', '', q.id)}>Submit Solution <Icon name="arrow" size={14}/></a><a href={githubAction('issue', '', q.id)}>Open Issue <Icon name="arrow" size={14}/></a><a href={githubAction('edit', source)}>Edit this page <Icon name="arrow" size={14}/></a><a href={repoUrl}>Star on GitHub <Icon name="star" size={14}/></a><p class="aside-caption">在 GitHub 留下你的贡献。无需维护前端，也无需承诺永久维护解答。</p></aside></div>
+  <nav class="previous-next" aria-label="题目导航">{previous ? <a href={url(`/questions/${previous.data.id}/`)}><span>← 上一题 · {previous.data.id}</span><strong>{previous.data.title}</strong></a> : <span/>}{next && <a href={url(`/questions/${next.data.id}/`)}><span>下一题 · {next.data.id} →</span><strong>{next.data.title}</strong></a>}</nav>
+</Layout>

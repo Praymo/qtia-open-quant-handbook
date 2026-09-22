@@ -1,0 +1,28 @@
+name: Question, correction, or discussion
+description: Report an error, clarify a question, or discuss a solution.
+title: "[Question ID] "
+body:
+  - type: input
+    id: question
+    attributes:
+      label: Question ID or page
+      description: For example, 02.3 or a link to the affected page.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options:
+        - Error or correction
+        - Question clarification
+        - Solution discussion
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What did you find?
+      description: Quote the relevant part and describe your reasoning, example, or reproducible check. Avoid personal information.
+    validations:
+      required: true

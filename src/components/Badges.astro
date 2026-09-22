@@ -1,0 +1,6 @@
+---
+import { categories, difficulties, weekLabel, type Question } from '../lib/catalog';
+const { question, showWeek = true } = Astro.props as { question: Question; showWeek?: boolean };
+const q = question.data;
+---
+<div class="badges"><span class={`badge category-${q.category}`}>{categories[q.category].label}</span><span class="badge difficulty" title={difficulties[q.difficulty]}>{q.difficulty}<span class="difficulty-name"> {difficulties[q.difficulty]}</span></span>{showWeek && <span class="badge week-badge">Week {weekLabel(q.week)}</span>}</div>
