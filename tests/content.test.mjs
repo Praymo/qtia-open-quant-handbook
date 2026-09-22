@@ -8,10 +8,12 @@ import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkLatexDelimiters from '../src/lib/remark-latex-delimiters.mjs';
-const records = readdirSync('content/questions', { recursive: true }).filter(path => path.endsWith('.md')).map(path => matter(readFileSync(`content/questions/${path}`, 'utf8')).data);
+const seedIds = ['01.1', '01.2', '01.3', '02.1', '02.2', '02.3', '02.4'];
+// Keep the regression sample stable as future weeks add new questions.
+const records = readdirSync('content/questions', { recursive: true }).filter(path => path.endsWith('.md')).map(path => matter(readFileSync(`content/questions/${path}`, 'utf8')).data).filter(question => seedIds.includes(question.id));
 
 test('all seven seed questions retain their IDs', () => {
-  for (const id of ['01.1', '01.2', '01.3', '02.1', '02.2', '02.3', '02.4']) assert.ok(records.some(q => q.id === id));
+  for (const id of seedIds) assert.ok(records.some(q => q.id === id));
 });
 test('week, category, difficulty, and tags compose by intersection', () => {
   assert.deepEqual(filterAndSort(records, { week: '2', category: 'algorithm', difficulty: 'D4', tag: 'optimization' }).map(q => q.id), ['02.3']);
