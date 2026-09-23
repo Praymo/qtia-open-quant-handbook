@@ -1,5 +1,6 @@
-name: 直接贴答案
-description: 粘贴答案，维护者会整理成题目下的社区解答。
+name: 贴答案或想法
+description: 分享解法、问题或补充；成熟的解答可经审核成为正式解答。
+labels: [community-answer]
 title: "[题号] 解答投稿"
 body:
   - type: input
@@ -12,9 +13,9 @@ body:
   - type: textarea
     id: answer
     attributes:
-      label: 你的答案
-      description: 文字、Markdown、公式或代码都可以。
-      placeholder: 写下你的思路和结果……
+      label: 你的答案或想法
+      description: 思路、问题、Markdown、公式或代码都可以。
+      placeholder: 写下你的想法……
     validations:
       required: true
   - type: textarea

@@ -6,7 +6,7 @@
 
 - 提交社区题目：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“提交社区题目”，或直接打开[社区题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。粘贴中文或英文题面；主题、难度、标签、相关题目和出处都可选填，题号、翻译与排版由维护者处理。
 - 提交的两种方式：
-  1.分享你的答案：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。维护者会整理为 Markdown 解答，并保留你的署名。
+  1.分享你的答案：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。答案会先显示在题目下的社区讨论；成熟的解法可以经审核成为正式解答，保留你的署名。
   2.自己提 PR：在题目页点击“用 Markdown 提 PR”。GitHub 会打开预填题号的新文件；把用户名改成自己的，粘贴答案，然后按提示创建 Pull Request（合并请求）。
 - 指出错误或讨论题意：在题目页点击“报告问题”，写明题号、相关文字和理由。
 - 修改题面或翻译：在题目页点击“编辑题目”。小勘误和更清晰的解释同样欢迎。
@@ -16,7 +16,9 @@
 以 [02.3 玻璃球测试](https://praymo.github.io/qtia-open-quant-handbook/questions/02.3/) 为例：
 
 1. 打开题目，点击“直接贴答案”，登录 GitHub 后把答案粘贴进表单。
-2. 点页面底部的 “Submit new issue”。维护者会在这个页面与你交流，再整理成社区解答。
+2. 点页面底部的 “Submit new issue”。你的答案会作为社区讨论显示在题目页；别人可以在 GitHub 原帖回复、点赞。内容会随网站定时更新。
+
+题目页的“社区解答”只收录经过 PR 审核的 Markdown 解答。“社区讨论”可以保留简短想法和追问，不需要每条都变成正式解答。
 
 如果想自己直接提交 Markdown，点“用 Markdown 提 PR”：只需改文件头里的 GitHub 用户名，再把正文替换成你的答案。文件名可以不改；遇到同名文件时再换一个能区分思路的名称。GitHub 会引导没有写入权限的人创建副本和 PR。合并后网站会显示这份解答。
 
@@ -79,6 +81,8 @@ $$
 公开后的题号不要随意更改，因为旧链接和社区解答依赖它。引用题目来源时请注明出处，确认有权公开分享。
 
 ## 署名、审阅和修订
+
+维护者想把一份投稿变成正式解答时，在答案 Issue 上加 `promote-to-solution` 标签。自动流程会复制原作者的答案到 `content/solutions/<题号>/`，保留 GitHub 署名和原帖链接，检查后尝试创建 PR。仓库若限制 Actions 创建 PR，流程会在运行摘要里给出打开 PR 的链接。请在 PR 中核对推理、题号、方法和署名，再合并；网页随后更新。若要选取某条回复，在 Actions 的 **Promote community answer to solution PR** 中手动运行，填写 Issue 编号和该回复的 comment ID。不要把简短想法直接晋升为完整解答。
 
 实质性改进解答时，保留原作者并将自己的用户名加到 `contributors`；小勘误也会留在 Git 历史中。解答可以由后来的贡献者继续修订。维护者审阅时会检查题意、假设、推理、边界情况和可复现性；合并不意味着内容绝对正确。
 

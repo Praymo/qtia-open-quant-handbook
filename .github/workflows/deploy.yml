@@ -32,6 +32,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+      - run: node scripts/fetch-community-answers.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
       - run: npm run build
         env:
           PUBLIC_GITHUB_REPOSITORY: ${{ github.repository }}

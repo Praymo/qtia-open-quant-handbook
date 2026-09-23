@@ -1,0 +1,56 @@
+name: Promote community answer to solution PR
+on:
+  issues:
+    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number containing the answer
+        required: true
+        type: number
+      comment_id:
+        description: Optional comment ID to promote instead of the issue answer
+        required: false
+        type: number
+permissions:
+  contents: write
+  issues: read
+  pull-requests: write
+jobs:
+  promote:
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'promote-to-solution'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generate solution draft
+        run: node scripts/promote-community-answer.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          COMMENT_ID: ${{ inputs.comment_id }}
+      - run: npm run check && npm run build
+      - name: Open review PR when repository policy allows it
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ inputs.issue_number || github.event.issue.number }}
+          COMMENT_ID: ${{ inputs.comment_id }}
+        run: |
+          branch="community-solution/issue-${ISSUE_NUMBER}"
+          if [ -n "$COMMENT_ID" ]; then branch="${branch}-comment-${COMMENT_ID}"; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add content/solutions
+          git commit -m "Draft community solution from issue #${ISSUE_NUMBER}"
+          git push origin "$branch"
+          if gh pr create --base main --head "$branch" --title "Review community solution from #${ISSUE_NUMBER}" --body "Generated from a community answer. Please check the reasoning, formatting and contributor credit before merging. Closes #${ISSUE_NUMBER}."; then
+            echo "Review the new solution PR before merging." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "The review branch was created, but repository policy blocked automatic PR creation." >> "$GITHUB_STEP_SUMMARY"
+            echo "Open a PR from https://github.com/${GITHUB_REPOSITORY}/compare/main...${branch}?expand=1" >> "$GITHUB_STEP_SUMMARY"
+          fi
