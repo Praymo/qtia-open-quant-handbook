@@ -1,20 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContributorCard from '../components/ContributorCard.astro';
+import ContributorAvatar from '../components/ContributorAvatar.astro';
+import ContributorDetail from '../components/ContributorDetail.astro';
 import { contributorRecords } from '../lib/contributors';
 const people = contributorRecords();
-const content = people.filter(person => person.type.includes('content'));
-const technical = people.filter(person => person.type.includes('technical') && person.technicalEvidence);
+const byContribution = (type: 'content' | 'technical') => (a: (typeof people)[number], b: (typeof people)[number]) => b.contributions.filter(item => item.type === type).length - a.contributions.filter(item => item.type === type).length || a.name.localeCompare(b.name, 'zh-Hans-u-co-pinyin');
+const content = people.filter(person => person.type.includes('content')).sort(byContribution('content'));
+const technical = people.filter(person => person.contributions.some(item => item.type === 'technical')).sort(byContribution('technical'));
+const dialogId = (person: (typeof people)[number]) => `contributor-${people.indexOf(person)}`;
 ---
 <Layout title="贡献者">
   <div class="eyebrow">COMMUNITY</div>
   <h1>贡献者</h1>
   <div class="contribution-columns">
-    <section class="contribution-column" aria-labelledby="technical-title"><h2 id="technical-title">Technical Contributions <span>技术贡献</span></h2>
-      {technical.length ? <div class="contribution-records">{technical.map(person => content.includes(person) ? <div class="technical-reference"><a href={`#contributor-${content.indexOf(person)}`}>{person.name}</a><span>Web / Repository Maintenance</span><a class="technical-evidence" href={person.technicalEvidence}>查看提交记录 ↗</a></div> : <ContributorCard person={person}/>)}</div> : <p class="contribution-empty">技术贡献记录会随仓库更新。</p>}
-    </section>
     <section class="contribution-column" aria-labelledby="content-title"><h2 id="content-title">Content Contributions <span>内容贡献</span></h2>
-      <div class="contribution-records">{content.map((person, index) => <ContributorCard person={person} id={`contributor-${index}`}/>)}</div>
+      <div class="contributor-wall">{content.map(person => <ContributorAvatar person={person} dialogId={dialogId(person)}/>)}</div>
+    </section>
+    <section class="contribution-column" aria-labelledby="technical-title"><h2 id="technical-title">Technical Contributions <span>技术贡献</span></h2>
+      {technical.length ? <div class="contributor-wall">{technical.map(person => <ContributorAvatar person={person} dialogId={dialogId(person)}/>)}</div> : <p class="contribution-empty">技术贡献记录会随仓库更新。</p>}
     </section>
   </div>
+  {people.map(person => <ContributorDetail person={person} id={dialogId(person)}/>)}
 </Layout>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-contributor-dialog]').forEach(button => button.addEventListener('click', () => {
+    const dialog = document.getElementById(button.dataset.contributorDialog!) as HTMLDialogElement | null;
+    dialog?.showModal();
+  }));
+  document.querySelectorAll<HTMLButtonElement>('[data-close-dialog]').forEach(button => button.addEventListener('click', () => button.closest('dialog')?.close()));
+</script>

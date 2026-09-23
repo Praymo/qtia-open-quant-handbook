@@ -1,0 +1,16 @@
+---
+import type { Contributor } from '../lib/contributors';
+import { url } from '../lib/site';
+const { person, id } = Astro.props as { person: Contributor; id: string };
+const initial = [...person.name][0];
+---
+<dialog class="contributor-dialog" id={id} aria-labelledby={`${id}-title`}>
+  <div class="contributor-dialog-head">
+    <span class="contributor-avatar" aria-hidden="true">{person.github ? <img src={`https://github.com/${person.github}.png?size=128`} alt="" width="52" height="52" loading="lazy"/> : <span class="initials-avatar">{initial}</span>}</span>
+    <div><h2 id={`${id}-title`}>{person.name}</h2><p>{person.roles.join(' · ')}</p></div>
+    <button class="contributor-close" type="button" data-close-dialog aria-label="关闭详情">×</button>
+  </div>
+  <h3>具体贡献</h3>
+  <ul>{person.contributions.map(item => <li><a href={item.href.startsWith('/') ? url(item.href) : item.href}>{item.label} ↗</a></li>)}</ul>
+  {person.github && <a class="contributor-profile" href={`https://github.com/${person.github}`}>GitHub · @{person.github} ↗</a>}
+</dialog>
