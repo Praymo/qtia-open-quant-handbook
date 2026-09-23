@@ -1,0 +1,60 @@
+{
+  "week": 2,
+  "updatedAt": "2026-09-23T01:41:10.505733Z",
+  "polls": [
+    {
+      "discussion": 1,
+      "total": 1,
+      "options": [
+        {
+          "label": "较简单",
+          "votes": 0
+        },
+        {
+          "label": "适中",
+          "votes": 1
+        },
+        {
+          "label": "较困难",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "discussion": 2,
+      "total": 0,
+      "options": [
+        {
+          "label": "较少",
+          "votes": 0
+        },
+        {
+          "label": "适中",
+          "votes": 0
+        },
+        {
+          "label": "较多",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "discussion": 3,
+      "total": 0,
+      "options": [
+        {
+          "label": "目前可以自行解决",
+          "votes": 0
+        },
+        {
+          "label": "希望补充文字解答",
+          "votes": 0
+        },
+        {
+          "label": "希望每周线上讲解",
+          "votes": 0
+        }
+      ]
+    }
+  ]
+}

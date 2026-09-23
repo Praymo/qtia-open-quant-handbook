@@ -2,24 +2,30 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import feedback from '../data/feedback.json';
+import results from '../data/poll-results.json';
+type PollResult = { discussion: number; total: number; options: { label: string; votes: number }[] };
+const pollResults = results.polls as PollResult[];
 import { weekName } from '../lib/catalog';
 import { repoUrl, url } from '../lib/site';
 ---
 <Layout title="反馈投票">
   <div class="eyebrow">反馈投票 <span class="edition">{weekName(feedback.week)}</span></div>
   <h1>这一周的题目，感觉如何？</h1>
-  <p class="page-description">选一个最符合你体验的选项。每题只能选一项；投票后可在公开的 GitHub 页面查看票数和比例。</p>
+  <p class="page-description">选择一项并前往 GitHub 投票；票数会显示在这里。</p>
   <div class="poll-list">
-    {feedback.polls.map((poll, index) => <article class="poll-card">
+    {feedback.polls.map((poll, index) => { const result = results.week === feedback.week ? pollResults.find(item => item.discussion === poll.discussion) : undefined; return <article class="poll-card">
       <span class="mono poll-index">{String(index + 1).padStart(2, '0')}</span>
       <div>
         <h2>{poll.title}</h2>
         <p class="poll-question">{poll.question}</p>
-        <p class="poll-options">{poll.options.join(' / ')}</p>
+        {result ? <div class="poll-results" aria-label={`${poll.title}投票结果`}>
+          {result.options.map(option => { const percent = result.total ? Math.round(option.votes / result.total * 100) : 0; return <div class="poll-result"><div class="poll-result-label"><span>{option.label}</span><span>{option.votes} 票 · {percent}%</span></div><div class="poll-track"><span style={`width:${percent}%`}></span></div></div>; })}
+          <p class="poll-total">共 {result.total} 票</p>
+        </div> : <p class="poll-options">{poll.options.join(' / ')}</p>}
       </div>
-      <a class="button primary" href={`${repoUrl}/discussions/${poll.discussion}`}>投票并查看结果 <Icon name="arrow" size={14}/></a>
-    </article>)}
+      <a class="button primary" href={`${repoUrl}/discussions/${poll.discussion}`}>前往 GitHub 投票 <Icon name="arrow" size={14}/></a>
+    </article>; })}
   </div>
-  <p class="poll-help">投票需要登录 GitHub；查看结果无需登录。投票开放后，结果会随新投票更新。想说明具体原因，也可以在投票页留言。</p>
+  <p class="poll-help">投票需要 GitHub 账号；查看本站结果无需登录。{results.week === feedback.week && results.updatedAt ? `结果更新于 ${new Date(results.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}，约每小时刷新。` : '结果将在网站下次更新后显示。'}</p>
   <p class="poll-back"><a class="text-link" href={url(`/week/${String(feedback.week).padStart(2, '0')}/`)}>← 返回{weekName(feedback.week)}题目</a></p>
 </Layout>

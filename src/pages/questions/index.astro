@@ -4,7 +4,6 @@ import QuestionList from '../../components/QuestionList.astro';
 import { allQuestions, categories, difficulties, weekName, newest } from '../../lib/catalog';
 const questions = await allQuestions();
 const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => a - b);
-const tags = [...new Set(questions.flatMap(q => q.data.tags))].sort();
 ---
 <Layout title="全部题目">
   <div class="eyebrow">题库 <span class="edition">{questions.length} 道题目</span></div><h1>全部题目</h1><p class="page-description">按主题、难度和周次，找到你的下一个问题。</p>
@@ -12,7 +11,6 @@ const tags = [...new Set(questions.flatMap(q => q.data.tags))].sort();
     <label>周次<select name="week"><option value="">全部周次</option>{weeks.map(week => <option value={week}>{weekName(week)}</option>)}</select></label>
     <label>Category · 主题<select name="category"><option value="">全部主题</option>{Object.entries(categories).map(([key, item]) => <option value={key}>{item.label} / {item.zh}</option>)}</select></label>
     <label>Difficulty · 难度<select name="difficulty"><option value="">全部难度</option>{Object.entries(difficulties).map(([key, label]) => <option value={key}>{key} · {label}</option>)}</select></label>
-    <label>Tags · 标签<select name="tag"><option value="">全部标签</option>{tags.map(tag => <option value={tag}>{tag}</option>)}</select></label>
     <div class="filter-bottom"><p id="result-count" role="status" aria-live="polite">显示 {questions.length} 道题目</p><button type="reset" class="reset-button">重置筛选</button><label class="sort-label">排序<select name="sort"><option value="newest">最新收录</option><option value="week">周次顺序</option><option value="difficulty">难度递增</option></select></label></div>
   </form>
   <noscript><p class="notice">筛选需要 JavaScript。你仍可阅读所有题目，或通过侧栏进入分类与周归档。</p></noscript>
@@ -24,7 +22,7 @@ const tags = [...new Set(questions.flatMap(q => q.data.tags))].sort();
     const list = document.querySelector<HTMLElement>('.question-list')!;
     const rows = Array.from(list.querySelectorAll<HTMLElement>('[data-question]'));
     const records = rows.map(row => ({ id: row.dataset.id!, category: row.dataset.category!, week: Number(row.dataset.week), difficulty: row.dataset.difficulty!, date: row.dataset.date!, tags: JSON.parse(row.dataset.tags!) as string[] }));
-    const names = ['week', 'category', 'difficulty', 'tag', 'sort'];
+    const names = ['week', 'category', 'difficulty', 'sort'];
     function controls() { return Object.fromEntries(new FormData(form)) as Record<string, string>; }
     function apply(syncUrl = true) {
       const values = controls();

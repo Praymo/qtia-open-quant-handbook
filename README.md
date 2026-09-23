@@ -29,7 +29,7 @@
 
 - 想提交解答、勘误或讨论题意：阅读 [参与贡献说明](CONTRIBUTING.md)。直接在 GitHub 修改 Markdown 即可，不需要安装开发工具。
 - 想替换旧题、增加下一周题目或调整元数据：阅读 [题目更新维护指南](docs/题目更新维护指南.md)。题号一旦公开，应保持稳定，以免旧链接与解答失效。
-- 想反馈题目难度、题量和解答需求：进入[反馈投票页](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。投票及实时结果由公开的 GitHub Discussions 保存。
+- 想反馈题目难度、题量和解答需求：进入[反馈投票页](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。投票由公开的 GitHub Discussions 保存，网站约每小时更新展示票数。
 
 ## 本地运行与检查
 
