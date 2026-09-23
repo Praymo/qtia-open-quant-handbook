@@ -1,5 +1,5 @@
 name: 直接贴答案
-description: 不熟悉 Markdown 或 Pull Request？选题后把答案粘贴进来即可，维护者会整理成解答文件。
+description: 粘贴答案，维护者会整理成题目下的社区解答。
 title: "[题号] 解答投稿"
 body:
   - type: input
@@ -13,7 +13,7 @@ body:
     id: answer
     attributes:
       label: 你的答案
-      description: 直接粘贴即可。文字、Markdown、公式或代码都可以；不用先整理成模板。
+      description: 文字、Markdown、公式或代码都可以。
       placeholder: 写下你的思路和结果……
     validations:
       required: true

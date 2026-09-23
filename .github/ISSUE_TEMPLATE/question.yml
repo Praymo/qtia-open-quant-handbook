@@ -23,6 +23,6 @@ body:
     id: details
     attributes:
       label: 具体发现
-      description: 请引用相关文字，说明理由、例子或可复现的核对方法；不要填写个人信息。
+      description: 请引用相关文字，说明理由、例子或可复现的核对方法。
     validations:
       required: true

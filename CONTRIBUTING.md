@@ -1,12 +1,12 @@
 # 参与 QTIA CUHK(SZ) 知识库
 
-有题目或答案就可以参与，不用先学网站开发，也不需要承担后续维护。通过网站表单投稿需要 GitHub 账号；不想注册的话，可以把题面交给认识的 QTIA 管理团队同学代为提交。
+有题目或答案就可以参与。登录 GitHub 后可以直接贴出内容；也可以请认识的 QTIA 管理团队同学代为提交。
 
 ## 从哪里开始
 
-- **分享新题目：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“投稿题目”，或直接打开[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。只粘贴题面；中文或英文都可以。题号、翻译、难度、标签和排版由维护者处理。知道出处就填上，不确定时可以先留下线索，核实后再公开。
-- **最省事：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。维护者会整理为 Markdown 解答，并保留你的署名。你不需要自己处理文件或 PR。
-- **自己提 PR：**在题目页点击“用 Markdown 提 PR”。GitHub 会打开预填题号的新文件；把用户名改成自己的，粘贴答案，提交后按提示创建 Pull Request（合并请求）。不用安装工具。
+- **分享新题目：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“投稿题目”，或直接打开[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。粘贴中文或英文题面与已知出处；题号、翻译、难度、标签和排版由维护者处理。
+- **直接贴答案：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。维护者会整理为 Markdown 解答，并保留你的署名。
+- **自己提 PR：**在题目页点击“用 Markdown 提 PR”。GitHub 会打开预填题号的新文件；把用户名改成自己的，粘贴答案，然后按提示创建 Pull Request（合并请求）。
 - **指出错误或讨论题意：**在题目页点击“报告问题”，写明题号、相关文字和理由。
 - **修改题面或翻译：**在题目页点击“编辑题目”。小勘误和更清晰的解释同样欢迎。
 
@@ -15,11 +15,11 @@
 以 [02.3 玻璃球测试](https://praymo.github.io/qtia-open-quant-handbook/questions/02.3/) 为例：
 
 1. 打开题目，点击“直接贴答案”，登录 GitHub 后把答案粘贴进表单。
-2. 点页面底部的 “Submit new issue”。维护者会在这个页面与你核对，再整理成社区解答；不用自己学会 PR。
+2. 点页面底部的 “Submit new issue”。维护者会在这个页面与你交流，再整理成社区解答。
 
 如果想自己直接提交 Markdown，点“用 Markdown 提 PR”：只需改文件头里的 GitHub 用户名，再把正文替换成你的答案。文件名可以不改；遇到同名文件时再换一个能区分思路的名称。GitHub 会引导没有写入权限的人创建副本和 PR。合并后网站会显示这份解答。
 
-写出结论和关键思路就够了，不必套固定小标题。只修改错字或解释时，可以用“编辑题目”入口。GitHub 会保留提交和审阅记录；原作者无需独自长期维护。
+写出结论和关键思路即可，正文可以按自己的方式组织。修改错字或解释时，可以用“编辑题目”入口。GitHub 会保留提交和审阅记录。
 
 ## 解答文件格式
 
@@ -59,7 +59,7 @@ $$
 
 ## 想自己用 Markdown 新增或修改题目
 
-这一节只给想自己提交文件的贡献者看。最简单的投稿方式是上面的“分享新题目”表单；你不需要处理下列字段。自己提 PR 时，请先阅读 [题目更新维护指南](docs/题目更新维护指南.md)，从 [题目模板](templates/question.md)复制新文件到 `content/questions/week-XX/`。同一文件必须包含完整的中文题面和英文题面；数字、事件、规则和小问要逐项核对。不得在题面中写入官方解答。
+下面的格式供自己提交 Markdown 文件时参考。使用“分享新题目”表单时，维护者会处理这些字段。自己提 PR 时，请先阅读 [题目更新维护指南](docs/题目更新维护指南.md)，从 [题目模板](templates/question.md)复制新文件到 `content/questions/week-XX/`。同一文件包含完整的中文和英文题面；数字、事件、规则和小问请逐项核对。解答写入独立文件。
 
 文件头需要填写：
 
@@ -94,4 +94,4 @@ npm run build
 
 ## 来源与许可
 
-投稿者需确认自己有权分享内容。代码和文档按 [MIT](LICENSE) 许可；[CC BY 4.0](LICENSE-CONTENT.md) 仅适用于贡献者有权许可的原创解答、原创题面或整理文字，不覆盖第三方原题。QTIA 每周分享习题，整理者与审核者的署名不等于原题作者或版权人。引用第三方材料时保留其来源和许可信息；不要复制受限制的面试资料或付费题库。
+投稿者需确认自己有权分享内容。代码和文档按 [MIT](LICENSE) 许可；内容的许可范围和来源说明见 [LICENSE-CONTENT.md](LICENSE-CONTENT.md)。引用第三方材料时，请保留来源和许可信息。

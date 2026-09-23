@@ -11,7 +11,7 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
     <article class="contribution-path">
       <span class="mono">01 / 新题目</span>
       <h2>分享一道题</h2>
-      <p>把题面粘贴到 GitHub 表单。中文或英文都行，不用先定周次、难度、标签，也不用写 Markdown。</p>
+      <p>把中文或英文题面粘贴到表单；题号、翻译、分类和排版由维护者整理。</p>
       <a class="text-link" href={githubAction('question-proposal')}>直接贴题目 →</a>
     </article>
     <article class="contribution-path">
@@ -29,7 +29,7 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
     <article class="contribution-path">
       <span class="mono">04 / 勘误</span>
       <h2>发现题目或解答有问题</h2>
-      <p>指出具体位置和你的理由即可；不用先想好完整修改方案。</p>
+      <p>指出具体位置和你的理由，大家可以一起完善。</p>
       <a class="text-link" href={githubAction('issue')}>报告问题 →</a>
     </article>
   </div>
@@ -37,26 +37,25 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
   <section class="guide-section">
     <h2>投稿新题目，只要两步</h2>
     <ol>
-      <li>点“<a href={githubAction('question-proposal')}>直接贴题目</a>”，登录 GitHub，粘贴题面。知道出处就顺手填上；不知道也可以先留下线索。</li>
-      <li>点页面底部的“Submit new issue”。维护者会核对来源、补齐中英题面，再决定题号和发布时间；不需要你做后续整理。</li>
+      <li>点“<a href={githubAction('question-proposal')}>直接贴题目</a>”，登录 GitHub，粘贴题面和已知的出处。</li>
+      <li>点页面底部的“Submit new issue”。维护者会整理题目，并在投稿页面与你交流。</li>
     </ol>
-    <p>不想注册 GitHub？也可以把题面发给你认识的 QTIA 管理团队同学，由他们代为提交；是否署名按你的意愿。</p>
+    <p>也可以把题面发给认识的 QTIA 管理团队同学，由他们代为提交。署名方式可一起商量。</p>
   </section>
 
   <section class="guide-section">
     <h2>投稿答案，第一次用 GitHub？</h2>
     <ol>
-      <li>先<a href={url('/questions/')}>找到要回答的题</a>，点“直接贴答案”。需要登录 GitHub；没有账号的话先免费注册。</li>
+      <li>先<a href={url('/questions/')}>找到要回答的题</a>，登录 GitHub 后点“直接贴答案”。</li>
       <li>填题号，粘贴答案，点页面底部的“Submit new issue”。这就交上来了。</li>
-      <li>维护者会在同一个页面和你确认不清楚的地方，再整理成题目下的社区解答。你不需要自己改网站，也不需要承诺长期维护。</li>
+      <li>维护者会在投稿页面与你交流，再整理成题目下的社区解答。</li>
     </ol>
     <p>如果你已经会用 Markdown，直接点“用 Markdown 提 PR”也行：只要改用户名、写正文，提交后按 GitHub 提示创建 Pull Request。<a href={githubAction('solution', '', '01.1')}>看看 01.1 的预填示例</a>。</p>
   </section>
 
   <section class="guide-section">
     <h2>答案写到什么程度？</h2>
-    <p>写出结论和你怎么想的就够了。假设、关键步骤、代码或参考来源，有什么就补什么；不必套固定小标题。不同思路可以单独发表，其他人也能接着讨论和修订。</p>
-    <p>请只提交自己有权分享的内容。引用别人的解法时附上来源，不要粘贴密码或个人信息。</p>
+    <p>写出结论和你的思路。假设、关键步骤、代码或参考来源，可以按自己的方式补充。不同思路可以单独发表，其他人也能接着讨论和修订。</p>
   </section>
 
   {repository && <p id="repository-setup" class="guide-repository">更详细的格式和许可说明在 <a href={`${repoUrl}/blob/${encodeURIComponent(branch)}/CONTRIBUTING.md`}>贡献指南</a>。</p>}

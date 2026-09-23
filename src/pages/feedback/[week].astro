@@ -27,7 +27,7 @@ const { group } = Astro.props;
       </div>
       <a class="button primary" href={`${repoUrl}/discussions/${poll.discussion}`}>前往 GitHub 投票 <Icon name="arrow" size={14}/></a>
     </article>; })}</div>
-    <p class="poll-help">投票需要 GitHub 账号；查看结果无需登录。{results.updatedAt ? `结果更新于 ${new Date(results.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}，约每小时刷新。` : '结果将在网站下次更新后显示。'}</p>
+    <p class="poll-help">登录 GitHub 参与投票，结果在这里公开查看。{results.updatedAt ? `结果更新于 ${new Date(results.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}，约每小时刷新。` : '结果将在网站下次更新后显示。'}</p>
   </> : <p class="page-description">这一周还没有投票。你可以先浏览本周题目。</p>}
   <p class="poll-back"><a class="text-link" href={url(`/week/${weekLabel(group.week)}/`)}>← 返回{weekName(group.week)}题目</a></p>
 </Layout>

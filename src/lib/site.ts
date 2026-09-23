@@ -14,5 +14,5 @@ export function githubAction(action: 'issue' | 'question-proposal' | 'edit' | 's
   if (action === 'solution-issue') return `${repoUrl}/issues/new?template=solution.yml&title=${encodeURIComponent(`[${id}] 解答投稿`)}`;
   if (action === 'edit') return `${repoUrl}/edit/${encodeURIComponent(branch)}/${repoPath(file)}`;
   if (action === 'history') return `${repoUrl}/commits/${encodeURIComponent(branch)}/${repoPath(file)}`;
-  return `${repoUrl}/new/${encodeURIComponent(branch)}/content/solutions/${encodeURIComponent(id)}?filename=my-solution.md&value=${encodeURIComponent(`---\nquestion: "${id}"\ntitle: "我的解法"\nmethod: "推导"\ncontributors: ["把这里改成你的 GitHub 用户名"]\ndate: "${new Date().toISOString().slice(0, 10)}"\n---\n\n在这里写你的答案。可以直接粘贴 Markdown；不必按固定小标题填写。\n`)}`;
+  return `${repoUrl}/new/${encodeURIComponent(branch)}/content/solutions/${encodeURIComponent(id)}?filename=my-solution.md&value=${encodeURIComponent(`---\nquestion: "${id}"\ntitle: "我的解法"\nmethod: "推导"\ncontributors: ["把这里改成你的 GitHub 用户名"]\ndate: "${new Date().toISOString().slice(0, 10)}"\n---\n\n在这里写你的答案。\n`)}`;
 }

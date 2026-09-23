@@ -2,7 +2,7 @@
 
 [阅读网站](https://praymo.github.io/qtia-open-quant-handbook/) · [按周浏览题目](https://praymo.github.io/qtia-open-quant-handbook/week/) · [反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [参与贡献](CONTRIBUTING.md)
 
-这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库，收录 QTIA 社团每周分享的习题。题目由社团管理团队整理与审核；仓库把题目和社区解答保存为 Markdown，网站负责阅读、筛选和展示。每道题都有中文题面和 English version。这里暂不预设“官方标准答案”，欢迎提交不同的推导、证明和模拟。
+这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库，收录 QTIA 社团每周分享的习题。题目由社团管理团队整理与审核；仓库把题目和社区解答保存为 Markdown，网站负责阅读、筛选和展示。每道题都有中文题面和 English version；不同的推导、证明和模拟可以并列分享。
 
 ## QTIA 管理团队的整理与审核
 
@@ -11,7 +11,7 @@
 | [第一周](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S.、江 B.Y.、文 J.、颜 T.Y.、郑 Z.R. |
 | [第二周](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
 
-为尊重隐私，使用“姓氏＋名字拼音首字母”。这里记录的是每期习题的整理与审核工作，不代表原题作者或版权归属；原题出处会尽可能逐题补充。
+署名采用“姓氏＋名字拼音首字母”；每一期的整理与审核同学也列在对应的周次页面。
 
 ## 这里能做什么
 
@@ -22,14 +22,14 @@
 | 分享题目 | 在题库点“投稿题目”，直接贴中文或英文题面；维护者负责核对来源、翻译、编号和排版。 |
 | 社区解答 | 同一道题可以有多种解法。直接在题目页粘贴答案，或提交一个 Markdown PR；整理后会显示在对应题目下。 |
 | 勘误与修订 | 发现题意不清、翻译问题或错误，可以在题目页发起 GitHub Issue 或编辑题目。Pull Request 保留审阅和修改记录。 |
-| 每周反馈 | 在每周题目列表下方进入该周[反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。投票在 GitHub Discussions 完成；网站展示公开结果，约每小时更新。查看结果无需登录，投票需要 GitHub 账号。 |
+| 每周反馈 | 在每周题目列表下方进入该周[反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。登录 GitHub 参与投票，网站公开展示结果，约每小时更新。 |
 
-想先看看内容？直接打开[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)或仓库中的 [`content/questions/`](content/questions/)；README 不重复列出全部题目，以免每周发布时维护两份索引。
+想先看看内容？直接打开[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)或仓库中的 [`content/questions/`](content/questions/)。
 
 ## 一起完善
 
-- 想分享题目：用[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)，直接粘贴题面，知道出处就附上。不想注册 GitHub，可以交给认识的 QTIA 管理团队同学代为提交；不用承担后续维护。
-- 想写解答：打开一道题，点“直接贴答案”即可；想自己提交文件，就点“用 Markdown 提 PR”。两条路都只需要 GitHub 账号，[贡献指南](CONTRIBUTING.md)有三步说明。
+- 想分享题目：用[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)粘贴题面和已知出处；也可请认识的 QTIA 管理团队同学代为提交。
+- 想写解答：打开一道题，点“直接贴答案”；熟悉 Markdown 的同学也可以直接提 PR。[贡献指南](CONTRIBUTING.md)有具体步骤。
 - 想指出问题：在题目页点击“报告问题”；修正错字或翻译时也可以点“编辑题目”。
 - 想发布下一周：看[给维护者的上传指南](docs/题目更新维护指南.md)，里面用第三周第一题演示文件怎么建、怎么填、怎么上线。
 - 想推荐题目或相关项目：到 [GitHub Discussions](https://github.com/Praymo/qtia-open-quant-handbook/discussions) 说说题目来源、你试过的方法，或项目适合解决什么问题。
@@ -51,14 +51,14 @@
 
 ## 本地运行
 
-只阅读题目或在 GitHub 网页贡献内容，不需要安装任何开发工具。要在电脑上预览网站，请安装 Node.js 22.12 或更新版本，在仓库根目录运行：
+要在电脑上预览网站，请安装 Node.js 22.12 或更新版本，在仓库根目录运行：
 
 ```sh
 npm ci
 npm run dev
 ```
 
-提交代码前运行 `npm test`、`npm run check` 和 `npm run build`。合并到 `main` 后，GitHub Actions 会更新网站。[CC BY 4.0](LICENSE-CONTENT.md) 仅适用于贡献者有权许可的原创内容，不覆盖第三方原题；网站代码与仓库文档采用 [MIT](LICENSE)。引用外部题目或解法时，请注明来源并确认分享权限。
+提交代码前运行 `npm test`、`npm run check` 和 `npm run build`。合并到 `main` 后，GitHub Actions 会更新网站。内容的许可与来源说明见 [LICENSE-CONTENT.md](LICENSE-CONTENT.md)；网站代码与仓库文档采用 [MIT](LICENSE)。
 
 初始建库：[@Praymo](https://github.com/Praymo)。
 
@@ -68,7 +68,7 @@ npm run dev
 
 [Read the website](https://praymo.github.io/qtia-open-quant-handbook/) · [Browse by week](https://praymo.github.io/qtia-open-quant-handbook/week/) · [Weekly feedback](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [Contribute](CONTRIBUTING.md)
 
-This community-maintained repository collects weekly questions shared by QTIA. The club's management team organizes and reviews each set; the repository keeps the questions and community solutions as Markdown, while the website makes them easier to browse. Each question has a Chinese statement and an English version. There is no preset official solution: different proofs, derivations, simulations, and corrections can stand side by side.
+This community-maintained repository collects weekly questions shared by QTIA. The club's management team organizes and reviews each set; the repository keeps the questions and community solutions as Markdown, while the website makes them easier to browse. Each question has a Chinese statement and an English version. Different proofs, derivations, and simulations can be shared side by side.
 
 ## QTIA management team's weekly contributions
 
@@ -77,7 +77,7 @@ This community-maintained repository collects weekly questions shared by QTIA. T
 | [Week 1](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S., 江 B.Y., 文 J., 颜 T.Y., 郑 Z.R. |
 | [Week 2](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y., 郑 Z.R. |
 
-Names use the surname and given-name pinyin initials for privacy. These credits recognize organization and review of each question set; they do not claim authorship or copyright in the original questions. Original sources will be added where they can be verified.
+Names use the surname and given-name pinyin initials. Each week's archive page also lists the organizers and reviewers.
 
 ## What you can do
 
@@ -88,21 +88,21 @@ Names use the surname and given-name pinyin initials for privacy. These credits 
 | Suggest a question | Paste a Chinese or English statement into the question form. Maintainers check the source, translate, number, and format it. |
 | Share a solution | Paste your answer into a GitHub form from the question page, or submit a Markdown PR. The reviewed solution then appears below that question. |
 | Correct and improve | Open an Issue or edit a question from its page. Pull Requests retain review and revision history. |
-| Give weekly feedback | Open the feedback link below a week's questions. Vote in GitHub Discussions and view the public results on the website, refreshed about hourly. Viewing results needs no login; voting requires a GitHub account. |
+| Give weekly feedback | Open the feedback link below a week's questions. Sign in to GitHub to vote; results appear publicly on the website and refresh about hourly. |
 
-The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) and [`content/questions/`](content/questions/) are the current question index. This README does not duplicate every question as new weeks are added.
+The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) and [`content/questions/`](content/questions/) provide the current question index.
 
 ## Join in
 
-- To suggest a question, use the [question form](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml) and paste the statement. Include a source if you know it. If you do not want a GitHub account, ask a QTIA management team member you know to submit it for you; no ongoing maintenance is expected.
-- To contribute, open a question and choose “直接贴答案” (paste an answer) or “用 Markdown 提 PR” (submit a Markdown PR). Both require a GitHub account. The [contribution guide](CONTRIBUTING.md) walks through the short process; frontend work is not required.
+- To suggest a question, use the [question form](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml) and paste the statement and any known source. A QTIA management team member you know can also submit it for you.
+- To contribute a solution, open a question and choose “直接贴答案” (paste an answer) or “用 Markdown 提 PR” (submit a Markdown PR). The [contribution guide](CONTRIBUTING.md) walks through both paths.
 - To report a mistake or improve a translation, use the Issue or edit link on the question page.
 - To publish another week, follow the [maintainer's upload guide](docs/题目更新维护指南.md), which walks through Week 3 as an example.
 - To suggest a question or another useful project, start a [GitHub Discussion](https://github.com/Praymo/qtia-open-quant-handbook/discussions) and share the source and why it helps.
 
 ## Quant project map
 
-These repositories cover different parts of a research or trading workflow. They are references for exploration, not dependencies of this handbook or endorsements of strategy performance.
+These repositories cover different parts of a research or trading workflow.
 
 | Area | Project | What it does | Repository |
 | --- | --- | --- | --- |
@@ -117,13 +117,13 @@ These repositories cover different parts of a research or trading workflow. They
 
 ## Run locally
 
-You do not need development tools to read questions or edit Markdown on GitHub. To preview the site locally, install Node.js 22.12 or later and run:
+To preview the site locally, install Node.js 22.12 or later and run:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Before submitting code, run `npm test`, `npm run check`, and `npm run build`. Merging into `main` triggers the GitHub Actions site deployment. [CC BY 4.0](LICENSE-CONTENT.md) covers only original material contributors have the right to license, not third-party question statements; site code and repository docs use [MIT](LICENSE). Credit external sources and check sharing rights before contributing them.
+Before submitting code, run `npm test`, `npm run check`, and `npm run build`. Merging into `main` triggers the GitHub Actions site deployment. See [LICENSE-CONTENT.md](LICENSE-CONTENT.md) for content licensing and provenance; site code and repository docs use [MIT](LICENSE).
 
 Initial repository setup: [@Praymo](https://github.com/Praymo).
