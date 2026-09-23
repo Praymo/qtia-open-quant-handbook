@@ -1,0 +1,26 @@
+name: 分享一道题
+description: 直接贴题面即可；题号、英文翻译、分类和网页排版由维护者整理。
+title: "题目投稿："
+body:
+  - type: textarea
+    id: statement
+    attributes:
+      label: 题目内容
+      description: 中文或英文都可以；直接粘贴文字，写清条件和问题即可。不用填周次、难度或标签。
+      placeholder: 在这里粘贴题面……
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 来源或出处线索（知道的话填）
+      description: 例如原帖链接、书名或你从哪里看到的。暂不确定也可以先空着，维护者核对后再发布。
+    validations:
+      required: false
+  - type: textarea
+    id: note
+    attributes:
+      label: 补充说明（可不填）
+      description: 可以写自己的理解、希望如何署名，或题目中需要确认的条件。
+    validations:
+      required: false

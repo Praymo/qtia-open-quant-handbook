@@ -14,7 +14,7 @@
 .prose details[open] summary,.contribution-detail[open] summary{border-bottom:1px solid var(--line)}
 .prose details>:not(summary),.contribution-detail>:not(summary){margin-top:15px;margin-bottom:15px}
 .prose details .katex-display{max-width:100%}
-.contribution-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:30px 0 42px}
+.contribution-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:30px 0 42px}
 .contributor-avatars{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.contributor-avatars a{display:inline-flex;border-radius:50%;outline-offset:5px}.contributor-avatars img{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover}
 .contribution-path{border:1px solid var(--line);border-radius:6px;padding:21px 19px;display:flex;flex-direction:column;min-width:0}
 .contribution-path .mono{font-size:.67rem;color:var(--accent)}

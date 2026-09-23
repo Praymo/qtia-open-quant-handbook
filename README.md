@@ -19,6 +19,7 @@
 | --- | --- |
 | 每周题目 | 从[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)进入第一周、第二周等；每期题目各自保存在 `content/questions/week-XX/`。 |
 | 找题练习 | 在[题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)按周次、主题和难度筛选。题目页提供中英文题面和上一题、下一题导航。 |
+| 分享题目 | 在题库点“投稿题目”，直接贴中文或英文题面；维护者负责核对来源、翻译、编号和排版。 |
 | 社区解答 | 同一道题可以有多种解法。直接在题目页粘贴答案，或提交一个 Markdown PR；整理后会显示在对应题目下。 |
 | 勘误与修订 | 发现题意不清、翻译问题或错误，可以在题目页发起 GitHub Issue 或编辑题目。Pull Request 保留审阅和修改记录。 |
 | 每周反馈 | 在每周题目列表下方进入该周[反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。投票在 GitHub Discussions 完成；网站展示公开结果，约每小时更新。查看结果无需登录，投票需要 GitHub 账号。 |
@@ -27,6 +28,7 @@
 
 ## 一起完善
 
+- 想分享题目：用[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)，直接粘贴题面，知道出处就附上。不想注册 GitHub，可以交给认识的 QTIA 管理团队同学代为提交；不用承担后续维护。
 - 想写解答：打开一道题，点“直接贴答案”即可；想自己提交文件，就点“用 Markdown 提 PR”。两条路都只需要 GitHub 账号，[贡献指南](CONTRIBUTING.md)有三步说明。
 - 想指出问题：在题目页点击“报告问题”；修正错字或翻译时也可以点“编辑题目”。
 - 想发布下一周：看[给维护者的上传指南](docs/题目更新维护指南.md)，里面用第三周第一题演示文件怎么建、怎么填、怎么上线。
@@ -83,6 +85,7 @@ Names use the surname and given-name pinyin initials for privacy. These credits 
 | --- | --- |
 | Weekly questions | Browse the [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/). Each week's source files live in `content/questions/week-XX/`. |
 | Find a question | Filter the [question bank](https://praymo.github.io/qtia-open-quant-handbook/questions/) by week, topic, and difficulty. |
+| Suggest a question | Paste a Chinese or English statement into the question form. Maintainers check the source, translate, number, and format it. |
 | Share a solution | Paste your answer into a GitHub form from the question page, or submit a Markdown PR. The reviewed solution then appears below that question. |
 | Correct and improve | Open an Issue or edit a question from its page. Pull Requests retain review and revision history. |
 | Give weekly feedback | Open the feedback link below a week's questions. Vote in GitHub Discussions and view the public results on the website, refreshed about hourly. Viewing results needs no login; voting requires a GitHub account. |
@@ -91,6 +94,7 @@ The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) an
 
 ## Join in
 
+- To suggest a question, use the [question form](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml) and paste the statement. Include a source if you know it. If you do not want a GitHub account, ask a QTIA management team member you know to submit it for you; no ongoing maintenance is expected.
 - To contribute, open a question and choose “直接贴答案” (paste an answer) or “用 Markdown 提 PR” (submit a Markdown PR). Both require a GitHub account. The [contribution guide](CONTRIBUTING.md) walks through the short process; frontend work is not required.
 - To report a mistake or improve a translation, use the Issue or edit link on the question page.
 - To publish another week, follow the [maintainer's upload guide](docs/题目更新维护指南.md), which walks through Week 3 as an example.
