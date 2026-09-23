@@ -25,7 +25,7 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
   <body>
     <a class="skip-link" href="#main">跳转到正文</a>
     <header class="topbar">
-      <a href={url('/')} class="brand" aria-label={siteName}><span class="brand-mark">Q<span>↗</span></span><span>QTIA<span class="brand-sub">OPEN HANDBOOK</span></span></a>
+      <a href={url('/')} class="brand" aria-label={siteName}><span class="brand-mark">Q<span>↗</span></span><span>QTIA<span class="brand-sub">CUHK(SZ) · OPEN HANDBOOK</span></span></a>
       <span class="header-caption">Quantitative thinking, shared.</span>
       <a class="header-github" href={repoUrl}><Icon name="github"/><span>GitHub</span><Icon name="arrow" size={14}/></a>
       <button id="menu-toggle" class="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button>
@@ -46,7 +46,7 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
         <div class="sidebar-note"><span class="small-caps">BUILT TOGETHER</span><p>一道题，可以有很多种思路。<br/>你的解法，也是下一人的起点。</p><a href={url('/contributing/')}>成为贡献者 <span aria-hidden="true">↗</span></a></div>
       </aside>
       <main id="main" tabindex="-1"><div class="content-wrap"><slot/></div>
-        <footer class="footer"><span>QTIA · Open Quant Interview Handbook</span><a href={url('/contributing/')}>共同学习，持续完善 <span aria-hidden="true">↗</span></a></footer>
+        <footer class="footer"><span>QTIA · CUHK(SZ) · Open Quant Interview Handbook</span><a href={url('/contributing/')}>共同学习，持续完善 <span aria-hidden="true">↗</span></a></footer>
       </main>
     </div>
     <script>

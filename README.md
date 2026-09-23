@@ -1,10 +1,10 @@
-# QTIA Open Quant Interview Handbook
+# QTIA · CUHK(SZ) Open Quant Interview Handbook
 
 **一个以 GitHub 为核心、由社区共同维护的量化面试题知识库。**
 
 [阅读展示网站](https://praymo.github.io/qtia-open-quant-handbook/) · [浏览 GitHub 知识库](https://github.com/Praymo/qtia-open-quant-handbook) · [参与贡献](CONTRIBUTING.md)
 
-QTIA Open Quant Interview Handbook is a community-maintained collection of quantitative interview questions. Weekly questions become a persistent, structured knowledge asset; different solution approaches grow through public, attributable contributions.
+QTIA · CUHK(SZ) Open Quant Interview Handbook is a community-maintained collection of quantitative interview questions. Weekly questions become a persistent, structured knowledge asset; different solution approaches grow through public, attributable contributions.
 
 | Surface | Role |
 | --- | --- |

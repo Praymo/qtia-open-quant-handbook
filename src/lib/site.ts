@@ -1,5 +1,5 @@
 import settings from '../data/site.json';
-export const siteName = 'QTIA Open Quant Interview Handbook';
+export const siteName = 'QTIA · CUHK(SZ) Open Quant Interview Handbook';
 export const repository = import.meta.env.PUBLIC_GITHUB_REPOSITORY || settings.repository;
 export const branch = import.meta.env.PUBLIC_GITHUB_BRANCH || settings.branch;
 if (repository && !/^[\w.-]+\/[\w.-]+$/.test(repository)) throw new Error('PUBLIC_GITHUB_REPOSITORY must be owner/repository');
