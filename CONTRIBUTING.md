@@ -1,30 +1,25 @@
-# Contributing to the QTIA Handbook
+# Contributing to the QTIA CUHK(SZ) Handbook
 
-欢迎贡献。你可以只写 Markdown 与 LaTeX，无需懂前端，也无需承诺永久维护你的解答。
+仓库是题目与解答的保存处，网站用于阅读。参与前需要一个 GitHub 账号；写题目或解答时，只需编辑 Markdown 文件。
 
-The repository is the knowledge base; the website is its reading interface. Every contribution is attributable through Git history and Pull Requests. Multiple approaches are welcome—there is no single official answer.
+## 从哪里开始
 
-## What can I contribute?
+- **提交解答：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)中打开一道题，点击“提交解答”。可以提交数学推导、另一种证明或 Python 模拟。
+- **指出错误或讨论题意：**在题目页点击“报告问题”，写明题号、具体文字及你的理由。
+- **修改题面或翻译：**在题目页点击“编辑题目”。小的勘误和更清晰的解释同样欢迎。
 
-- A new solution or alternative proof
-- A reproducible Python simulation
-- A correction, typo fix, or clearer explanation
-- Better tags or metadata
-- A new weekly question you have the right to share
-- A website improvement or a thoughtful review
+## 第一次提交解答
 
-Use Issues for errors, discussions, question clarification, and feature requests. Include the question ID, relevant quotation, and an example or explanation. Never include credentials, private conversations, or personal information.
+以 [02.3 玻璃球测试](https://praymo.github.io/qtia-open-quant-handbook/questions/02.3/) 为例：
 
-## Browser-only workflow
+1. 打开题目，点击“提交解答”。GitHub 会打开新文件页面，并预填题号和基本格式。
+2. 将 `your-approach.md` 改成说明解法的文件名；填写解法名称、方法、自己的 GitHub 用户名和日期。
+3. 写清假设、推导或代码，以及验证和局限。提交修改时，若没有仓库的写入权限，GitHub 会引导你创建自己的仓库副本（Fork）。
+4. 向本仓库发起合并请求（Pull Request，简称 PR），说明修改了什么。维护者审阅并合并后，网站会显示这份解答。
 
-1. Open the repository and click **Fork** to create your own copy.
-2. Create a descriptive branch, for example `solution/02-3-your-approach`.
-3. Copy the [solution template](templates/solution.md) into `content/solutions/02.3/your-approach.md`. On the website, **Submit Solution** opens GitHub with a prefilled file; GitHub will guide users without write access through forking.
-4. Replace template placeholders, write your contribution, and commit it to your branch.
-5. Open a **Pull Request** to this repository's `main` branch. Describe what changed and how you checked it.
-6. Discuss review feedback. A maintainer reviews the work and merges it when ready.
+只修改错字或解释时，可直接使用“编辑题目”入口。你的提交和审阅记录会保留在 GitHub；原作者无需独自长期维护，其他人可以继续修订。
 
-For a correction, open the existing file and use GitHub's edit button instead of adding a duplicate. **Edit this page** on a problem links to its exact Markdown file. Contributors only editing content do not have to install or run the site; automated checks run on the PR.
+下面是文件格式和协作规则，供需要自行创建文件或在本地工作的人查阅。
 
 ## Add a solution
 
@@ -75,7 +70,7 @@ Do not include scripts, custom HTML widgets, credentials, or identifying informa
 
 ## Add a question
 
-Copy [templates/question.md](templates/question.md) to `content/questions/week-XX/short-name.md`. Fill in the required metadata:
+Copy [templates/question.md](templates/question.md) to `content/questions/week-XX/short-name.md`. Include the complete Chinese statement and the complete English statement in this one file. Keep all numbers, events, and rules consistent across the two languages. The build checks for both sections. Fill in the required metadata:
 
 | Field | Rule |
 | --- | --- |

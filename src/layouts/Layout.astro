@@ -16,16 +16,16 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{title} · QTIA Handbook</title><meta name="description" content={description}/>
+    <title>{title} · QTIA CUHK(SZ) Handbook</title><meta name="description" content={description}/>
     <meta name="theme-color" content="#263bb4"/>
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')}/>
-    <meta property="og:title" content={`${title} · QTIA Handbook`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>
+    <meta property="og:title" content={`${title} · QTIA CUHK(SZ) Handbook`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>
     <noscript><style is:inline>#menu-toggle{display:none}@media(max-width:800px){#sidebar{display:block;position:static;width:100%;height:auto;box-shadow:none}.sidebar-note{display:none}}</style></noscript>
   </head>
   <body>
     <a class="skip-link" href="#main">跳转到正文</a>
     <header class="topbar">
-      <a href={url('/')} class="brand" aria-label={siteName}><span class="brand-mark">Q<span>↗</span></span><span>QTIA<span class="brand-sub">CUHK(SZ) · OPEN HANDBOOK</span></span></a>
+      <a href={url('/')} class="brand" aria-label={siteName}><span class="brand-mark">Q<span>↗</span></span><span>QTIA <span class="brand-affiliation">CUHK(SZ)</span><span class="brand-sub">OPEN HANDBOOK</span></span></a>
       <span class="header-caption">Quantitative thinking, shared.</span>
       <a class="header-github" href={repoUrl}><Icon name="github"/><span>GitHub</span><Icon name="arrow" size={14}/></a>
       <button id="menu-toggle" class="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button>
@@ -43,10 +43,10 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
           <p class="nav-label">RECENT WEEKS</p>
           {weeks.slice(0, 4).map(week => <a class="nav-link week-link" href={url(`/week/${weekLabel(week)}/`)}><span class="mono">{weekLabel(week)}</span>Week {weekLabel(week)}<span class="nav-count">{questions.filter(q => q.data.week === week).length}</span></a>)}
         </nav>
-        <div class="sidebar-note"><span class="small-caps">BUILT TOGETHER</span><p>一道题，可以有很多种思路。<br/>你的解法，也是下一人的起点。</p><a href={url('/contributing/')}>成为贡献者 <span aria-hidden="true">↗</span></a></div>
+        <div class="sidebar-note"><span class="small-caps">参与修订</span><p>提交解答、指出错误或补充说明，都可以从一道题开始。</p><a href={url('/contributing/')}>查看提交方法 <span aria-hidden="true">↗</span></a></div>
       </aside>
       <main id="main" tabindex="-1"><div class="content-wrap"><slot/></div>
-        <footer class="footer"><span>QTIA · CUHK(SZ) · Open Quant Interview Handbook</span><a href={url('/contributing/')}>共同学习，持续完善 <span aria-hidden="true">↗</span></a></footer>
+        <footer class="footer"><span>QTIA CUHK(SZ) · Open Quant Interview Handbook</span><a href={url('/contributing/')}>参与贡献 <span aria-hidden="true">↗</span></a></footer>
       </main>
     </div>
     <script>

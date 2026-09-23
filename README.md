@@ -1,10 +1,10 @@
-# QTIA · CUHK(SZ) Open Quant Interview Handbook
+# QTIA CUHK(SZ) Open Quant Interview Handbook
 
 **一个以 GitHub 为核心、由社区共同维护的量化面试题知识库。**
 
 [阅读展示网站](https://praymo.github.io/qtia-open-quant-handbook/) · [浏览 GitHub 知识库](https://github.com/Praymo/qtia-open-quant-handbook) · [参与贡献](CONTRIBUTING.md)
 
-QTIA · CUHK(SZ) Open Quant Interview Handbook is a community-maintained collection of quantitative interview questions. Weekly questions become a persistent, structured knowledge asset; different solution approaches grow through public, attributable contributions.
+QTIA CUHK(SZ) Open Quant Interview Handbook is a community-maintained collection of quantitative interview questions. Weekly questions become a persistent, structured knowledge asset; different solution approaches grow through public, attributable contributions.
 
 | Surface | Role |
 | --- | --- |
@@ -34,6 +34,8 @@ The website does not replace the WeChat Official Account. The repository remains
 | 02.4 | [掷骰计数的乘积](content/questions/week-02/02-4-dice-count-product.md) | Probability | D5 拓展 |
 
 The initial edition contains seven problems across two weeks, with **no official or generated solutions**. Empty Community Solutions sections invite contributions. Difficulty labels are D1 入门, D2 基础, D3 进阶, D4 挑战, D5 拓展, and Optional 选做.
+
+每道题的同一份 Markdown 文件中都有完整的中文和英文题面。网站先显示中文，英文可展开；仓库中两种语言同样可读。新增题目的构建检查也会要求两种版本齐全。
 
 ## Contribute without being a frontend developer
 

@@ -1,16 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { repoUrl, repository, branch, url } from '../lib/site';
-const contributionTypes = ['新的解答', '替代证明', 'Python 模拟', '错别字修复', '纠错与勘误', '更清晰的解释', '标签改进', '网站改进', '审阅与验证'];
+import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
 ---
-<Layout title="参与贡献"><div class="eyebrow">CONTRIBUTING</div><h1>从一个思路开始。</h1><p class="page-description">会写 Markdown，就能参与。不需要是前端开发者，也不需要承诺永久维护你的解答。</p><div class="workflow" aria-label="贡献流程">{['Fork', 'Create branch', 'Markdown', 'Pull Request', 'Review', 'Merge'].map((step, i) => <div><span class="mono">0{i + 1}</span><strong>{step}</strong></div>)}</div><div class="prose contribution-prose">
-  <h2>你可以贡献什么？</h2><div class="contribution-types">{contributionTypes.map(type => <span>{type}</span>)}</div>
-  <h2>第一次贡献：直接在 GitHub 完成</h2><ol><li>打开一道题目，点击 <strong>Submit Solution</strong>。GitHub 会打开带模板的新文件页面；无写入权限时，按提示创建自己的 Fork。</li><li>为解答起一个有意义的文件名，例如 <code>simulation-yourname.md</code>，并填入你的 GitHub 用户名、方法和日期。</li><li>用 Markdown 写清楚问题理解、假设、推导或代码，以及验证和局限。公式可用 <code>\( ... \)</code>、<code>\[ ... \]</code>，也支持 <code>$...$</code> 和 <code>$$...$$</code>。</li><li>提交到新分支并发起 <strong>Pull Request</strong>，说明改了什么、如何验证。维护者审阅后合并。</li></ol><p>也可以先 Fork 整个仓库，创建分支后在本地编辑。<strong>单纯贡献题目或解答，不需要在电脑上安装任何开发工具。</strong></p>
-  <h2>一题，多解</h2><p>每道题独立存放于 <code>content/questions/week-XX/</code>；每份解答独立存放于 <code>content/solutions/题号/</code>。例如，为 02.3 贡献两种思路，可分别新增：</p><pre><code>content/solutions/02.3/mathematical-derivation.md<br/>content/solutions/02.3/python-simulation.md</code></pre><p>这些文件会自动出现在同一道题的 Community Solutions 区域。它们都是社区解答，不代表唯一或官方答案。</p>
-  <h2>解答模板</h2><pre><code>{`---\nquestion: "02.3"\ntitle: "你的解法名称"\nmethod: "Mathematical derivation"\ncontributors: ["your-github-username"]\ndate: "2026-09-23"\norder: 0\n---\n\n## 思路与假设\n\n## 推导或模拟\n\n## 验证与局限`}</code></pre>
-  <h2>什么时候开 Issue？</h2><p>发现错误、需要澄清题意、希望讨论一个思路或提出功能建议时，请开 GitHub Issue。尽量注明题号、引用相关文字，并给出可复现的例子。</p>
-  <h2>署名与后续维护</h2><p>解答的 <code>contributors</code> 字段用于显示署名；实质性改进时保留原作者，并可追加贡献者。Git 提交记录和 PR 保存实际作者及修订历史，网站贡献墙用于辅助展示。</p><p>原作者无需终身维护。其他人可以提出修订；审阅者负责检查逻辑、可复现性和边界，合并不代表内容绝对正确。</p>
-  <h2>来源与许可</h2><p>提交自己有权分享的内容。引用外部题目或方法时，注明来源；不要复制受限制的面试资料、付费题库或包含个人信息的内容。网站代码使用 MIT 许可，题目与解答使用 CC BY 4.0；提交 PR 表示同意按对应许可分享贡献。</p>
-  <h2 id="repository-setup">GitHub repository</h2>{repository ? <p>公共知识库：<a href={repoUrl}>{repository}</a>。完整操作指南见 <a href={`${repoUrl}/blob/${encodeURIComponent(branch)}/CONTRIBUTING.md`}>CONTRIBUTING.md</a>。</p> : <div class="notice"><p>当前是本地预览，尚未连接公开仓库。维护者设置 <code>PUBLIC_GITHUB_REPOSITORY=owner/repository</code> 并重新构建后，投稿、纠错、编辑和 Star 按钮会自动指向该仓库。</p></div>}
-  <p><a class="button primary" href={url('/questions/')}>选一道题，开始贡献 →</a></p>
-</div></Layout>
+<Layout title="参与贡献">
+  <div class="eyebrow">CONTRIBUTING</div>
+  <h1>如何提交解答或勘误</h1>
+  <p class="page-description">找到对应题目后，选择你要做的事。内容提交到 GitHub 审阅，网站会在合并后更新。</p>
+
+  <div class="contribution-paths">
+    <article class="contribution-path">
+      <span class="mono">01 / SOLUTION</span>
+      <h2>提交解答</h2>
+      <p>写下你的推导、证明或 Python 模拟。每种思路可以单独提交，不需要先有完整的“标准答案”。</p>
+      <a class="text-link" href={url('/questions/')}>选择一道题 →</a>
+    </article>
+    <article class="contribution-path">
+      <span class="mono">02 / ISSUE</span>
+      <h2>报告问题</h2>
+      <p>指出题意不清、解答有误或需要补充的条件。请写明题号，以及你认为有问题的地方。</p>
+      <a class="text-link" href={githubAction('issue')}>在 GitHub 报告 →</a>
+    </article>
+    <article class="contribution-path">
+      <span class="mono">03 / EDIT</span>
+      <h2>修改现有内容</h2>
+      <p>找到题目页，点击“编辑题目”。修正错字、补充说明或改进翻译，都可以提交审核。</p>
+      <a class="text-link" href={url('/questions/')}>找到要修改的题目 →</a>
+    </article>
+  </div>
+
+  <section class="guide-section">
+    <h2>第一次提交解答：以 02.3「玻璃球测试」为例</h2>
+    <ol>
+      <li><a href={url('/questions/02.3/')}>打开这道题</a>，点击题目页的“提交解答”。需要先登录 GitHub。</li>
+      <li>新文件会带有题号和基本格式。把文件名 <code>your-approach.md</code> 改成能区分思路的名称，并填写解法名称、方法、GitHub 用户名和日期。</li>
+      <li>写清思路、推导或代码，以及如何验证。完成后在 GitHub 提交更改；如果你没有仓库的写入权限，GitHub 会引导你创建自己的副本。</li>
+      <li>向本仓库发起 Pull Request（合并请求），说明你提交了什么。维护者审阅并合并后，解答就会显示在这道题下。</li>
+    </ol>
+    <p>改错也走同样的审核流程。原作者无需独自长期维护解答，后续贡献者可以继续修订；GitHub 会保留提交和审阅记录。</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>写解答时，请交代这些信息</h2>
+    <p>问题是如何理解的？用了哪些假设？关键推理或模拟步骤是什么？结果怎样核对，在哪些条件下可能不适用？不同解法可以分别放在同一题目下。</p>
+    <p>公式可以用 <code>$...$</code> 和 <code>$$...$$</code>；网站也支持 <code>\( ... \)</code> 和 <code>\[ ... \]</code>。使用美元符号写公式，也方便直接在 GitHub 阅读。</p>
+    <details class="contribution-detail">
+      <summary>查看文件格式与填写示例</summary>
+      <p>题目保存在 <code>content/questions/week-XX/</code>，解答保存在 <code>content/solutions/题号/</code>。例如，02.3 的一份解答可以保存为 <code>content/solutions/02.3/mathematical-derivation.md</code>。</p>
+      <pre><code>{`---\nquestion: "02.3"\ntitle: "你的解法名称"\nmethod: "数学推导"\ncontributors: ["你的 GitHub 用户名"]\ndate: "提交日期 YYYY-MM-DD"\n---\n\n## 思路与假设\n\n## 推导或模拟\n\n## 验证与局限`}</code></pre>
+      <p>提交前请用真实用户名和日期替换示例文字。题号必须与文件所在的文件夹一致。</p>
+    </details>
+  </section>
+
+  <section class="guide-section">
+    <h2>来源与署名</h2>
+    <p>引用外部题目或解法时请注明来源，并确认自己有权分享。解答文件可以显示作者署名；GitHub 提交记录和 Pull Request 留下实际修订历史。题目与解答按 CC BY 4.0 分享，网站代码按 MIT 许可分享。</p>
+    {repository && <p>需要更完整的字段和协作说明，可阅读仓库中的 <a href={`${repoUrl}/blob/${encodeURIComponent(branch)}/CONTRIBUTING.md`}>CONTRIBUTING.md</a>。</p>}
+  </section>
+
+  <p id="repository-setup" class="guide-repository">公共知识库：<a href={repoUrl}>{repository || '查看仓库设置'}</a></p>
+</Layout>
