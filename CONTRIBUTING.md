@@ -2,13 +2,14 @@
 
 欢迎分享你觉得有趣的题目和解法。登录 GitHub 后可以直接贴出内容
 
-## 从哪里开始
+## 你可以做的
 
-- **分享新题目：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“投稿题目”，或直接打开[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。粘贴中文或英文题面与已知出处；题号、翻译、难度、标签和排版由维护者处理。
-- **直接贴答案：**在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。维护者会整理为 Markdown 解答，并保留你的署名。
-- **自己提 PR：**在题目页点击“用 Markdown 提 PR”。GitHub 会打开预填题号的新文件；把用户名改成自己的，粘贴答案，然后按提示创建 Pull Request（合并请求）。
-- **指出错误或讨论题意：**在题目页点击“报告问题”，写明题号、相关文字和理由。
-- **修改题面或翻译：**在题目页点击“编辑题目”。小勘误和更清晰的解释同样欢迎。
+- 分享新题目：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“投稿题目”，或直接打开[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。粘贴中文或英文题面与已知出处；题号、翻译、难度、标签和排版由维护者处理。
+- 提交的两种方式：
+  1.分享你的答案：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。维护者会整理为 Markdown 解答，并保留你的署名。
+  2.自己提 PR：在题目页点击“用 Markdown 提 PR”。GitHub 会打开预填题号的新文件；把用户名改成自己的，粘贴答案，然后按提示创建 Pull Request（合并请求）。
+- 指出错误或讨论题意：在题目页点击“报告问题”，写明题号、相关文字和理由。
+- 修改题面或翻译：在题目页点击“编辑题目”。小勘误和更清晰的解释同样欢迎。
 
 ## 第一次用 GitHub 提交
 
@@ -23,7 +24,7 @@
 
 ## 解答文件格式
 
-同一题的不同方法应分开存放，例如：
+同一题的不同方法分开存放，例如：
 
 ```text
 content/solutions/02.3/mathematical-derivation.md
