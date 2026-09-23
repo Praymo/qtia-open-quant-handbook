@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   discussions: read
+  issues: read
   pages: write
   id-token: write
 concurrency:
@@ -27,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run check
-      - run: node scripts/fetch-poll-results.mjs
+      - run: node scripts/fetch-feedback-results.mjs
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}

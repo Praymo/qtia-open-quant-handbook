@@ -5,7 +5,7 @@
     { "key": "explanation", "title": "答案与讲解", "prompt": "{week}题目，你希望提供哪种讲解支持？", "options": ["目前可以自行解决", "希望补充文字解答", "希望每周线上讲解"] }
   ],
   "weeks": [
-    { "week": 2, "discussions": { "difficulty": 1, "volume": 2, "explanation": 3 } },
-    { "week": 1, "discussions": { "difficulty": 4, "volume": 5, "explanation": 6 } }
+    { "week": 1, "discussion": 7 },
+    { "week": 2, "discussion": 8 }
   ]
 }

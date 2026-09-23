@@ -1,0 +1,119 @@
+{
+  "updatedAt": "2026-09-23T07:56:53.101Z",
+  "weeks": [
+    {
+      "week": 1,
+      "total": 0,
+      "questions": [
+        {
+          "key": "difficulty",
+          "options": [
+            {
+              "label": "较简单",
+              "votes": 0
+            },
+            {
+              "label": "适中",
+              "votes": 0
+            },
+            {
+              "label": "较困难",
+              "votes": 0
+            }
+          ]
+        },
+        {
+          "key": "volume",
+          "options": [
+            {
+              "label": "较少",
+              "votes": 0
+            },
+            {
+              "label": "适中",
+              "votes": 0
+            },
+            {
+              "label": "较多",
+              "votes": 0
+            }
+          ]
+        },
+        {
+          "key": "explanation",
+          "options": [
+            {
+              "label": "目前可以自行解决",
+              "votes": 0
+            },
+            {
+              "label": "希望补充文字解答",
+              "votes": 0
+            },
+            {
+              "label": "希望每周线上讲解",
+              "votes": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "total": 0,
+      "questions": [
+        {
+          "key": "difficulty",
+          "options": [
+            {
+              "label": "较简单",
+              "votes": 0
+            },
+            {
+              "label": "适中",
+              "votes": 0
+            },
+            {
+              "label": "较困难",
+              "votes": 0
+            }
+          ]
+        },
+        {
+          "key": "volume",
+          "options": [
+            {
+              "label": "较少",
+              "votes": 0
+            },
+            {
+              "label": "适中",
+              "votes": 0
+            },
+            {
+              "label": "较多",
+              "votes": 0
+            }
+          ]
+        },
+        {
+          "key": "explanation",
+          "options": [
+            {
+              "label": "目前可以自行解决",
+              "votes": 0
+            },
+            {
+              "label": "希望补充文字解答",
+              "votes": 0
+            },
+            {
+              "label": "希望每周线上讲解",
+              "votes": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

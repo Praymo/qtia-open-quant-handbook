@@ -12,7 +12,7 @@ const groups = weeks.map(feedbackGroup);
   <p class="page-description">你可以反馈习题难度和题量，也可以提出问题、分享对答案与讲解的建议。</p>
   <div class="week-cards">{groups.map(group => <a class="week-card" href={url(`/feedback/${weekLabel(group.week)}/`)}>
     <div class="week-card-label"><span class="small-caps">周次</span><strong>{weekLabel(group.week)}</strong></div>
-    <div><h2>{weekName(group.week)}</h2><p class="poll-week-summary">{group.polls.length ? '难度 · 题量 · 答案与讲解' : '可浏览题目，反馈即将开放'}</p></div>
+    <div><h2>{weekName(group.week)}</h2><p class="poll-week-summary">{group.questions.length ? '一次填写：难度 · 题量 · 答案与讲解' : '反馈即将开放'}</p></div>
     <span class="week-arrow" aria-hidden="true">↗</span>
   </a>)}</div>
 </Layout>

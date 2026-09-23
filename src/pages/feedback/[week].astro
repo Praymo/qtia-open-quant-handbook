@@ -1,49 +1,61 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
-import results from '../../data/poll-results.json';
+import results from '../../data/feedback-results.json';
 import discussionResults from '../../data/discussion-results.json';
 import { allQuestions, weekLabel, weekName } from '../../lib/catalog';
 import { feedbackGroup } from '../../lib/feedback';
 import { repoUrl, url } from '../../lib/site';
 
-type PollResult = { week: number; discussion: number; total: number; options: { label: string; votes: number }[] };
-type DiscussionResult = { number: number; title: string; url: string; category: string; commentCount: number; comments: { author: string; body: string; url: string; createdAt: string }[] };
-const pollResults = results.polls as PollResult[];
-export async function getStaticPaths() { const weeks = [...new Set((await allQuestions()).map(question => question.data.week))]; return weeks.map(week => ({ params: { week: weekLabel(week) }, props: { group: feedbackGroup(week) } })); }
+type FeedbackResult = { week: number; total: number; questions: { key: string; options: { label: string; votes: number }[] }[] };
+type DiscussionResult = { number: number; title: string; url: string; commentCount: number; comments: { author: string; body: string; url: string; createdAt: string }[] };
+export async function getStaticPaths() {
+  const weeks = [...new Set((await allQuestions()).map(question => question.data.week))];
+  return weeks.map(week => ({ params: { week: weekLabel(week) }, props: { group: feedbackGroup(week) } }));
+}
 const { group } = Astro.props;
-const weekDiscussionIds = new Set(group.polls.map(poll => poll.discussion));
-const discussions = (discussionResults.discussions as DiscussionResult[]).filter(item => item.category !== 'Polls' || weekDiscussionIds.has(item.number)).slice(0, 5);
+const result = (results.weeks as FeedbackResult[]).find(item => item.week === group.week);
+const discussion = (discussionResults.discussions as DiscussionResult[]).find(item => item.number === group.discussion);
 ---
 <Layout title={`${weekName(group.week)}反馈`}>
   <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/feedback/')}>反馈专区</a><span>/</span><span>{weekName(group.week)}</span></nav>
   <div class="eyebrow">反馈专区</div>
   <h1>{weekName(group.week)} · 题目反馈</h1>
-  {group.polls.length ? <>
-    <p class="page-description">说说这周题目的难度、题量，以及你希望看到什么讲解。选择后前往 GitHub 投票，结果会显示在这里。</p>
-    <div class="poll-list">{group.polls.map((poll, index) => { const result = pollResults.find(item => item.week === group.week && item.discussion === poll.discussion); return <article class="poll-card">
-      <span class="mono poll-index">{String(index + 1).padStart(2, '0')}</span>
-      <div><h2>{poll.title}</h2><p class="poll-question">{poll.question}</p>
-        {poll.title === '习题难度' && <div class="difficulty-feedback"><label for={`difficulty-${group.week}`}>你的感受：<output for={`difficulty-${group.week}`} data-scale-value>{poll.options[1]}</output></label><input id={`difficulty-${group.week}`} type="range" min="1" max="3" step="1" value="2" data-difficulty-scale data-options={JSON.stringify(poll.options)} aria-label="选择本周习题难度"/><div class="difficulty-scale-labels"><span>D1–D2</span><span>D3</span><span>D4–D5</span></div><p>滑块可对照题目难度；投票在 GitHub 页面完成。</p></div>}
-        {result ? <div class="poll-results" aria-label={`${poll.title}投票结果`}>
-          {result.options.map(option => { const percent = result.total ? Math.round(option.votes / result.total * 100) : 0; return <div class="poll-result"><div class="poll-result-label"><span>{option.label}</span><span>{option.votes} 票 · {percent}%</span></div><div class="poll-track"><span style={`width:${percent}%`}></span></div></div>; })}
-          <p class="poll-total">共 {result.total} 票</p>
-        </div> : <p class="poll-options">{poll.options.join(' / ')}</p>}
-      </div>
-      <a class="button primary" href={`${repoUrl}/discussions/${poll.discussion}`}>去 GitHub 投票 <Icon name="arrow" size={14}/></a>
-    </article>; })}</div>
-    <p class="poll-help">登录 GitHub 参与投票。{results.updatedAt ? `结果更新于 ${new Date(results.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}，约每小时刷新。` : '结果将在网站下次更新后显示。'}</p>
-  </> : <p class="page-description">这一周还没有投票。你可以先浏览本周题目。</p>}
-  <section class="feedback-discussions" aria-labelledby="discussion-title"><div class="section-heading"><div><span class="small-caps">COMMUNITY</span><h2 id="discussion-title">本周与社区讨论</h2></div><a class="text-link" href={`${repoUrl}/discussions`}>进入 GitHub Discussions ↗</a></div>
-    <p>本周投票帖与社区近期话题会同步显示在这里；也欢迎提出具体问题或建议。</p>
-    {discussions.length ? <div class="discussion-list">{discussions.map(discussion => <article class="discussion-preview"><div><h3><a href={discussion.url}>{discussion.title} ↗</a></h3><p>{discussion.category} · {discussion.commentCount} 条留言</p></div>{discussion.comments.length > 0 && <ul>{discussion.comments.map(comment => <li><a href={comment.url}><strong>@{comment.author}</strong> {comment.body}</a></li>)}</ul>}</article>)}</div> : <p class="discussion-empty">暂无讨论。欢迎到 GitHub Discussions 发起话题。</p>}
+  {group.questions.length ? <>
+    <p class="page-description">三道题一次填完，再到 GitHub 确认提交。难度、题量和讲解需求的结果会公开显示在这里。</p>
+    <form id="weekly-feedback-form" class="weekly-feedback-form" data-week={group.week} data-week-name={weekName(group.week)} data-repo-url={repoUrl}>
+      {group.questions.map((item, index) => <fieldset class="feedback-question">
+        <legend><span class="mono">{String(index + 1).padStart(2, '0')}</span><span>{item.title}</span></legend>
+        <p>{item.question}</p>
+        <div class="feedback-choices">{item.options.map(option => <label><input type="radio" name={item.key} value={option} required/><span>{option}</span></label>)}</div>
+      </fieldset>)}
+      <div class="feedback-submit"><button class="button primary" type="submit">带着三项反馈去 GitHub <Icon name="arrow" size={14}/></button><p>登录 GitHub 后核对内容，点“Create”完成提交。</p></div>
+    </form>
+    <section class="feedback-results" aria-labelledby="feedback-results-title"><div class="section-heading"><div><span class="small-caps">RESULTS</span><h2 id="feedback-results-title">当前反馈</h2></div><span class="feedback-count">{result?.total ?? 0} 人参与</span></div>
+      {result?.total ? <div class="feedback-results-grid">{group.questions.map(item => { const answers = result.questions.find(answer => answer.key === item.key); return <div class="feedback-results-card"><h3>{item.title}</h3>{answers?.options.map(option => { const percent = Math.round(option.votes / result.total * 100); return <div class="poll-result"><div class="poll-result-label"><span>{option.label}</span><span>{option.votes} 人 · {percent}%</span></div><div class="poll-track"><span style={`width:${percent}%`}></span></div></div>; })}</div>; })}</div> : <p class="feedback-empty">还没有反馈，欢迎留下第一份。</p>}
+      <p class="poll-help">同一位 GitHub 用户在同一周只计最近一份反馈。{results.updatedAt ? `结果更新于 ${new Date(results.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}，约每小时刷新。` : '结果将在网站下次更新后显示。'}</p>
+    </section>
+  </> : <p class="page-description">这一周还没有开放反馈。你可以先浏览本周题目。</p>}
+  <section class="feedback-discussions" aria-labelledby="discussion-title"><div class="section-heading"><div><span class="small-caps">COMMUNITY</span><h2 id="discussion-title">自由讨论</h2></div></div>
+    <p>想聊题目、分享思路或提建议，都可以写在同一个讨论帖里。</p>
+    {discussion ? <article class="discussion-preview discussion-single"><div><h3><a href={discussion.url}>{discussion.title} ↗</a></h3><p>{discussion.commentCount} 条留言</p></div>{discussion.comments.length > 0 && <ul>{discussion.comments.map(comment => <li><a href={comment.url}><strong>@{comment.author}</strong> {comment.body}</a></li>)}</ul>}<a class="text-link" href={discussion.url}>参与讨论 →</a></article> : <p class="discussion-empty">本周讨论即将开放。</p>}
   </section>
   <p class="poll-back"><a class="text-link" href={url(`/week/${weekLabel(group.week)}/`)}>← 返回{weekName(group.week)}题目</a></p>
 </Layout>
 <script>
-  document.querySelectorAll<HTMLInputElement>('[data-difficulty-scale]').forEach(input => {
-    const options = JSON.parse(input.dataset.options ?? '[]') as string[];
-    const output = input.parentElement?.querySelector<HTMLOutputElement>('[data-scale-value]');
-    input.addEventListener('input', () => { if (output) output.textContent = options[Number(input.value) - 1] ?? ''; });
+  document.querySelector<HTMLFormElement>('#weekly-feedback-form')?.addEventListener('submit', event => {
+    const form = event.currentTarget as HTMLFormElement;
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const answers = new FormData(form);
+    const week = Number(form.dataset.week);
+    const weekName = form.dataset.weekName ?? '';
+    const difficulty = String(answers.get('difficulty') ?? '');
+    const volume = String(answers.get('volume') ?? '');
+    const explanation = String(answers.get('explanation') ?? '');
+    const marker = JSON.stringify({ week, difficulty, volume, explanation });
+    const body = `<!-- qtia-weekly-feedback:v1\n${marker}\n-->\n\n## ${weekName}反馈\n\n- 习题难度：${difficulty}\n- 习题量：${volume}\n- 答案与讲解：${explanation}`;
+    const title = `QTIA ${weekName}反馈`;
+    window.location.href = `${form.dataset.repoUrl}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
   });
 </script>

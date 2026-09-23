@@ -22,7 +22,7 @@
 | 提交社区题目 | 在题库点“提交社区题目”，直接贴中文或英文题面；可以建议主题、难度和相关题目，维护者负责核对来源、翻译、编号和排版。 |
 | 社区解答 | 同一道题可以有多种解法。直接在题目页粘贴答案，或提交一个 Markdown PR；整理后会显示在对应题目下。 |
 | 勘误与修订 | 发现题意不清、翻译问题或错误，可以在题目页发起 GitHub Issue 或编辑题目。Pull Request 保留审阅和修改记录。 |
-| 每周反馈 | 在每周题目列表下方进入该周[反馈专区](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。可以反馈难度、题量和讲解需求，也能查看 GitHub 讨论与公开结果；数据约每小时更新。 |
+| 每周反馈 | 在每周题目列表下方进入该周[反馈专区](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。难度、题量和讲解需求一次填完，到 GitHub 确认提交；每周另有一个自由讨论帖。结果约每小时更新。 |
 
 想先看看内容？直接打开[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)或仓库中的 [`content/questions/`](content/questions/)。
 
@@ -87,7 +87,7 @@ Names use the surname and given-name pinyin initials. Each week's archive page a
 | Submit a community question | Paste a Chinese or English statement into the question form. You can suggest a category, difficulty, tags, and a related QTIA question; maintainers handle numbering, translation, and formatting. |
 | Share a solution | Paste your answer into a GitHub form from the question page, or submit a Markdown PR. The reviewed solution then appears below that question. |
 | Correct and improve | Open an Issue or edit a question from its page. Pull Requests retain review and revision history. |
-| Give weekly feedback | Open the feedback link below a week's questions to rate difficulty, comment on question volume or explanations, and read recent GitHub Discussions. Voting requires GitHub sign-in; public results refresh about hourly. |
+| Give weekly feedback | Answer all three questions on one page, then sign in to GitHub to confirm one submission. Each week also has one open discussion thread. Public results refresh about hourly. |
 
 The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) and [`content/questions/`](content/questions/) provide the current question index.
 

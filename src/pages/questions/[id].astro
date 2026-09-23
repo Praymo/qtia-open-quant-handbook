@@ -17,7 +17,7 @@ const index = questions.findIndex(item => item.id === question.id);
 const previous = questions[index - 1];
 const next = questions[index + 1];
 const source = question.filePath!;
-const hasWeekPoll = feedbackGroup(q.week).polls.length > 0;
+const hasWeekPoll = feedbackGroup(q.week).questions.length > 0;
 ---
 <Layout title={`${q.id} ${q.title}`} description={q.summary}>
   <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/questions/')}>题库</a><span>/</span><a href={url(`/week/${weekLabel(q.week)}/`)}>{weekName(q.week)}</a><span>/</span><span>{q.id}</span></nav>
