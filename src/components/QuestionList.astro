@@ -3,12 +3,14 @@ import Badges from './Badges.astro';
 import Icon from './Icon.astro';
 import { url } from '../lib/site';
 import type { Question } from '../lib/catalog';
+import { allQuestions } from '../lib/catalog';
 const { questions } = Astro.props as { questions: Question[] };
+const titles = new Map((await allQuestions()).map(question => [question.data.id, question.data.title]));
 ---
 <div class="question-list">
-  {questions.map(question => <article class="question-row" data-question data-category={question.data.category} data-week={question.data.week} data-difficulty={question.data.difficulty} data-tags={JSON.stringify(question.data.tags)} data-date={question.data.date} data-id={question.data.id}>
+  {questions.map(question => <article class="question-row" data-question data-category={question.data.category} data-week={question.data.week} data-difficulty={question.data.difficulty} data-origin={question.data.origin} data-tags={JSON.stringify(question.data.tags)} data-date={question.data.date} data-id={question.data.id}>
     <span class="question-id mono">{question.data.id}</span>
-    <div class="question-info"><h3><a href={url(`/questions/${question.data.id}/`)}>{question.data.title}</a></h3><p class="question-en">{question.data.titleEn}</p><p class="question-summary">{question.data.summary}</p><Badges question={question}/></div>
+    <div class="question-info"><h3><a href={url(`/questions/${question.data.id}/`)}>{question.data.title}</a></h3><p class="question-en">{question.data.titleEn}</p><p class="question-summary">{question.data.summary}</p><Badges question={question}/>{question.data.origin === 'community' && question.data.relatedTo && titles.has(question.data.relatedTo) && <p class="related-question">Inspired by <a href={url(`/questions/${question.data.relatedTo}/`)}>{question.data.relatedTo} · {titles.get(question.data.relatedTo)}</a></p>}</div>
     <a class="row-arrow" href={url(`/questions/${question.data.id}/`)} aria-label={`阅读 ${question.data.title}`}><Icon name="chevron" size={18}/></a>
   </article>)}
 </div>

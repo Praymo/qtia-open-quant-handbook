@@ -1,17 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import directory from '../data/contributors.json';
-import { allQuestions } from '../lib/catalog';
-const questions = await allQuestions();
-const solutions = await getCollection('solutions');
-const names = new Set<string>([...(directory as { username: string }[]).map(item => item.username), ...questions.flatMap(q => q.data.contributors), ...solutions.flatMap(s => s.data.contributors)]);
-const contributors = [...names].sort((a, b) => a.localeCompare(b));
+import ContributorCard from '../components/ContributorCard.astro';
+import { contributorRecords } from '../lib/contributors';
+const people = contributorRecords();
+const content = people.filter(person => person.type.includes('content'));
+const technical = people.filter(person => person.type.includes('technical') && person.technicalEvidence);
 ---
 <Layout title="贡献者">
   <div class="eyebrow">COMMUNITY</div>
   <h1>贡献者</h1>
-  <div class="contributor-avatars" aria-label="GitHub 贡献者">
-    {contributors.map(username => <a href={`https://github.com/${username}`} aria-label={`查看 @${username} 的 GitHub 主页`} title={`@${username}`}><img src={`https://github.com/${username}.png?size=128`} alt="" width="64" height="64" loading="lazy"/></a>)}
+  <div class="contribution-columns">
+    <section class="contribution-column" aria-labelledby="technical-title"><h2 id="technical-title">Technical Contributions <span>技术贡献</span></h2>
+      {technical.length ? <div class="contribution-records">{technical.map(person => content.includes(person) ? <div class="technical-reference"><a href={`#contributor-${content.indexOf(person)}`}>{person.name}</a><span>Web / Repository Maintenance</span><a class="technical-evidence" href={person.technicalEvidence}>查看提交记录 ↗</a></div> : <ContributorCard person={person}/>)}</div> : <p class="contribution-empty">技术贡献记录会随仓库更新。</p>}
+    </section>
+    <section class="contribution-column" aria-labelledby="content-title"><h2 id="content-title">Content Contributions <span>内容贡献</span></h2>
+      <div class="contribution-records">{content.map((person, index) => <ContributorCard person={person} id={`contributor-${index}`}/>)}</div>
+    </section>
   </div>
 </Layout>

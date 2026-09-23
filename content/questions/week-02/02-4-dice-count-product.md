@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "02.4"
 title: "掷骰计数的乘积"
 titleEn: "Product of dice counts"

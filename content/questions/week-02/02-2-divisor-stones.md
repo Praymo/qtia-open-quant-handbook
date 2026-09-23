@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "02.2"
 title: "因数取石子"
 titleEn: "The divisor stone game"

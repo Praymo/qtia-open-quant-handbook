@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "01.3"
 title: "金币称重"
 titleEn: "Coin weighing"

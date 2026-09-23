@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "02.1"
 title: "红黑弃牌"
 titleEn: "Red and black cards"

@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "01.1"
 title: "阶乘末尾的零"
 titleEn: "Trailing zeros of a factorial"

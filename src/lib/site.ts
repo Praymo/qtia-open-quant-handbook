@@ -10,7 +10,7 @@ const repoPath = (path: string) => path.split('/').map(encodeURIComponent).join(
 export function githubAction(action: 'issue' | 'question-proposal' | 'edit' | 'solution' | 'solution-issue' | 'history', file = '', id = '') {
   if (!repository) return repoUrl;
   if (action === 'issue') return `${repoUrl}/issues/new?template=question.yml&title=${encodeURIComponent(`[${id || 'Discussion'}] `)}`;
-  if (action === 'question-proposal') return `${repoUrl}/issues/new?template=question-proposal.yml&title=${encodeURIComponent('题目投稿：')}`;
+  if (action === 'question-proposal') return `${repoUrl}/issues/new?template=question-proposal.yml&title=${encodeURIComponent('社区题目投稿：')}`;
   if (action === 'solution-issue') return `${repoUrl}/issues/new?template=solution.yml&title=${encodeURIComponent(`[${id}] 解答投稿`)}`;
   if (action === 'edit') return `${repoUrl}/edit/${encodeURIComponent(branch)}/${repoPath(file)}`;
   if (action === 'history') return `${repoUrl}/commits/${encodeURIComponent(branch)}/${repoPath(file)}`;

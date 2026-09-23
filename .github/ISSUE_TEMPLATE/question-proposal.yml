@@ -1,6 +1,6 @@
-name: 分享一道题
-description: 粘贴题面和已知出处；维护者负责题号、翻译、分类和排版。
-title: "题目投稿："
+name: 提交社区题目
+description: 直接贴题面和你的建议；维护者负责编号、翻译、排版和最终分类。
+title: "社区题目投稿："
 body:
   - type: textarea
     id: statement
@@ -10,17 +10,58 @@ body:
       placeholder: 在这里粘贴题面……
     validations:
       required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: 建议主题
+      options:
+        - 不确定
+        - 算法 / Algorithm
+        - 概率 / Probability
+        - 思维题 / Brainteaser
+    validations:
+      required: false
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: 建议难度
+      options:
+        - 不确定
+        - D1 入门
+        - D2 基础
+        - D3 进阶
+        - D4 挑战
+        - D5 拓展
+        - Optional 选做
+    validations:
+      required: false
+  - type: input
+    id: tags
+    attributes:
+      label: 建议标签（可不填）
+      description: 用你熟悉的词描述即可，不需要符合仓库格式。
+      placeholder: 例如：动态规划、期望、博弈
+    validations:
+      required: false
+  - type: input
+    id: related
+    attributes:
+      label: 相关 QTIA 题目（可不填）
+      description: 如果是从已有题目延伸出来的，写题号或题名即可。
+      placeholder: 例如：02.3 玻璃球测试
+    validations:
+      required: false
   - type: textarea
     id: source
     attributes:
-      label: 来源或出处线索（知道的话填）
+      label: 来源或出处线索（可不填）
       description: 例如原帖链接、书名或你从哪里看到的。填写已知信息即可。
     validations:
       required: false
   - type: textarea
     id: note
     attributes:
-      label: 补充说明（可不填）
-      description: 可以写自己的理解、希望如何署名，或题目中需要确认的条件。
+      label: 为什么有趣／补充说明（可不填）
+      description: 可以写这道题值得讨论的地方、希望如何署名，或需要确认的条件。
     validations:
       required: false

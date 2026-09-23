@@ -1,5 +1,6 @@
 ---
 id: "03.1"
+origin: official
 title: "中文题名"
 titleEn: "English title"
 summary: "一句话介绍问题，不透露解法。"

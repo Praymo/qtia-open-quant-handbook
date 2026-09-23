@@ -1,3 +1,8 @@
 [
-  { "username": "Praymo" }
+  { "name": "陈 W.S.", "github": null, "roles": [], "type": ["content"] },
+  { "name": "江 B.Y.", "github": null, "roles": [], "type": ["content"] },
+  { "name": "文 J.", "github": null, "roles": [], "type": ["content"] },
+  { "name": "颜 T.Y.", "github": null, "roles": [], "type": ["content"] },
+  { "name": "郑 Z.R.", "github": null, "roles": [], "type": ["content"] },
+  { "name": "Praymo", "github": "Praymo", "roles": ["Question / Solution Contribution", "Web / Repository Maintenance"], "type": ["content", "technical"], "technicalEvidence": "https://github.com/Praymo/qtia-open-quant-handbook/commits?author=Praymo" }
 ]

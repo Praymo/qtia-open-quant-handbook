@@ -1,0 +1,9 @@
+---
+import type { Contributor } from '../lib/contributors';
+const { person, id } = Astro.props as { person: Contributor; id?: string };
+const initials = [...person.name][0];
+---
+<article class="contributor-record" id={id}>
+  {person.github ? <a class="contributor-avatar" href={`https://github.com/${person.github}`} aria-label={`查看 ${person.name} 的 GitHub 主页`}><img src={`https://github.com/${person.github}.png?size=128`} alt="" width="52" height="52" loading="lazy"/></a> : <span class="contributor-avatar initials-avatar" aria-hidden="true">{initials}</span>}
+  <div class="contributor-details"><h3>{person.github ? <a href={`https://github.com/${person.github}`}>{person.name}</a> : person.name}</h3><p>{person.roles.join(' · ')}</p>{person.weeks.length > 0 && <small>第 {person.weeks.sort((a, b) => a - b).join('、')} 周</small>}</div>
+</article>

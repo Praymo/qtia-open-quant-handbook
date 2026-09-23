@@ -16,6 +16,9 @@ const questions = defineCollection({
     difficulty: z.enum(['D1', 'D2', 'D3', 'D4', 'D5', 'Optional']),
     tags: z.array(z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)).min(1),
     contributors: z.array(username).default([]),
+    origin: z.enum(['official', 'community']),
+    submittedBy: z.string().min(1).optional(),
+    relatedTo: z.string().regex(/^\d{2,}\.\d+$/).optional(),
   }),
 });
 const solutions = defineCollection({

@@ -23,6 +23,8 @@ const hasWeekPoll = feedback.weeks.some(group => group.week === q.week && group.
   <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/questions/')}>题库</a><span>/</span><a href={url(`/week/${weekLabel(q.week)}/`)}>{weekName(q.week)}</a><span>/</span><span>{q.id}</span></nav>
   <div class="eyebrow problem-number">PROBLEM {q.id}</div><h1 class="problem-title">{q.title}</h1><p class="problem-english">{q.titleEn}</p>
   <Badges question={question}/>
+  {q.origin === 'community' && q.relatedTo && questions.some(item => item.data.id === q.relatedTo) && <p class="related-question">Inspired by <a href={url(`/questions/${q.relatedTo}/`)}>{q.relatedTo} · {questions.find(item => item.data.id === q.relatedTo)?.data.title}</a></p>}
+  {q.origin === 'community' && q.submittedBy && <p class="submission-credit">Submitted by {q.submittedBy}</p>}
   <div class="problem-layout"><article class="problem-article"><section aria-labelledby="statement"><h2 class="article-section-title" id="statement"><span>01</span>题目 <small>Problem statement</small></h2><div class="prose"><Content/></div></section>
     {q.contributors.length > 0 && <p class="attribution">题目贡献：{q.contributors.map(username => <a href={`https://github.com/${username}`}>@{username} </a>)}</p>}
     <section class="solutions-section" aria-labelledby="solutions"><h2 class="article-section-title" id="solutions"><span>02</span>社区解答 <small>{solutions.length}</small></h2><p class="section-description">欢迎不同方法。可以直接贴答案，也可以通过 Pull Request 提交解答并参与后续修订。</p>

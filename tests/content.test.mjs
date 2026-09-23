@@ -22,6 +22,10 @@ test('week, category, difficulty, and tags compose by intersection', () => {
   assert.equal(filterAndSort(records, { week: '1' }).length, 3);
   assert.equal(filterAndSort(records, { difficulty: 'D2' }).length, 2);
   assert.equal(filterAndSort(records, { tag: 'expectation' }).length, 2);
+  assert.equal(filterAndSort(records, { origin: 'official' }).length, 7);
+  assert.equal(filterAndSort(records, { origin: 'community' }).length, 0);
+  const community = { ...records[0], id: '02.5', origin: 'community', week: 2 };
+  assert.deepEqual(filterAndSort([...records, community], { origin: 'community' }).map(q => q.id), ['02.5']);
   assert.equal(filterAndSort(records, { category: 'algorithm', difficulty: 'D5' }).length, 0);
 });
 test('sort is deterministic with month-only dates and supports difficulty and week', () => {

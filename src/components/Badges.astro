@@ -3,4 +3,4 @@ import { categories, difficulties, weekName, type Question } from '../lib/catalo
 const { question, showWeek = true } = Astro.props as { question: Question; showWeek?: boolean };
 const q = question.data;
 ---
-<div class="badges"><span class={`badge category-${q.category}`}>{categories[q.category].label}</span><span class="badge difficulty" title={difficulties[q.difficulty]}>{q.difficulty}<span class="difficulty-name"> {difficulties[q.difficulty]}</span></span>{showWeek && <span class="badge week-badge">{weekName(q.week)}</span>}</div>
+<div class="badges"><span class={`badge category-${q.category}`}>{categories[q.category].label}</span><span class="badge difficulty" title={difficulties[q.difficulty]}>{q.difficulty}<span class="difficulty-name"> {difficulties[q.difficulty]}</span></span>{showWeek && <span class="badge week-badge">{weekName(q.week)}</span>}<span class="badge origin-badge">{q.origin === 'official' ? 'QTIA OFFICIAL' : 'COMMUNITY'}</span></div>

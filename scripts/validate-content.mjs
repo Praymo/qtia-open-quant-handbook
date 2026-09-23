@@ -9,17 +9,24 @@ async function markdownFiles(directory) {
 }
 const errors = [];
 const ids = new Set();
+const questionData = [];
 const questions = await markdownFiles('content/questions');
 const solutions = await markdownFiles('content/solutions');
 for (const file of questions) {
   const { data, content } = matter(await readFile(file, 'utf8'));
   if (!data.id || ids.has(data.id)) errors.push(`${file}: missing or duplicate question id ${data.id}`);
   ids.add(data.id);
+  questionData.push({ file, data });
+  if (!['official', 'community'].includes(data.origin)) errors.push(`${file}: origin must be official or community`);
+  if (data.origin === 'official' && data.relatedTo) errors.push(`${file}: only community questions can use relatedTo`);
   if (!file.includes(`week-${String(data.week).padStart(2, '0')}/`)) errors.push(`${file}: week folder and metadata must match`);
   if (Number(String(data.id).split('.')[0]) !== data.week) errors.push(`${file}: id prefix and week must match`);
   const chinese = content.match(/^## 中文题目[ \t]*\n([\s\S]*?)(?=^<details>)/m)?.[1]?.trim();
   const english = content.match(/^<details>\s*\n<summary>English version<\/summary>\s*\n([\s\S]*?)^<\/details>\s*$/m)?.[1]?.trim();
   if (!chinese || !english) errors.push(`${file}: include complete Chinese and English problem sections`);
+}
+for (const { file, data } of questionData) {
+  if (data.relatedTo && !ids.has(data.relatedTo)) errors.push(`${file}: relatedTo question ${data.relatedTo} does not exist`);
 }
 for (const file of solutions) {
   const { data, content } = matter(await readFile(file, 'utf8'));

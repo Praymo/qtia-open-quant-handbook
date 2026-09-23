@@ -4,7 +4,7 @@
 
 ## 你可以做的
 
-- 分享新题目：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“投稿题目”，或直接打开[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。粘贴中文或英文题面与已知出处；题号、翻译、难度、标签和排版由维护者处理。
+- 提交社区题目：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)点“提交社区题目”，或直接打开[社区题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)。粘贴中文或英文题面；主题、难度、标签、相关题目和出处都可选填，题号、翻译与排版由维护者处理。
 - 提交的两种方式：
   1.分享你的答案：在[网站题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)打开一道题，点击“直接贴答案”，填题号并粘贴正文。维护者会整理为 Markdown 解答，并保留你的署名。
   2.自己提 PR：在题目页点击“用 Markdown 提 PR”。GitHub 会打开预填题号的新文件；把用户名改成自己的，粘贴答案，然后按提示创建 Pull Request（合并请求）。

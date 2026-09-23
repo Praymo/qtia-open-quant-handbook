@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "02.3"
 title: "玻璃球测试"
 titleEn: "The glass ball problem"

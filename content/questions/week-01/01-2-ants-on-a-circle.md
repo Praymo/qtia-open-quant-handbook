@@ -1,4 +1,5 @@
 ---
+origin: official
 id: "01.2"
 title: "圆周上的蚂蚁"
 titleEn: "Ants on a circle"
