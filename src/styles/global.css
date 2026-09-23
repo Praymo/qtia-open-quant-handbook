@@ -15,6 +15,7 @@
 .prose details>:not(summary),.contribution-detail>:not(summary){margin-top:15px;margin-bottom:15px}
 .prose details .katex-display{max-width:100%}
 .contribution-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:30px 0 42px}
+.contributor-avatars{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.contributor-avatars a{display:inline-flex;border-radius:50%;outline-offset:5px}.contributor-avatars img{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover}
 .contribution-path{border:1px solid var(--line);border-radius:6px;padding:21px 19px;display:flex;flex-direction:column;min-width:0}
 .contribution-path .mono{font-size:.67rem;color:var(--accent)}
 .contribution-path h2{font-size:1rem;margin:13px 0 9px}
@@ -50,3 +51,4 @@
 
 .poll-results{margin-top:16px;max-width:550px}.poll-result{margin:12px 0}.poll-result-label{display:flex;justify-content:space-between;gap:16px;font-size:.76rem;color:#4d596d}.poll-result-label span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums;color:#667188}.poll-track{height:7px;margin-top:6px;background:#e8ecf5;border-radius:999px;overflow:hidden}.poll-track span{display:block;height:100%;background:var(--accent);border-radius:999px}.poll-total{font-size:.7rem;margin-top:13px;color:var(--muted)}
 .weekly-feedback{margin-top:40px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.weekly-feedback h2{font-size:1.08rem}.weekly-feedback p{font-size:.82rem;margin:8px 0 13px}.weekly-feedback .text-link{font-size:.81rem}.poll-week-summary{font-size:.78rem;margin-top:6px}
+.weekly-credits{margin:0 0 28px;padding-top:18px;border-top:1px solid var(--line)}.weekly-credits h2{font-size:.9rem}.weekly-credits p{font-size:.8rem;line-height:1.9;margin-top:8px}.weekly-credits p:last-child{font-size:.72rem}

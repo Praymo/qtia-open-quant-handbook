@@ -4,9 +4,24 @@ import QuestionList from '../../components/QuestionList.astro';
 import { allQuestions, weekLabel, weekName } from '../../lib/catalog';
 import { url } from '../../lib/site';
 import feedback from '../../data/feedback.json';
+import credits from '../../data/week-credits.json';
 export async function getStaticPaths() { const questions = await allQuestions(); return [...new Set(questions.map(q => q.data.week))].map(week => ({ params: { week: weekLabel(week) }, props: { week } })); }
 const { week } = Astro.props;
 const questions = (await allQuestions()).filter(q => q.data.week === week);
 const pollGroup = feedback.weeks.find(group => group.week === week);
+const credit = credits.find(item => item.week === week);
 ---
-<Layout title={weekName(week)}><nav class="breadcrumbs" aria-label="面包屑"><a href={url('/week/')}>每周归档</a><span>/</span><span>{weekName(week)}</span></nav><div class="eyebrow">每周归档 <span class="edition">{questions[0].data.date}</span></div><h1>{weekName(week)}</h1><p class="page-description">收录 {questions.length} 道题目。</p><QuestionList questions={questions}/><section class="weekly-feedback"><h2>本周反馈</h2><p>{pollGroup?.polls.length ? '题目难度、题量和讲解需求，欢迎投票。' : '这一周还没有开放投票。'}</p><a class="text-link" href={url(`/feedback/${weekLabel(week)}/`)}>{pollGroup?.polls.length ? '参与投票并查看结果 →' : '查看本周反馈 →'}</a></section><p class="archive-back"><a class="text-link" href={url('/week/')}>← 返回每周归档</a></p></Layout>
+<Layout title={weekName(week)}>
+  <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/week/')}>每周归档</a><span>/</span><span>{weekName(week)}</span></nav>
+  <div class="eyebrow">每周归档 <span class="edition">{questions[0].data.date}</span></div>
+  <h1>{weekName(week)}</h1>
+  <p class="page-description">收录 {questions.length} 道题目。</p>
+  {credit && <section class="weekly-credits" aria-label="本期习题整理与审核">
+    <h2>本期习题整理与审核</h2>
+    <p>整理：{credit.organizers.join('、')}<br/>审核：{credit.reviewers.join('、')}（按姓氏拼音排序，排名不分先后）</p>
+    <p>题目由 QTIA 社团分享；整理与审核署名不代表原题作者或版权归属。</p>
+  </section>}
+  <QuestionList questions={questions}/>
+  <section class="weekly-feedback"><h2>本周反馈</h2><p>{pollGroup?.polls.length ? '题目难度、题量和讲解需求，欢迎投票。' : '这一周还没有开放投票。'}</p><a class="text-link" href={url(`/feedback/${weekLabel(week)}/`)}>{pollGroup?.polls.length ? '参与投票并查看结果 →' : '查看本周反馈 →'}</a></section>
+  <p class="archive-back"><a class="text-link" href={url('/week/')}>← 返回每周归档</a></p>
+</Layout>

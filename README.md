@@ -2,7 +2,16 @@
 
 [阅读网站](https://praymo.github.io/qtia-open-quant-handbook/) · [按周浏览题目](https://praymo.github.io/qtia-open-quant-handbook/week/) · [反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [参与贡献](CONTRIBUTING.md)
 
-这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库。题目和解答以 Markdown 文件保存；网站负责阅读、筛选和展示。每道题都有中文题面和 English version，方便先理解问题，再核对原文。这里暂不预设“官方标准答案”，欢迎提交不同的推导、证明和模拟。
+这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库，收录 QTIA 社团每周分享的习题。题目由社团管理团队整理与审核；仓库把题目和社区解答保存为 Markdown，网站负责阅读、筛选和展示。每道题都有中文题面和 English version。这里暂不预设“官方标准答案”，欢迎提交不同的推导、证明和模拟。
+
+## QTIA 管理团队的整理与审核
+
+| 期次 | 习题整理 | 习题审核（按姓氏拼音排序，排名不分先后） |
+| --- | --- | --- |
+| [第一周](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S.、江 B.Y.、文 J.、颜 T.Y.、郑 Z.R. |
+| [第二周](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
+
+为尊重隐私，使用“姓氏＋名字拼音首字母”。这里记录的是每期习题的整理与审核工作，不代表原题作者或版权归属；原题出处会尽可能逐题补充。
 
 ## 这里能做什么
 
@@ -22,8 +31,6 @@
 - 想指出问题：在题目页点击“报告问题”；修正错字或翻译时也可以点“编辑题目”。
 - 想发布下一周：看[给维护者的上传指南](docs/题目更新维护指南.md)，里面用第三周第一题演示文件怎么建、怎么填、怎么上线。
 - 想推荐题目或相关项目：到 [GitHub Discussions](https://github.com/Praymo/qtia-open-quant-handbook/discussions) 说说题目来源、你试过的方法，或项目适合解决什么问题。
-
-**重要贡献者**：[@Praymo](https://github.com/Praymo) 负责建库与维护。后续题目、解答和修订的贡献者会在对应文件、网页与 GitHub 历史中署名；欢迎更多人加入。
 
 ## 量化项目地图
 
@@ -49,7 +56,7 @@ npm ci
 npm run dev
 ```
 
-提交代码前运行 `npm test`、`npm run check` 和 `npm run build`。合并到 `main` 后，GitHub Actions 会更新网站。题目与解答采用 [CC BY 4.0](LICENSE-CONTENT.md)，网站代码与仓库文档采用 [MIT](LICENSE)。引用外部题目或解法时，请注明来源并确认分享权限。
+提交代码前运行 `npm test`、`npm run check` 和 `npm run build`。合并到 `main` 后，GitHub Actions 会更新网站。[CC BY 4.0](LICENSE-CONTENT.md) 仅适用于贡献者有权许可的原创内容，不覆盖第三方原题；网站代码与仓库文档采用 [MIT](LICENSE)。引用外部题目或解法时，请注明来源并确认分享权限。
 
 ---
 
@@ -57,7 +64,16 @@ npm run dev
 
 [Read the website](https://praymo.github.io/qtia-open-quant-handbook/) · [Browse by week](https://praymo.github.io/qtia-open-quant-handbook/week/) · [Weekly feedback](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [Contribute](CONTRIBUTING.md)
 
-QTIA is a community maintained collection of quantitative interview questions on GitHub. Markdown files are the source of record for questions and solutions; the website makes them easier to browse and read. Each question has a Chinese statement and an English version. There is no preset official solution: different proofs, derivations, simulations, and corrections can stand side by side.
+This community-maintained repository collects weekly questions shared by QTIA. The club's management team organizes and reviews each set; the repository keeps the questions and community solutions as Markdown, while the website makes them easier to browse. Each question has a Chinese statement and an English version. There is no preset official solution: different proofs, derivations, simulations, and corrections can stand side by side.
+
+## QTIA management team's weekly contributions
+
+| Week | Question set organized by | Reviewed by (surname pinyin order; no ranking) |
+| --- | --- | --- |
+| [Week 1](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S., 江 B.Y., 文 J., 颜 T.Y., 郑 Z.R. |
+| [Week 2](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y., 郑 Z.R. |
+
+Names use the surname and given-name pinyin initials for privacy. These credits recognize organization and review of each question set; they do not claim authorship or copyright in the original questions. Original sources will be added where they can be verified.
 
 ## What you can do
 
@@ -77,8 +93,6 @@ The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) an
 - To report a mistake or improve a translation, use the Issue or edit link on the question page.
 - To publish another week, follow the [maintainer's upload guide](docs/题目更新维护指南.md), which walks through Week 3 as an example.
 - To suggest a question or another useful project, start a [GitHub Discussion](https://github.com/Praymo/qtia-open-quant-handbook/discussions) and share the source and why it helps.
-
-**Key contributor:** [@Praymo](https://github.com/Praymo) created and maintains the repository. Additional question authors, solution writers, and reviewers are credited in their files, on the relevant pages, and in GitHub history.
 
 ## Quant project map
 
@@ -104,4 +118,4 @@ npm ci
 npm run dev
 ```
 
-Before submitting code, run `npm test`, `npm run check`, and `npm run build`. Merging into `main` triggers the GitHub Actions site deployment. Questions and solutions use [CC BY 4.0](LICENSE-CONTENT.md); site code and repository docs use [MIT](LICENSE). Credit external sources and check sharing rights before contributing them.
+Before submitting code, run `npm test`, `npm run check`, and `npm run build`. Merging into `main` triggers the GitHub Actions site deployment. [CC BY 4.0](LICENSE-CONTENT.md) covers only original material contributors have the right to license, not third-party question statements; site code and repository docs use [MIT](LICENSE). Credit external sources and check sharing rights before contributing them.
