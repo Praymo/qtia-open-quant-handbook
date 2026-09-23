@@ -58,6 +58,8 @@ npm run dev
 
 提交代码前运行 `npm test`、`npm run check` 和 `npm run build`。合并到 `main` 后，GitHub Actions 会更新网站。[CC BY 4.0](LICENSE-CONTENT.md) 仅适用于贡献者有权许可的原创内容，不覆盖第三方原题；网站代码与仓库文档采用 [MIT](LICENSE)。引用外部题目或解法时，请注明来源并确认分享权限。
 
+初始建库：[@Praymo](https://github.com/Praymo)。
+
 ---
 
 # QTIA CUHK(SZ) Open Quant Interview Handbook
@@ -119,3 +121,5 @@ npm run dev
 ```
 
 Before submitting code, run `npm test`, `npm run check`, and `npm run build`. Merging into `main` triggers the GitHub Actions site deployment. [CC BY 4.0](LICENSE-CONTENT.md) covers only original material contributors have the right to license, not third-party question statements; site code and repository docs use [MIT](LICENSE). Credit external sources and check sharing rights before contributing them.
+
+Initial repository setup: [@Praymo](https://github.com/Praymo).
