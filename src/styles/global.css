@@ -20,9 +20,11 @@
 .contribution-path .mono{font-size:.67rem;color:var(--accent)}
 .contribution-path h2{font-size:1rem;margin:13px 0 9px}
 .contribution-path p{font-size:.84rem;line-height:1.8;flex:1}
+.contribution-path ul{padding-left:19px;margin:8px 0 0;color:#485469;font-size:.82rem;line-height:1.7;flex:1}.contribution-path li+li{margin-top:8px}
 .contribution-path a{margin-top:18px;align-self:flex-start}
 .guide-section{max-width:780px;border-top:1px solid var(--line);padding-top:30px;margin-top:34px}
 .guide-section h2{font-size:1.22rem;line-height:1.55}
+.guide-section h3{font-size:1rem;margin-top:23px}
 .guide-section p,.guide-section li{font-size:.94rem;line-height:1.9;color:#485469;margin:14px 0}
 .guide-section ol{padding-left:22px}
 .guide-section li{padding-left:5px;margin:12px 0}
