@@ -40,7 +40,7 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
           {weeks.slice(0, 4).map(week => <a class="nav-link week-link" href={url(`/week/${weekLabel(week)}/`)}><span class="mono">{weekLabel(week)}</span>{weekName(week)}<span class="nav-count">{questions.filter(q => q.data.week === week).length}</span></a>)}
           <p class="nav-label">COMMUNITY</p>
           <a class:list={['nav-link', { active: active('/contributing') }]} href={url('/contributing/')} aria-current={active('/contributing') ? 'page' : undefined}><Icon name="branch"/>参与贡献</a>
-          <a class:list={['nav-link', { active: active('/feedback') }]} href={url('/feedback/')} aria-current={active('/feedback') ? 'page' : undefined}><Icon name="vote"/>反馈投票</a>
+          <a class:list={['nav-link', { active: active('/feedback') }]} href={url('/feedback/')} aria-current={active('/feedback') ? 'page' : undefined}><Icon name="vote"/>反馈专区</a>
           <a class:list={['nav-link', { active: active('/contributors') }]} href={url('/contributors/')} aria-current={active('/contributors') ? 'page' : undefined}><Icon name="people"/>贡献者</a>
         </nav>
         <div class="sidebar-note"><span class="small-caps">参与修订</span><p>分享题目、提交解答或指出错误，都可以直接贴出内容。</p><a href={url('/contributing/')}>查看提交方法 <span aria-hidden="true">↗</span></a></div>

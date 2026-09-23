@@ -8,6 +8,13 @@ async function markdownFiles(directory) {
   return results.flat().sort();
 }
 const errors = [];
+const feedback = JSON.parse(await readFile('src/data/feedback.json', 'utf8'));
+const feedbackKeys = feedback.questions.map(question => question.key);
+if (new Set(feedbackKeys).size !== feedbackKeys.length) errors.push('Feedback question keys must be unique.');
+for (const group of feedback.weeks) {
+  const keys = Object.keys(group.discussions);
+  if (keys.length !== feedbackKeys.length || feedbackKeys.some(key => !Number.isInteger(group.discussions[key]) || group.discussions[key] < 1)) errors.push(`Week ${group.week}: add one GitHub Discussion number for every standard feedback question.`);
+}
 const ids = new Set();
 const questionData = [];
 const questions = await markdownFiles('content/questions');

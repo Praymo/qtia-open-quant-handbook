@@ -1,39 +1,11 @@
 {
+  "questions": [
+    { "key": "difficulty", "title": "习题难度", "prompt": "{week}习题难度如何？", "options": ["较简单", "适中", "较困难"] },
+    { "key": "volume", "title": "习题量", "prompt": "{week}习题量如何？", "options": ["较少", "适中", "较多"] },
+    { "key": "explanation", "title": "答案与讲解", "prompt": "{week}题目，你希望提供哪种讲解支持？", "options": ["目前可以自行解决", "希望补充文字解答", "希望每周线上讲解"] }
+  ],
   "weeks": [
-    {
-      "week": 2,
-      "polls": [
-        {
-          "title": "习题难度",
-          "question": "第二周习题难度如何？",
-          "options": [
-            "较简单",
-            "适中",
-            "较困难"
-          ],
-          "discussion": 1
-        },
-        {
-          "title": "习题量",
-          "question": "第二周习题量如何？",
-          "options": [
-            "较少",
-            "适中",
-            "较多"
-          ],
-          "discussion": 2
-        },
-        {
-          "title": "答案与讲解",
-          "question": "第二周题目，你希望提供哪种讲解支持？",
-          "options": [
-            "目前可以自行解决",
-            "希望补充文字解答",
-            "希望每周线上讲解"
-          ],
-          "discussion": 3
-        }
-      ]
-    }
+    { "week": 2, "discussions": { "difficulty": 1, "volume": 2, "explanation": 3 } },
+    { "week": 1, "discussions": { "difficulty": 4, "volume": 5, "explanation": 6 } }
   ]
 }

@@ -1,18 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import feedback from '../data/feedback.json';
 import { allQuestions, weekLabel, weekName } from '../lib/catalog';
+import { feedbackGroup } from '../lib/feedback';
 import { url } from '../lib/site';
 const weeks = [...new Set((await allQuestions()).map(question => question.data.week))].sort((a, b) => b - a);
-const groups = weeks.map(week => feedback.weeks.find(group => group.week === week) ?? { week, polls: [] });
+const groups = weeks.map(feedbackGroup);
 ---
-<Layout title="反馈投票">
-  <div class="eyebrow">反馈投票</div>
-  <h1>按周查看反馈</h1>
-  <p class="page-description">选择周次，查看题目反馈和投票结果。</p>
+<Layout title="反馈专区">
+  <div class="eyebrow">反馈专区</div>
+  <h1>按周分享你的感受</h1>
+  <p class="page-description">你可以反馈习题难度和题量，也可以提出问题、分享对答案与讲解的建议。</p>
   <div class="week-cards">{groups.map(group => <a class="week-card" href={url(`/feedback/${weekLabel(group.week)}/`)}>
     <div class="week-card-label"><span class="small-caps">周次</span><strong>{weekLabel(group.week)}</strong></div>
-    <div><h2>{weekName(group.week)}</h2><p class="poll-week-summary">{group.polls.length ? `${group.polls.length} 项反馈投票 · ${group.polls.map(poll => poll.title).join(' / ')}` : '尚未开放投票'}</p></div>
+    <div><h2>{weekName(group.week)}</h2><p class="poll-week-summary">{group.polls.length ? '难度 · 题量 · 答案与讲解' : '可浏览题目，反馈即将开放'}</p></div>
     <span class="week-arrow" aria-hidden="true">↗</span>
   </a>)}</div>
 </Layout>
