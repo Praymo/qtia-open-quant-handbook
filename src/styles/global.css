@@ -36,7 +36,7 @@
 @media(max-width:480px){.header-github span{display:none}.header-github{gap:0}.topbar{gap:12px}.brand{letter-spacing:.02em}.brand-affiliation{font-size:.62rem}.prose details,.contribution-detail{padding:0 13px}}
 
 /* Feedback polls */
-.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stats strong{min-width:2ch;text-align:right}
 .poll-list{display:grid;gap:13px;margin:28px 0 18px}
 .poll-card{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:18px;padding:22px 24px;border:1px solid var(--line);border-radius:6px;background:#fff}
 .poll-index{font-size:.8rem;color:var(--accent);align-self:start;padding-top:3px}
