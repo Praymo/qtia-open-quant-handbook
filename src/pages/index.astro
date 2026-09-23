@@ -12,7 +12,7 @@ const latestWeek = Math.max(...weeks);
   <div class="eyebrow"><span>量化面试题库</span></div>
   <section class="intro">
     <h1>量化面试题，<br/><span class="accent">从一道题开始。</span></h1>
-    <p class="lead">每周更新的中英双语量化面试题。</p>
+    <p class="lead">题目来源于 QTIA 社团的分享，整理成中英双语的开放题库。</p>
     <div class="actions"><a class="button primary" href={url('/questions/')}>浏览题库 <span aria-hidden="true">→</span></a><a class="button" href={url('/feedback/')}>参与反馈投票 <Icon name="arrow" size={14}/></a></div>
   </section>
   <div class="stats" aria-label="题库概况"><div><strong>{String(questions.length).padStart(2, '0')}</strong><span>收录题目</span></div><div><strong>{String(weeks.length).padStart(2, '0')}</strong><span>收录周次</span></div><div><strong>{String(Object.keys(categories).length).padStart(2, '0')}</strong><span>知识主题</span></div></div>
