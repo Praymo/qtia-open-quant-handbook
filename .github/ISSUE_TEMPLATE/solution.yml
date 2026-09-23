@@ -1,0 +1,26 @@
+name: 直接贴答案
+description: 不熟悉 Markdown 或 Pull Request？选题后把答案粘贴进来即可，维护者会整理成解答文件。
+title: "[题号] 解答投稿"
+body:
+  - type: input
+    id: question
+    attributes:
+      label: 哪道题？
+      placeholder: 例如 01.2
+    validations:
+      required: true
+  - type: textarea
+    id: answer
+    attributes:
+      label: 你的答案
+      description: 直接粘贴即可。文字、Markdown、公式或代码都可以；不用先整理成模板。
+      placeholder: 写下你的思路和结果……
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 还有什么想补充？（可不填）
+      description: 可以说明假设、参考来源，或希望别人帮你核对的地方。
+    validations:
+      required: false
