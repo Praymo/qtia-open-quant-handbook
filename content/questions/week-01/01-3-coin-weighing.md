@@ -24,7 +24,7 @@ contributors: []
 3. 确定三袋金币各自的单枚质量。
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 There are three bags containing sufficiently many coins. Within each bag, all coins have the same integer mass in grams.
 

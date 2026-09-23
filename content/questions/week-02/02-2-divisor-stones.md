@@ -21,7 +21,7 @@ A 先手，双方都采取最优策略。回答：
 2. 对任意正整数 $n$，若禁止一次恰好取走 **1 颗**，并规定**无合法操作的一方判负**，谁能保证获胜？
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 A pile initially contains $n$ stones. Players A and B alternate removing stones.
 

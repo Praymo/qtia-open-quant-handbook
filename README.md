@@ -1,63 +1,107 @@
 # QTIA CUHK(SZ) 开放量化面试题知识库
 
-[阅读网站](https://praymo.github.io/qtia-open-quant-handbook/) · [浏览题目](content/questions/) · [参与贡献](CONTRIBUTING.md) · [题目维护说明](docs/题目更新维护指南.md)
+[阅读网站](https://praymo.github.io/qtia-open-quant-handbook/) · [按周浏览题目](https://praymo.github.io/qtia-open-quant-handbook/week/) · [反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [参与贡献](CONTRIBUTING.md)
 
-这里保存量化面试题的中英文题面。GitHub 中的 Markdown 文件是题目和社区解答的原始记录；网站提供按周、主题和难度浏览的页面。更正与解答通过 GitHub 合并请求审阅，作者和修改历史可追溯。
+这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库。题目和解答以 Markdown 文件保存；网站负责阅读、筛选和展示。每道题都有中文题面和 English version，方便先理解问题，再核对原文。这里暂不预设“官方标准答案”，欢迎提交不同的推导、证明和模拟。
 
-## 题目索引
+## 这里能做什么
 
-### 第一周
+| 功能 | 怎么用 |
+| --- | --- |
+| 每周题目 | 从[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)进入第一周、第二周等；每期题目各自保存在 `content/questions/week-XX/`。 |
+| 找题练习 | 在[题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)按周次、主题和难度筛选。题目页提供中英文题面和上一题、下一题导航。 |
+| 社区解答 | 同一道题可以有多种解法。贡献者把推导、证明或 Python 模拟放在 `content/solutions/题号/`，网站会在对应题目下展示。 |
+| 勘误与修订 | 发现题意不清、翻译问题或错误，可以在题目页发起 GitHub Issue 或编辑题目。Pull Request 保留审阅和修改记录。 |
+| 每周反馈 | 在每周题目列表下方进入该周[反馈投票](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。投票在 GitHub Discussions 完成；网站展示公开结果，约每小时更新。查看结果无需登录，投票需要 GitHub 账号。 |
 
-| 题号 | 题目 | 主题 | 难度 |
+想先看看内容？直接打开[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)或仓库中的 [`content/questions/`](content/questions/)；README 不重复列出全部题目，以免每周发布时维护两份索引。
+
+## 一起完善
+
+- 想写解答：打开一道题，点击“提交解答”，按[贡献指南](CONTRIBUTING.md)写下思路、推导和验证。只会编辑文字也可以参与，不需要会改网站代码。
+- 想指出问题：在题目页点击“报告问题”；修正错字或翻译时也可以点“编辑题目”。
+- 想发布下一周：看[给维护者的上传指南](docs/题目更新维护指南.md)，里面用第三周第一题演示文件怎么建、怎么填、怎么上线。
+- 想推荐题目或相关项目：到 [GitHub Discussions](https://github.com/Praymo/qtia-open-quant-handbook/discussions) 说说题目来源、你试过的方法，或项目适合解决什么问题。
+
+**重要贡献者**：[@Praymo](https://github.com/Praymo) 负责建库与维护。后续题目、解答和修订的贡献者会在对应文件、网页与 GitHub 历史中署名；欢迎更多人加入。
+
+## 量化项目地图
+
+这些仓库解决的是不同环节的问题。表格是探索入口，不代表本知识库依赖它们，也不代表策略表现得到保证。
+
+| 环节 | 项目 | 主要内容 | 仓库 |
 | --- | --- | --- | --- |
-| 01.1 | [阶乘末尾的零](content/questions/week-01/01-1-trailing-zeros.md) | 算法 | D2 基础 |
-| 01.2 | [圆周上的蚂蚁](content/questions/week-01/01-2-ants-on-a-circle.md) | 概率 | D3 进阶 |
-| 01.3 | [金币称重](content/questions/week-01/01-3-coin-weighing.md) | 思维题 | D4 挑战 |
+| 数据接入 | OpenBB | 统一接入公开或授权金融数据，供 Python、API 等研究工具使用。 | [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB) |
+| 机器学习研究 | Qlib | 金融数据处理、模型训练与量化研究流程。 | [microsoft/qlib](https://github.com/microsoft/qlib) |
+| 快速策略试验 | vectorbt | 用数组化方法比较大量信号、参数和回测结果。 | [polakowo/vectorbt](https://github.com/polakowo/vectorbt) |
+| 事件驱动回测 | LEAN | 多市场策略回测与实盘执行引擎。 | [QuantConnect/Lean](https://github.com/QuantConnect/Lean) |
+| 组合优化 | PyPortfolioOpt | 从预期收益、风险和约束计算投资组合权重。 | [PyPortfolio/PyPortfolioOpt](https://github.com/PyPortfolio/PyPortfolioOpt) |
+| 绩效分析 | QuantStats | 计算收益和风险指标，生成策略分析报告。 | [ranaroussi/quantstats](https://github.com/ranaroussi/quantstats) |
+| 加密交易所接口 | CCXT | 用较统一的接口读取交易所行情、市场与账户数据。 | [ccxt/ccxt](https://github.com/ccxt/ccxt) |
+| 加密策略运行 | Freqtrade | 加密策略回测、模拟运行与自动交易。 | [freqtrade/freqtrade](https://github.com/freqtrade/freqtrade) |
 
-### 第二周
+## 本地运行
 
-| 题号 | 题目 | 主题 | 难度 |
-| --- | --- | --- | --- |
-| 02.1 | [红黑弃牌](content/questions/week-02/02-1-red-black-cards.md) | 概率 | D2 基础 |
-| 02.2 | [因数取石子](content/questions/week-02/02-2-divisor-stones.md) | 思维题 | D3 进阶 |
-| 02.3 | [玻璃球测试](content/questions/week-02/02-3-glass-balls.md) | 算法 | D4 挑战 |
-| 02.4 | [掷骰计数的乘积](content/questions/week-02/02-4-dice-count-product.md) | 概率 | D5 拓展 |
-
-每道题在同一个 Markdown 文件中提供完整中文题面和英文原题。当前没有预设的官方解答；不同方法可以分别提交到 `content/solutions/题号/`，在题目下并列展示。难度标记为 D1 入门、D2 基础、D3 进阶、D4 挑战、D5 拓展及选做。
-
-## 参与与维护
-
-- 想提交解答、勘误或讨论题意：阅读 [参与贡献说明](CONTRIBUTING.md)。直接在 GitHub 修改 Markdown 即可，不需要安装开发工具。
-- 想替换旧题、增加下一周题目或调整元数据：阅读 [题目更新维护指南](docs/题目更新维护指南.md)。题号一旦公开，应保持稳定，以免旧链接与解答失效。
-- 想反馈题目难度、题量和解答需求：进入[反馈投票页](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。投票由公开的 GitHub Discussions 保存，网站约每小时更新展示票数。
-
-## 本地运行与检查
-
-需要 Node.js 22.12 或更新版本、npm 和 Git。在仓库根目录执行：
+只阅读题目或在 GitHub 网页贡献内容，不需要安装任何开发工具。要在电脑上预览网站，请安装 Node.js 22.12 或更新版本，在仓库根目录运行：
 
 ```sh
 npm ci
 npm run dev
 ```
 
-开发服务器会显示本地预览地址。提交或部署前执行：
+提交代码前运行 `npm test`、`npm run check` 和 `npm run build`。合并到 `main` 后，GitHub Actions 会更新网站。题目与解答采用 [CC BY 4.0](LICENSE-CONTENT.md)，网站代码与仓库文档采用 [MIT](LICENSE)。引用外部题目或解法时，请注明来源并确认分享权限。
+
+---
+
+# QTIA CUHK(SZ) Open Quant Interview Handbook
+
+[Read the website](https://praymo.github.io/qtia-open-quant-handbook/) · [Browse by week](https://praymo.github.io/qtia-open-quant-handbook/week/) · [Weekly feedback](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [Contribute](CONTRIBUTING.md)
+
+QTIA is a community maintained collection of quantitative interview questions on GitHub. Markdown files are the source of record for questions and solutions; the website makes them easier to browse and read. Each question has a Chinese statement and an English version. There is no preset official solution: different proofs, derivations, simulations, and corrections can stand side by side.
+
+## What you can do
+
+| Feature | How it works |
+| --- | --- |
+| Weekly questions | Browse the [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/). Each week's source files live in `content/questions/week-XX/`. |
+| Find a question | Filter the [question bank](https://praymo.github.io/qtia-open-quant-handbook/questions/) by week, topic, and difficulty. |
+| Share a solution | Add a Markdown solution under `content/solutions/question-id/`; it appears on that question's page alongside other approaches. |
+| Correct and improve | Open an Issue or edit a question from its page. Pull Requests retain review and revision history. |
+| Give weekly feedback | Open the feedback link below a week's questions. Vote in GitHub Discussions and view the public results on the website, refreshed about hourly. Viewing results needs no login; voting requires a GitHub account. |
+
+The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) and [`content/questions/`](content/questions/) are the current question index. This README does not duplicate every question as new weeks are added.
+
+## Join in
+
+- To contribute a proof, derivation, or Python simulation, open a question and choose “提交解答” (Submit a solution). The [contribution guide](CONTRIBUTING.md) explains the file format; frontend work is not required.
+- To report a mistake or improve a translation, use the Issue or edit link on the question page.
+- To publish another week, follow the [maintainer's upload guide](docs/题目更新维护指南.md), which walks through Week 3 as an example.
+- To suggest a question or another useful project, start a [GitHub Discussion](https://github.com/Praymo/qtia-open-quant-handbook/discussions) and share the source and why it helps.
+
+**Key contributor:** [@Praymo](https://github.com/Praymo) created and maintains the repository. Additional question authors, solution writers, and reviewers are credited in their files, on the relevant pages, and in GitHub history.
+
+## Quant project map
+
+These repositories cover different parts of a research or trading workflow. They are references for exploration, not dependencies of this handbook or endorsements of strategy performance.
+
+| Area | Project | What it does | Repository |
+| --- | --- | --- | --- |
+| Data access | OpenBB | Connects financial data sources for Python, APIs, and research tools. | [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB) |
+| Machine learning research | Qlib | Financial data processing, model training, and quantitative research workflows. | [microsoft/qlib](https://github.com/microsoft/qlib) |
+| Rapid strategy experiments | vectorbt | Compares many signals, parameters, and backtests with array based tools. | [polakowo/vectorbt](https://github.com/polakowo/vectorbt) |
+| Event driven backtesting | LEAN | Engine for multi-market backtests and live algorithm execution. | [QuantConnect/Lean](https://github.com/QuantConnect/Lean) |
+| Portfolio optimization | PyPortfolioOpt | Computes portfolio weights from return, risk, and constraint inputs. | [PyPortfolio/PyPortfolioOpt](https://github.com/PyPortfolio/PyPortfolioOpt) |
+| Performance analytics | QuantStats | Calculates return and risk metrics and produces strategy reports. | [ranaroussi/quantstats](https://github.com/ranaroussi/quantstats) |
+| Crypto exchange API | CCXT | Provides a common interface for exchange market and account data. | [ccxt/ccxt](https://github.com/ccxt/ccxt) |
+| Crypto strategy runner | Freqtrade | Runs crypto strategy backtests, dry runs, and automated trading. | [freqtrade/freqtrade](https://github.com/freqtrade/freqtrade) |
+
+## Run locally
+
+You do not need development tools to read questions or edit Markdown on GitHub. To preview the site locally, install Node.js 22.12 or later and run:
 
 ```sh
-npm test
-npm run check
-npm run build
+npm ci
+npm run dev
 ```
 
-检查涵盖题号、周次文件夹、题目双语区段、解答引用和署名，以及页面构建。数学公式支持 `$...$`、`$$...$$`、`\( ... \)` 和 `\[ ... \]`；为了同时在 GitHub 阅读，推荐美元符号写法。
-
-## 文件与部署
-
-- `content/questions/week-XX/`：每道题一个 Markdown 文件。
-- `content/solutions/题号/`：同一题的不同社区解答，各自独立成文件。
-- `templates/`：题目和解答模板。
-- `src/data/site.json`：公共仓库地址和默认分支。
-- `.github/workflows/`：合并请求检查与 GitHub Pages 部署。
-
-合并到 `main` 后，GitHub Actions 会运行检查并更新网站。题目数量、周次、分类筛选和解答展示从内容文件自动生成。部署到其他仓库时，可以修改 `src/data/site.json`，或使用 `PUBLIC_GITHUB_REPOSITORY`、`PUBLIC_GITHUB_BRANCH`、`SITE_URL`、`BASE_PATH` 环境变量。不要把令牌或个人资料写入公开仓库。
-
-网站代码和仓库文档采用 [MIT](LICENSE) 许可；原创题目和解答采用 [CC BY 4.0](LICENSE-CONTENT.md) 许可。引用外部材料时请核对分享权限并注明来源。社区解答可能有错，请独立核验。
+Before submitting code, run `npm test`, `npm run check`, and `npm run build`. Merging into `main` triggers the GitHub Actions site deployment. Questions and solutions use [CC BY 4.0](LICENSE-CONTENT.md); site code and repository docs use [MIT](LICENSE). Credit external sources and check sharing rights before contributing them.

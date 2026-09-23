@@ -26,7 +26,7 @@ contributors: []
 求这场游戏的公平入场价。
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 A deck contains **26 red cards** and **26 black cards** and is shuffled.
 

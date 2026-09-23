@@ -16,7 +16,7 @@ contributors: ["your-github-username"]
 在这里写完整的中文题面、所有条件及小问。请核对中英文中的数字、事件和规则完全一致。
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 Write the complete English problem statement, assumptions, and sub-questions here.
 

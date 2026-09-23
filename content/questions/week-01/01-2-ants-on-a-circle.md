@@ -24,7 +24,7 @@ contributors: []
 3. 对于 **10 只蚂蚁**，每只蚂蚁都回到各自的初始位置。
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 Several ants are equally spaced on a circle.
 

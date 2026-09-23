@@ -22,7 +22,7 @@ const query = `query($owner:String!, $name:String!, $number:Int!) {
 }`;
 
 const polls = [];
-for (const item of feedback.polls) {
+for (const { week, polls: weekPolls } of feedback.weeks) for (const item of weekPolls) {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json' },
@@ -37,8 +37,8 @@ for (const item of feedback.polls) {
   if (options.length !== item.options.length || options.some((option, index) => option.option !== item.options[index])) {
     throw new Error(`Discussion ${item.discussion} options do not match src/data/feedback.json.`);
   }
-  polls.push({ discussion: item.discussion, total: discussion.poll.totalVoteCount, options: options.map(option => ({ label: option.option, votes: option.totalVoteCount })) });
+  polls.push({ week, discussion: item.discussion, total: discussion.poll.totalVoteCount, options: options.map(option => ({ label: option.option, votes: option.totalVoteCount })) });
 }
 
-await writeFile('src/data/poll-results.json', `${JSON.stringify({ week: feedback.week, updatedAt: new Date().toISOString(), polls }, null, 2)}\n`);
+await writeFile('src/data/poll-results.json', `${JSON.stringify({ updatedAt: new Date().toISOString(), polls }, null, 2)}\n`);
 console.log(`Updated ${polls.length} public GitHub poll results.`);

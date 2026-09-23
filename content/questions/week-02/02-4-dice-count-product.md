@@ -23,7 +23,7 @@ $$
 2. 一直掷到 **六种点数都至少出现一次**为止。
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 Repeatedly roll a fair six-sided die independently. At the end of the experiment, let $N_i$ be the number of occurrences of face $i$.
 

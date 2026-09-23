@@ -18,7 +18,7 @@ for (const file of questions) {
   if (!file.includes(`week-${String(data.week).padStart(2, '0')}/`)) errors.push(`${file}: week folder and metadata must match`);
   if (Number(String(data.id).split('.')[0]) !== data.week) errors.push(`${file}: id prefix and week must match`);
   const chinese = content.match(/^## 中文题目[ \t]*\n([\s\S]*?)(?=^<details>)/m)?.[1]?.trim();
-  const english = content.match(/^<details>\s*\n<summary>English version · 英文原题<\/summary>\s*\n([\s\S]*?)^<\/details>\s*$/m)?.[1]?.trim();
+  const english = content.match(/^<details>\s*\n<summary>English version<\/summary>\s*\n([\s\S]*?)^<\/details>\s*$/m)?.[1]?.trim();
   if (!chinese || !english) errors.push(`${file}: include complete Chinese and English problem sections`);
 }
 for (const file of solutions) {

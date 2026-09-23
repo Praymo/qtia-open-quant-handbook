@@ -24,7 +24,7 @@ contributors: []
 2. 对一般的 $n$ 层建筑和 $k$ 个玻璃球，给出计算最少实验次数的算法，并分析其复杂度。
 
 <details>
-<summary>English version · 英文原题</summary>
+<summary>English version</summary>
 
 A building has $n$ floors, with floor **0** being ground level. There are $k$ identical glass balls.
 
