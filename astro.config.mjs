@@ -4,6 +4,7 @@ import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkLatexDelimiters from './src/lib/remark-latex-delimiters.mjs';
+import rehypeAccessibleKatex from './src/lib/rehype-accessible-katex.mjs';
 
 const env = { ...loadEnv(process.env.NODE_ENV || 'production', process.cwd(), ''), ...process.env };
 
@@ -16,7 +17,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkLatexDelimiters, remarkMath],
-      rehypePlugins: [[rehypeKatex, { strict: 'error', throwOnError: true }]],
+      rehypePlugins: [[rehypeKatex, { strict: 'error', throwOnError: true }], rehypeAccessibleKatex],
     }),
     shikiConfig: { theme: 'github-light' },
   },

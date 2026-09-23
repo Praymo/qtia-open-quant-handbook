@@ -8,6 +8,7 @@ import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkLatexDelimiters from '../src/lib/remark-latex-delimiters.mjs';
+import rehypeAccessibleKatex from '../src/lib/rehype-accessible-katex.mjs';
 const seedIds = ['01.1', '01.2', '01.3', '02.1', '02.2', '02.3', '02.4'];
 // Keep the regression sample stable as future weeks add new questions.
 const records = readdirSync('content/questions', { recursive: true }).filter(path => path.endsWith('.md')).map(path => matter(readFileSync(`content/questions/${path}`, 'utf8')).data).filter(question => seedIds.includes(question.id));
@@ -41,12 +42,16 @@ test('TeX delimiters normalize while inline and fenced code remain literal', () 
 test('actual Markdown pipeline renders all math delimiters and preserves code', async () => {
   const renderer = await createMarkdownProcessor({
     remarkPlugins: [remarkLatexDelimiters, remarkMath],
-    rehypePlugins: [[rehypeKatex, { strict: 'error', throwOnError: true }]],
+    rehypePlugins: [[rehypeKatex, { strict: 'error', throwOnError: true }], rehypeAccessibleKatex],
   });
   const source = 'Inline \\(n!\\) and $x^2$.\n\n\\[\n\\mathbb{E}[X]\n\\]\n\n$$\ny^2\n$$\n\n`\\(literal\\)`\n\n```python\nprint(r"\\(not math\\)")\n```';
   const { code } = await renderer.render(source);
   assert.equal((code.match(/class="katex"/g) || []).length, 4);
   assert.equal((code.match(/class="katex-display"/g) || []).length, 2);
+  assert.equal((code.match(/role="math"/g) || []).length, 4);
+  assert.match(code, /aria-label="x 上标 2"/);
+  assert.match(code, /class="katex-html" aria-hidden="true"/);
+  assert.doesNotMatch(code, /class="katex-mathml"|<annotation/);
   assert.match(code, /<code>\\\(literal\\\)<\/code>/);
   assert.doesNotMatch(code, /katex-error/);
 });
