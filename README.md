@@ -31,7 +31,6 @@
 - 想分享题目：用[贴题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)粘贴题面和已知出处；也可请认识的 QTIA 管理团队同学代为提交。
 - 想写解答：打开一道题，点“直接贴答案”；熟悉 Markdown 的同学也可以直接提 PR。[贡献指南](CONTRIBUTING.md)有具体步骤。
 - 想指出问题：在题目页点击“报告问题”；修正错字或翻译时也可以点“编辑题目”。
-- 想发布下一周：看[给维护者的上传指南](docs/题目更新维护指南.md)，里面用第三周第一题演示文件怎么建、怎么填、怎么上线。
 - 想推荐题目或相关项目：到 [GitHub Discussions](https://github.com/Praymo/qtia-open-quant-handbook/discussions) 说说题目来源、你试过的方法，或项目适合解决什么问题。
 
 ## 量化项目地图
