@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Badges from '../../components/Badges.astro';
 import Notice from '../../components/Notice.astro';
 import Icon from '../../components/Icon.astro';
-import { allQuestions, weekLabel } from '../../lib/catalog';
+import { allQuestions, weekLabel, weekName } from '../../lib/catalog';
 import { url, repoUrl, githubAction } from '../../lib/site';
 export async function getStaticPaths() { return (await allQuestions()).map(question => ({ params: { id: question.data.id }, props: { question } })); }
 const { question } = Astro.props;
@@ -19,7 +19,7 @@ const next = questions[index + 1];
 const source = question.filePath!;
 ---
 <Layout title={`${q.id} ${q.title}`} description={q.summary}>
-  <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/questions/')}>题库</a><span>/</span><a href={url(`/week/${weekLabel(q.week)}/`)}>Week {weekLabel(q.week)}</a><span>/</span><span>{q.id}</span></nav>
+  <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/questions/')}>题库</a><span>/</span><a href={url(`/week/${weekLabel(q.week)}/`)}>{weekName(q.week)}</a><span>/</span><span>{q.id}</span></nav>
   <div class="eyebrow problem-number">PROBLEM {q.id}</div><h1 class="problem-title">{q.title}</h1><p class="problem-english">{q.titleEn}</p>
   <Badges question={question}/><div class="tags">{q.tags.map(tag => <a href={`${url('/questions/')}?tag=${encodeURIComponent(tag)}`}>#{tag}</a>)}</div>
   <div class="problem-layout"><article class="problem-article"><section aria-labelledby="statement"><h2 class="article-section-title" id="statement"><span>01</span>题目 <small>Problem statement</small></h2><div class="prose"><Content/></div></section>

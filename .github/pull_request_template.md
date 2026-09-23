@@ -1,18 +1,18 @@
-## What changed?
+## 修改内容
 
-Question ID / affected page:
+涉及的题号或页面：
 
-Contribution type: solution / alternative proof / simulation / correction / explanation / tags / website / review
+修改类型：解答 / 另一种证明 / 模拟 / 勘误 / 解释 / 标签 / 网站
 
-## Reasoning and validation
+## 理由与核对
 
-Describe assumptions, checks, edge cases, and limitations. For simulations, include reproducible code and a random seed when relevant.
+说明修改原因、假设、检查方法、边界情况和局限。若提交模拟，请提供可复现代码，并在适用时注明随机种子。
 
-## Attribution
+## 来源与署名
 
-- [ ] I preserved existing attribution and listed new contributors where appropriate.
-- [ ] I have the right to share this content and cited external sources.
-- [ ] I agree to the repository's applicable license (MIT for code, CC BY 4.0 for content).
-- [ ] This PR contains no secrets or private information.
+- [ ] 已保留原作者署名，并在需要时列出新增贡献者。
+- [ ] 我有权分享这些内容，并注明引用的外部来源。
+- [ ] 我同意按仓库适用的许可分享贡献：代码和文档为 MIT，原创题目和解答为 CC BY 4.0。
+- [ ] 这次提交不含密码、令牌或个人信息。
 
-No long-term maintenance commitment is required from the original contributor.
+原作者无需承诺长期维护，后续贡献者可以继续修订。

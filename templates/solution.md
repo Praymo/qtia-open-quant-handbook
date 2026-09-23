@@ -1,22 +1,24 @@
 ---
 question: "02.3"
-title: "Name your approach"
-method: "Mathematical derivation"
+title: "你的解法名称"
+method: "数学推导"
 contributors: ["your-github-username"]
 date: "2026-09-23"
 order: 0
 ---
 
-## Approach and assumptions
+## 思路与假设
 
-## Derivation or simulation
+说明你如何理解题目，以及使用了哪些假设。
 
-Use Markdown and LaTeX. For example, inline \(x^2\), or a display:
+## 推导或模拟
 
-\[
+用 Markdown 编写正文，公式可用 `$x^2$` 或：
+
+$$
 f(x) = x^2
-\]
+$$
 
-## Validation and limitations
+## 验证与局限
 
-Include edge cases, reproducible checks, and references where relevant.
+说明边界情况、可复现的核对方法和引用来源。

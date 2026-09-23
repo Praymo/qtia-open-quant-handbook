@@ -1,17 +1,17 @@
-name: Feature request
-description: Suggest a small improvement to the handbook.
-title: "[Feature] "
+name: 功能建议
+description: 提议改进题目阅读或社区投稿体验。
+title: "[建议] "
 body:
   - type: textarea
     id: problem
     attributes:
-      label: What learning or contribution problem would this solve?
+      label: 你遇到了什么具体问题？
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: Suggested improvement
-      description: Keep the GitHub-first, static-site scope in mind.
+      label: 你建议如何改进？
+      description: 如有例子或参考页面，也可以一起提供。
     validations:
       required: true

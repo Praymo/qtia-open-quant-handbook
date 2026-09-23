@@ -1,10 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import QuestionList from '../../components/QuestionList.astro';
-import { allQuestions, weekLabel } from '../../lib/catalog';
+import { allQuestions, weekLabel, weekName } from '../../lib/catalog';
 import { url } from '../../lib/site';
 export async function getStaticPaths() { const questions = await allQuestions(); return [...new Set(questions.map(q => q.data.week))].map(week => ({ params: { week: weekLabel(week) }, props: { week } })); }
 const { week } = Astro.props;
 const questions = (await allQuestions()).filter(q => q.data.week === week);
 ---
-<Layout title={`Week ${weekLabel(week)}`}><nav class="breadcrumbs" aria-label="面包屑"><a href={url('/week/')}>每周归档</a><span>/</span><span>Week {weekLabel(week)}</span></nav><div class="eyebrow">WEEKLY COLLECTION <span class="edition">{questions[0].data.date}</span></div><h1>Week {weekLabel(week)}</h1><p class="page-description">本周收录 {questions.length} 道题目。先独立思考，再与社区一起探索。</p><QuestionList questions={questions}/><p class="archive-back"><a class="text-link" href={url('/week/')}>← 返回每周归档</a></p></Layout>
+<Layout title={weekName(week)}><nav class="breadcrumbs" aria-label="面包屑"><a href={url('/week/')}>每周归档</a><span>/</span><span>{weekName(week)}</span></nav><div class="eyebrow">每周归档 <span class="edition">{questions[0].data.date}</span></div><h1>{weekName(week)}</h1><p class="page-description">收录 {questions.length} 道题目。</p><QuestionList questions={questions}/><p class="archive-back"><a class="text-link" href={url('/week/')}>← 返回每周归档</a></p></Layout>

@@ -1,28 +1,28 @@
-name: Question, correction, or discussion
-description: Report an error, clarify a question, or discuss a solution.
-title: "[Question ID] "
+name: 题目勘误或讨论
+description: 报告错误、澄清题意，或讨论某道题的解法。
+title: "[题号] "
 body:
   - type: input
     id: question
     attributes:
-      label: Question ID or page
-      description: For example, 02.3 or a link to the affected page.
+      label: 题号或页面链接
+      description: 例如 02.3，或相关题目的网址。
     validations:
       required: true
   - type: dropdown
     id: kind
     attributes:
-      label: Type
+      label: 问题类型
       options:
-        - Error or correction
-        - Question clarification
-        - Solution discussion
+        - 错误或勘误
+        - 题意澄清
+        - 解法讨论
     validations:
       required: true
   - type: textarea
     id: details
     attributes:
-      label: What did you find?
-      description: Quote the relevant part and describe your reasoning, example, or reproducible check. Avoid personal information.
+      label: 具体发现
+      description: 请引用相关文字，说明理由、例子或可复现的核对方法；不要填写个人信息。
     validations:
       required: true

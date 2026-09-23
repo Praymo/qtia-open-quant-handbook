@@ -7,6 +7,12 @@ export const categories = {
 } as const;
 export const difficulties = { D1: '入门', D2: '基础', D3: '进阶', D4: '挑战', D5: '拓展', Optional: '选做' } as const;
 export const weekLabel = (week: number) => String(week).padStart(2, '0');
+export const weekName = (week: number) => {
+  const digits = '零一二三四五六七八九';
+  if (week < 10) return `第${digits[week]}周`;
+  if (week < 100) return `第${week < 20 ? '' : digits[Math.floor(week / 10)]}十${week % 10 ? digits[week % 10] : ''}周`;
+  return `第${week}周`;
+};
 export const byId = (a: Question, b: Question) => a.data.week - b.data.week || a.data.id.localeCompare(b.data.id, undefined, { numeric: true });
 export const newest = (a: Question, b: Question) => b.data.date.localeCompare(a.data.date) || -byId(a, b);
 export async function allQuestions() { return (await getCollection('questions')).sort(byId); }

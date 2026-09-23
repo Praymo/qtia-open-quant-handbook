@@ -1,15 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import QuestionList from '../../components/QuestionList.astro';
-import { allQuestions, categories, difficulties, weekLabel, newest } from '../../lib/catalog';
+import { allQuestions, categories, difficulties, weekName, newest } from '../../lib/catalog';
 const questions = await allQuestions();
 const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => a - b);
 const tags = [...new Set(questions.flatMap(q => q.data.tags))].sort();
 ---
 <Layout title="全部题目">
-  <div class="eyebrow">QUESTION BANK <span class="edition">{questions.length} PROBLEMS</span></div><h1>全部题目</h1><p class="page-description">按主题、难度和周次，找到你的下一个问题。</p>
+  <div class="eyebrow">题库 <span class="edition">{questions.length} 道题目</span></div><h1>全部题目</h1><p class="page-description">按主题、难度和周次，找到你的下一个问题。</p>
   <form id="filters" class="filters" aria-label="题目筛选" hidden>
-    <label>Week · 周次<select name="week"><option value="">全部周次</option>{weeks.map(week => <option value={week}>Week {weekLabel(week)}</option>)}</select></label>
+    <label>周次<select name="week"><option value="">全部周次</option>{weeks.map(week => <option value={week}>{weekName(week)}</option>)}</select></label>
     <label>Category · 主题<select name="category"><option value="">全部主题</option>{Object.entries(categories).map(([key, item]) => <option value={key}>{item.label} / {item.zh}</option>)}</select></label>
     <label>Difficulty · 难度<select name="difficulty"><option value="">全部难度</option>{Object.entries(difficulties).map(([key, label]) => <option value={key}>{key} · {label}</option>)}</select></label>
     <label>Tags · 标签<select name="tag"><option value="">全部标签</option>{tags.map(tag => <option value={tag}>{tag}</option>)}</select></label>

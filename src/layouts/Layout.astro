@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 import Icon from '../components/Icon.astro';
-import { allQuestions, categories, weekLabel } from '../lib/catalog';
+import { allQuestions, categories, weekLabel, weekName } from '../lib/catalog';
 import { url, repoUrl, siteName, base } from '../lib/site';
 interface Props { title: string; description?: string; }
 const { title, description = '由社区共同维护的量化面试题知识库。按周、主题和难度阅读题目，通过 GitHub 贡献解答与修订。' } = Astro.props;
@@ -26,7 +26,6 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
     <a class="skip-link" href="#main">跳转到正文</a>
     <header class="topbar">
       <a href={url('/')} class="brand" aria-label={siteName}><span class="brand-mark">Q<span>↗</span></span><span>QTIA <span class="brand-affiliation">CUHK(SZ)</span><span class="brand-sub">OPEN HANDBOOK</span></span></a>
-      <span class="header-caption">Quantitative thinking, shared.</span>
       <a class="header-github" href={repoUrl}><Icon name="github"/><span>GitHub</span><Icon name="arrow" size={14}/></a>
       <button id="menu-toggle" class="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button>
     </header>
@@ -40,8 +39,9 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
           <p class="nav-label">COMMUNITY</p>
           <a class:list={['nav-link', { active: active('/contributors') }]} href={url('/contributors/')} aria-current={active('/contributors') ? 'page' : undefined}><Icon name="people"/>贡献者</a>
           <a class:list={['nav-link', { active: active('/contributing') }]} href={url('/contributing/')} aria-current={active('/contributing') ? 'page' : undefined}><Icon name="branch"/>参与贡献</a>
-          <p class="nav-label">RECENT WEEKS</p>
-          {weeks.slice(0, 4).map(week => <a class="nav-link week-link" href={url(`/week/${weekLabel(week)}/`)}><span class="mono">{weekLabel(week)}</span>Week {weekLabel(week)}<span class="nav-count">{questions.filter(q => q.data.week === week).length}</span></a>)}
+          <a class:list={['nav-link', { active: active('/feedback') }]} href={url('/feedback/')} aria-current={active('/feedback') ? 'page' : undefined}><Icon name="vote"/>反馈投票</a>
+          <p class="nav-label">最近收录</p>
+          {weeks.slice(0, 4).map(week => <a class="nav-link week-link" href={url(`/week/${weekLabel(week)}/`)}><span class="mono">{weekLabel(week)}</span>{weekName(week)}<span class="nav-count">{questions.filter(q => q.data.week === week).length}</span></a>)}
         </nav>
         <div class="sidebar-note"><span class="small-caps">参与修订</span><p>提交解答、指出错误或补充说明，都可以从一道题开始。</p><a href={url('/contributing/')}>查看提交方法 <span aria-hidden="true">↗</span></a></div>
       </aside>
