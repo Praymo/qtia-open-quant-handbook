@@ -1,16 +1,17 @@
 ---
 import snapshot from '../data/community-answers.json';
-import { githubAction } from '../lib/site';
+import { questionDiscussionUrl } from '../lib/site';
 const { questionId } = Astro.props;
 type Entry = { author: string; avatar: string; body: string; createdAt: string; reactions: number; url: string; replies: number };
-type Thread = { question: string; issue: number; url: string; entries: Entry[] };
-const threads = (snapshot.discussions as Thread[]).filter(thread => thread.question === questionId);
-const entries = threads.flatMap(thread => thread.entries.map(entry => ({ ...entry, threadUrl: thread.url, issue: thread.issue }))).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+type Thread = { question: string; url: string; entries: Entry[] };
+const current = (snapshot.questionDiscussions as Thread[]).filter(thread => thread.question === questionId);
+const legacy = (snapshot.discussions as Thread[]).filter(thread => thread.question === questionId);
+const entries = [...current.flatMap(thread => thread.entries.map(entry => ({ ...entry, threadUrl: thread.url }))), ...legacy.flatMap(thread => thread.entries.map(entry => ({ ...entry, threadUrl: thread.url })))].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 ---
 <section class="discussion-section" id="discussion" aria-labelledby="discussion-title">
   <h2 class="article-section-title" id="discussion-title"><span>03</span>社区讨论 <small>{entries.length}</small></h2>
   <p class="section-description">随手分享思路、疑问或补充。这里的讨论会显示在题目下；整理好的解答在上方单独展示。</p>
-  <a class="button primary discussion-start" href={githubAction('solution-issue', '', questionId)}>贴答案或发起讨论 <span aria-hidden="true">↗</span></a>
+  <a class="button primary discussion-start" href={questionDiscussionUrl(questionId)}>直接贴答案或参与讨论 <span aria-hidden="true">↗</span></a>
   {entries.length ? <div class="discussion-list">
     {entries.slice(0, 3).map(entry => <article class="discussion-entry">
       <img src={entry.avatar || `https://github.com/${entry.author}.png?size=80`} width="34" height="34" alt="" loading="lazy"/>

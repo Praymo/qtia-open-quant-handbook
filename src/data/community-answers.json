@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-23T10:57:18.467Z",
+  "updatedAt": "2026-09-24T11:05:58.002Z",
   "discussions": [
     {
       "question": "02.3",
@@ -17,5 +17,58 @@
         }
       ]
     }
-  ]
+  ],
+  "issueContributions": [
+    {
+      "github": "vfziry",
+      "label": "Issue #9 · [02.3] 解答投稿",
+      "href": "https://github.com/Praymo/qtia-open-quant-handbook/issues/9",
+      "type": "content"
+    }
+  ],
+  "questionDiscussions": [
+    {
+      "question": "01.1",
+      "number": 10,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/10",
+      "entries": []
+    },
+    {
+      "question": "01.2",
+      "number": 11,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/11",
+      "entries": []
+    },
+    {
+      "question": "01.3",
+      "number": 12,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/12",
+      "entries": []
+    },
+    {
+      "question": "02.1",
+      "number": 13,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/13",
+      "entries": []
+    },
+    {
+      "question": "02.2",
+      "number": 14,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/14",
+      "entries": []
+    },
+    {
+      "question": "02.3",
+      "number": 15,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/15",
+      "entries": []
+    },
+    {
+      "question": "02.4",
+      "number": 16,
+      "url": "https://github.com/Praymo/qtia-open-quant-handbook/discussions/16",
+      "entries": []
+    }
+  ],
+  "discussionContributions": []
 }

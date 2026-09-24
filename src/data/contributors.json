@@ -3,7 +3,7 @@
   { "name": "江 B.Y.", "github": null, "roles": [], "type": ["content"] },
   { "name": "文 J.", "github": null, "roles": [], "type": ["content"] },
   { "name": "颜 T.Y.", "github": null, "roles": [], "type": ["content"] },
-  { "name": "郑 Z.R.", "github": null, "roles": [], "type": ["content"] },
+  { "name": "郑 Z.R.", "github": "vfziry", "roles": [], "type": ["content"] },
   { "name": "Praymo", "github": "Praymo", "roles": ["Question / Solution Contribution", "Web / Repository Maintenance"], "type": ["content", "technical"], "contributions": [
     { "label": "01.1 阶乘末尾的零 · 社区解答", "href": "/questions/01.1/#solution-1", "type": "content" },
     { "label": "网站与仓库维护 · 提交记录", "href": "https://github.com/Praymo/qtia-open-quant-handbook/commits?author=Praymo", "type": "technical" }

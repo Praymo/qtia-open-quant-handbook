@@ -13,7 +13,7 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
       <h2>分享自己的答案</h2>
       <p>选一道题，用适合你的方式提交：</p>
       <ul>
-        <li><strong>直接贴答案</strong>：把文字、公式或代码粘贴到表单，维护者会整理并保留你的署名。</li>
+        <li><strong>直接贴答案</strong>：在对应题目的 Discussion 留言，维护者可以把成熟的解法整理成 Markdown，并保留你的署名。</li>
         <li><strong>用 Markdown 提 PR</strong>：在预填文件中写下答案，按 GitHub 提示提交。</li>
       </ul>
       <a class="text-link" href={url('/questions/')}>选一道题 →</a>
@@ -36,8 +36,8 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
     <h2>投稿答案，第一次用 GitHub？</h2>
     <ol>
       <li>先<a href={url('/questions/')}>找到要回答的题</a>，登录 GitHub 后点“直接贴答案”。</li>
-      <li>填题号，粘贴答案，点页面底部的“Submit new issue”。这就交上来了。</li>
-      <li>维护者会在投稿页面与你交流，再整理成题目下的社区解答。</li>
+      <li>在题目的 GitHub Discussion 里粘贴答案，点“Comment”。不需要建文件，也不会创建 Issue。</li>
+      <li>大家可以在原帖回复；维护者选中成熟的解法后，生成 Markdown 草稿，审阅通过才会显示在“社区解答”。</li>
     </ol>
     <p>如果你已经会用 Markdown，直接点“用 Markdown 提 PR”也行：只要改用户名、写正文，提交后按 GitHub 提示创建 Pull Request。<a href={githubAction('solution', '', '01.1')}>看看 01.1 的预填示例</a>。</p>
     <h3>答案写到什么程度？</h3>

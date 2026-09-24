@@ -5,16 +5,21 @@ on:
   workflow_dispatch:
     inputs:
       issue_number:
-        description: Issue number containing the answer
-        required: true
+        description: Legacy answer Issue number (leave empty for Discussion)
+        required: false
+        type: number
+      discussion_number:
+        description: Question Discussion number
+        required: false
         type: number
       comment_id:
-        description: Optional comment ID to promote instead of the issue answer
+        description: Discussion comment ID (required for Discussion)
         required: false
         type: number
 permissions:
   contents: write
   issues: read
+  discussions: read
   pull-requests: write
 jobs:
   promote:
@@ -32,23 +37,31 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ inputs.issue_number }}
+          DISCUSSION_NUMBER: ${{ inputs.discussion_number }}
           COMMENT_ID: ${{ inputs.comment_id }}
       - run: npm run check && npm run build
       - name: Open review PR when repository policy allows it
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ inputs.issue_number || github.event.issue.number }}
+          DISCUSSION_NUMBER: ${{ inputs.discussion_number }}
           COMMENT_ID: ${{ inputs.comment_id }}
         run: |
-          branch="community-solution/issue-${ISSUE_NUMBER}"
-          if [ -n "$COMMENT_ID" ]; then branch="${branch}-comment-${COMMENT_ID}"; fi
+          if [ -n "$DISCUSSION_NUMBER" ] && [ "$DISCUSSION_NUMBER" != "0" ]; then
+            branch="community-solution/discussion-${DISCUSSION_NUMBER}-comment-${COMMENT_ID}"
+            source="discussion #${DISCUSSION_NUMBER} comment ${COMMENT_ID}"
+          else
+            branch="community-solution/issue-${ISSUE_NUMBER}"
+            if [ -n "$COMMENT_ID" ] && [ "$COMMENT_ID" != "0" ]; then branch="${branch}-comment-${COMMENT_ID}"; fi
+            source="issue #${ISSUE_NUMBER}"
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$branch"
           git add content/solutions
-          git commit -m "Draft community solution from issue #${ISSUE_NUMBER}"
+          git commit -m "Draft community solution from ${source}"
           git push origin "$branch"
-          if gh pr create --base main --head "$branch" --title "Review community solution from #${ISSUE_NUMBER}" --body "Generated from a community answer. Please check the reasoning, formatting and contributor credit before merging. Closes #${ISSUE_NUMBER}."; then
+          if gh pr create --base main --head "$branch" --title "Review community solution from ${source}" --body "Generated from ${source}. Please check the reasoning, formatting and contributor credit before merging."; then
             echo "Review the new solution PR before merging." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "The review branch was created, but repository policy blocked automatic PR creation." >> "$GITHUB_STEP_SUMMARY"

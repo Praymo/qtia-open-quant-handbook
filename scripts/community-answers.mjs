@@ -27,6 +27,12 @@ export function toDiscussion(issue, comments = []) {
   return { question: id, issue: issue.number, url: issue.html_url, entries };
 }
 
+export function issueContribution(issue) {
+  if (issue.pull_request || !issue.user?.login || /\[bot\]$/i.test(issue.user.login)) return null;
+  if (issue.body?.includes('<!-- qtia-weekly-feedback:v1')) return null;
+  return { github: issue.user.login, label: `Issue #${issue.number} · ${issue.title}`, href: issue.html_url, type: 'content' };
+}
+
 export function solutionMarkdown({ question, issueNumber, author, date, body, repository = 'Praymo/qtia-open-quant-handbook', sourceUrl }) {
   if (!/^\d{2,}\.\d+$/.test(question)) throw new Error('Invalid question id');
   if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(author)) throw new Error('Invalid contributor');
