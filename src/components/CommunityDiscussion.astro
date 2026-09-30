@@ -11,6 +11,7 @@ const entries = [...current.flatMap(thread => thread.entries.map(entry => ({ ...
 ---
 <section class="discussion-section" id="discussion" aria-labelledby="discussion-title">
   <h2 class="article-section-title" id="discussion-title"><span>03</span>社区讨论 <small>{entries.length}</small></h2>
+  {snapshot.updatedAt && <p class="poll-help">讨论更新于 {new Date(snapshot.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}</p>}
   <p class="section-description">想法和完整的 Markdown 答案都可以贴在讨论区。希望解法单独展示在“社区解答”，也可以提交 PR 供审核。</p>
   <a class="button primary discussion-start" href={questionDiscussionUrl(questionId)}>直接贴答案或参与讨论 <span aria-hidden="true">↗</span></a>
   {entries.length ? <div class="discussion-list">
