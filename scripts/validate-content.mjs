@@ -8,6 +8,7 @@ async function markdownFiles(directory) {
   return results.flat().sort();
 }
 const errors = [];
+const questionDiscussions = JSON.parse(await readFile('src/data/question-discussions.json', 'utf8'));
 const feedback = JSON.parse(await readFile('src/data/feedback.json', 'utf8'));
 const feedbackKeys = feedback.questions.map(question => question.key);
 if (new Set(feedbackKeys).size !== feedbackKeys.length) errors.push('Feedback question keys must be unique.');
@@ -20,6 +21,7 @@ const questions = await markdownFiles('content/questions');
 for (const file of questions) {
   const { data, content } = matter(await readFile(file, 'utf8'));
   if (!data.id || ids.has(data.id)) errors.push(`${file}: missing or duplicate question id ${data.id}`);
+  if (!Number.isInteger(questionDiscussions[data.id]) || questionDiscussions[data.id] < 1) errors.push(`${file}: question ${data.id} has no discussion mapping`);
   ids.add(data.id);
   questionData.push({ file, data });
   if (!['official', 'community'].includes(data.origin)) errors.push(`${file}: origin must be official or community`);
