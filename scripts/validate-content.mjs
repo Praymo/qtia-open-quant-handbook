@@ -8,6 +8,7 @@ async function markdownFiles(directory) {
   return results.flat().sort();
 }
 const errors = [];
+const questionDiscussions = JSON.parse(await readFile('src/data/question-discussions.json', 'utf8'));
 const feedback = JSON.parse(await readFile('src/data/feedback.json', 'utf8'));
 const feedbackKeys = feedback.questions.map(question => question.key);
 if (new Set(feedbackKeys).size !== feedbackKeys.length) errors.push('Feedback question keys must be unique.');
@@ -17,10 +18,10 @@ for (const group of feedback.weeks) {
 const ids = new Set();
 const questionData = [];
 const questions = await markdownFiles('content/questions');
-const solutions = await markdownFiles('content/solutions');
 for (const file of questions) {
   const { data, content } = matter(await readFile(file, 'utf8'));
   if (!data.id || ids.has(data.id)) errors.push(`${file}: missing or duplicate question id ${data.id}`);
+  if (!Number.isInteger(questionDiscussions[data.id]) || questionDiscussions[data.id] < 1) errors.push(`${file}: question ${data.id} has no discussion mapping`);
   ids.add(data.id);
   questionData.push({ file, data });
   if (!['official', 'community'].includes(data.origin)) errors.push(`${file}: origin must be official or community`);
@@ -34,13 +35,6 @@ for (const file of questions) {
 for (const { file, data } of questionData) {
   if (data.relatedTo && !ids.has(data.relatedTo)) errors.push(`${file}: relatedTo question ${data.relatedTo} does not exist`);
 }
-for (const file of solutions) {
-  const { data, content } = matter(await readFile(file, 'utf8'));
-  if (!ids.has(data.question)) errors.push(`${file}: unknown question ${data.question}`);
-  if (!file.includes(`/${data.question}/`)) errors.push(`${file}: solution folder must match question id`);
-  if (!Array.isArray(data.contributors) || !data.contributors.length) errors.push(`${file}: contributor attribution is required`);
-  if (!content.trim()) errors.push(`${file}: solution is empty`);
-}
 if (!questions.length) errors.push('At least one question is required.');
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log(`Content integrity passed: ${questions.length} questions, ${solutions.length} community solutions.`);
+console.log(`Content integrity passed: ${questions.length} questions.`);

@@ -2,7 +2,7 @@
 
 [阅读网站](https://praymo.github.io/qtia-open-quant-handbook/) · [按周浏览题目](https://praymo.github.io/qtia-open-quant-handbook/week/) · [反馈专区](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [参与贡献](CONTRIBUTING.md)
 
-这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库，收录 QTIA 社团每周分享的习题。题目由社团管理团队整理与审核；仓库把题目和社区解答保存为 Markdown，网站负责阅读、筛选和展示。每道题都有中文题面和 English version；不同的推导、证明和模拟可以并列分享。
+这是一个放在 GitHub 上、由社区一起维护的量化面试题知识库，收录 QTIA 社团每周分享的习题。题目由社团管理团队整理与审核；仓库保存 Markdown 题面，网站负责阅读、筛选和展示。每道题都有中文题面和 English version；不同的推导、证明和模拟可以在 GitHub Discussion 中并列分享。
 
 ## QTIA 管理团队的整理与审核
 
@@ -20,8 +20,7 @@
 | 每周题目 | 从[每周归档](https://praymo.github.io/qtia-open-quant-handbook/week/)进入第一周、第二周等；每期题目各自保存在 `content/questions/week-XX/`。 |
 | 找题练习 | 在[题库](https://praymo.github.io/qtia-open-quant-handbook/questions/)按周次、主题、难度和来源筛选。题目页提供中英文题面和上一题、下一题导航。 |
 | 提交社区题目 | 在题库点“提交社区题目”，直接贴中文或英文题面；可以建议主题、难度和相关题目，维护者负责核对来源、翻译、编号和排版。 |
-| 社区讨论 | 每道题有自己的 GitHub Discussion。想法和完整答案都可以直接贴出，支持 Markdown 和公式；新留言会触发网站更新。 |
-| 社区解答 | 希望成熟解法单独展示的投稿者可以提交 Markdown PR；审核合并后展示解答并保留署名。|
+| 社区讨论 | 每道题有自己的 GitHub Discussion。想法和完整答案都可以直接贴出，支持 Markdown 和公式；留言会同步到题目页，并保留 GitHub 署名。 |
 | 勘误与修订 | 发现题意不清、翻译问题或错误，可以在题目页发起 GitHub Issue 或编辑题目。Pull Request 保留审阅和修改记录。 |
 | 每周反馈 | 在每周题目列表下方进入该周[反馈专区](https://praymo.github.io/qtia-open-quant-handbook/feedback/)。难度、题量和讲解需求一次填完，到 GitHub 确认提交； |
 
@@ -30,7 +29,7 @@
 ## 一起完善
 
 - 想提交社区题目：用[社区题目表单](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml)粘贴题面和你的建议；也可请认识的 QTIA 管理团队同学代为提交。
-- 想写解答：打开一道题，点“直接贴答案”；熟悉 Markdown 的同学也可以直接提 PR。[贡献指南](CONTRIBUTING.md)有具体步骤。
+- 想写解答：打开一道题，点“直接贴答案”，在该题的讨论区发表；[贡献指南](CONTRIBUTING.md)有具体步骤。
 - 想指出问题：在题目页点击“报告问题”；修正错字或翻译时也可以点“编辑题目”。
 - 想推荐题目或相关项目：到 [GitHub Discussions](https://github.com/Praymo/qtia-open-quant-handbook/discussions) 说说题目来源、你试过的方法，或项目适合解决什么问题。
 
@@ -68,7 +67,7 @@ npm run dev
 
 [Read the website](https://praymo.github.io/qtia-open-quant-handbook/) · [Browse by week](https://praymo.github.io/qtia-open-quant-handbook/week/) · [Weekly feedback](https://praymo.github.io/qtia-open-quant-handbook/feedback/) · [Contribute](CONTRIBUTING.md)
 
-This community-maintained repository collects weekly questions shared by QTIA. The club's management team organizes and reviews each set; the repository keeps the questions and community solutions as Markdown, while the website makes them easier to browse. Each question has a Chinese statement and an English version. Different proofs, derivations, and simulations can be shared side by side.
+This community-maintained repository collects weekly questions shared by QTIA. The club's management team organizes and reviews each set; the repository keeps Markdown question statements, while the website makes them easier to browse. Each question has a Chinese statement and an English version. Different proofs, derivations, and simulations can be shared in its GitHub Discussion.
 
 ## QTIA management team's weekly contributions
 
@@ -86,8 +85,7 @@ Names use the surname and given-name pinyin initials. Each week's archive page a
 | Weekly questions | Browse the [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/). Each week's source files live in `content/questions/week-XX/`. |
 | Find a question | Filter the [question bank](https://praymo.github.io/qtia-open-quant-handbook/questions/) by week, topic, difficulty, and origin. |
 | Submit a community question | Paste a Chinese or English statement into the question form. You can suggest a category, difficulty, tags, and a related QTIA question; maintainers handle numbering, translation, and formatting. |
-| Discuss a question | Each question links to its own GitHub Discussion. Ideas and complete Markdown answers are welcome there; replies and reactions sync to the site regularly. |
-| Share a reviewed solution | Submit a Markdown PR to have a mature solution displayed separately with contributor credit after review and merge. A discussion answer can also be submitted for review; a fork or commit alone does not create a PR. |
+| Discuss a question | Each question links to its own GitHub Discussion. Ideas and complete Markdown answers are welcome there; replies and reactions sync to the question page with GitHub attribution. |
 | Correct and improve | Open an Issue or edit a question from its page. Pull Requests retain review and revision history. |
 | Give weekly feedback | Answer all three questions on one page, then sign in to GitHub to confirm one submission. Each week also has one open discussion thread. Public results refresh about hourly. |
 
@@ -96,7 +94,7 @@ The [weekly archive](https://praymo.github.io/qtia-open-quant-handbook/week/) an
 ## Join in
 
 - To submit a community question, use the [question form](https://github.com/Praymo/qtia-open-quant-handbook/issues/new?template=question-proposal.yml) and paste the statement and any suggestions. A QTIA management team member you know can also submit it for you.
-- To contribute a solution, open a question and choose “直接贴答案” (paste an answer). For the optional fork-and-PR route, see the [contribution guide](CONTRIBUTING.md).
+- To contribute an answer, open a question and choose “直接贴答案” (paste an answer) to post in its Discussion. See the [contribution guide](CONTRIBUTING.md).
 - To report a mistake or improve a translation, use the Issue or edit link on the question page.
 - To suggest a question or another useful project, start a [GitHub Discussion](https://github.com/Praymo/qtia-open-quant-handbook/discussions) and share the source and why it helps.
 

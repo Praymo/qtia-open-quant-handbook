@@ -5,16 +5,15 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
 <Layout title="参与贡献">
   <div class="eyebrow">CONTRIBUTING</div>
   <h1>分享题目或解法</h1>
-  <p class="page-description">讨论区可以分享想法或完整答案；希望解法单独展示在“社区解答”，可以提交 Markdown PR 供审核。也欢迎分享社区题目、指出问题。</p>
+  <p class="page-description">每道题的讨论区都欢迎分享想法或完整答案，支持 Markdown 和公式；也欢迎分享社区题目、指出问题。</p>
 
   <div class="contribution-paths">
     <article class="contribution-path">
       <span class="mono">01 / 解答</span>
       <h2>分享自己的答案</h2>
-      <p>选一道题，用适合你的方式提交：</p>
+      <p>选一道题，在对应的 Discussion 中贴出你的答案或思路：</p>
       <ul>
-        <li><strong>直接贴答案</strong>：在对应题目的 Discussion 留言，文字、Markdown 和公式都可以，完整答案也欢迎；提交后显示在题目下的“社区讨论”。</li>
-        <li><strong>提交 Markdown PR</strong>：希望成熟解法单独展示在“社区解答”的同学，可以从自己的 fork 发起 PR；审核合并后保留贡献者署名。</li>
+        <li><strong>直接贴答案</strong>：文字、Markdown 和公式都可以，完整答案也欢迎；提交后会显示在题目下的“社区讨论”，并以 GitHub 账号署名出现在贡献者页面。</li>
       </ul>
       <a class="text-link" href={url('/questions/')}>选一道题 →</a>
     </article>
@@ -42,17 +41,6 @@ import { githubAction, repoUrl, repository, branch, url } from '../lib/site';
     <p>只想分享答案，到这里就完成了。</p>
     <h3>答案写到什么程度？</h3>
     <p>写出结论和你的思路。假设、关键步骤、代码或参考来源，可以按自己的方式补充。不同思路可以单独发表，其他人也能接着讨论和修订。</p>
-  </section>
-
-  <section class="guide-section" id="markdown-pr">
-    <h2>自己提交 Markdown PR</h2>
-    <p>希望成熟解法单独展示在“社区解答”，先打开对应题目，点“新建本题 solution.md”。题号、路径和文件头会自动填好；已有解答则点该解答下方的“修改这份解答”。保存文件后还要创建 PR，主仓库才会收到待审核请求。审核合并后，网站会展示解答并保留你的署名。</p>
-    <ol>
-      <li>从<a href={url('/questions/')}>题库</a>打开想回答的题，在“社区解答”点“新建本题 solution.md”。GitHub 会为没有写入权限的账号使用 fork。</li>
-      <li>把文件头中的 <code>your-github-username</code> 换成自己的 GitHub 用户名，填写解法名称、方法和正文，再点“Commit changes”。若本题已有同名 <code>solution.md</code>，先把文件名改成另一个名字，如 <code>my-method.md</code>。</li>
-      <li>按 GitHub 页面提示创建 Pull Request；如果只保存到了 fork，回到副本首页点“Contribute → Open pull request”。确认目标是 <code>{repository}:main</code>，再点“Create pull request”。</li>
-    </ol>
-    <p>GitHub 编辑器报错时，可以从<a href={`${repoUrl}/fork`}>仓库 Fork 页面</a>进入自己的副本，按<a href={`${repoUrl}/blob/${encodeURIComponent(branch)}/templates/solution.md`}>解答模板</a>手动新增文件，再按上一步发 PR。</p>
   </section>
 
   <section class="guide-section">
