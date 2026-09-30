@@ -6,6 +6,9 @@ import { allQuestions, categories, weekLabel, weekName } from '../lib/catalog';
 import { url, repoUrl, siteName, base } from '../lib/site';
 interface Props { title: string; description?: string; }
 const { title, description = '由社区共同维护的量化面试题知识库。按周、主题和难度阅读题目，通过 GitHub 贡献解答与修订。' } = Astro.props;
+const pageTitle = `${title} · QTIA CUHK(SZ) Handbook`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const shareImage = new URL(url('/social-card.png'), Astro.site);
 const questions = await allQuestions();
 const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => b - a);
 const path = Astro.url.pathname.slice(base.length).replace(/\/$/, '') || '/';
@@ -16,11 +19,17 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{title} · QTIA CUHK(SZ) Handbook</title><meta name="description" content={description}/>
+    <title>{pageTitle}</title><meta name="description" content={description}/>
+    <link rel="canonical" href={canonical.href}/>
+    {/\/404(?:\.html|\/)?$/.test(Astro.url.pathname) && <meta name="robots" content="noindex"/>}
     <meta name="theme-color" content="#263bb4"/>
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')}/>
-    <meta property="og:title" content={`${title} · QTIA CUHK(SZ) Handbook`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>
-    <noscript><style is:inline>#menu-toggle{display:none}@media(max-width:800px){#sidebar{display:block;position:static;width:100%;height:auto;box-shadow:none}.sidebar-note{display:none}}</style></noscript>
+    <meta property="og:title" content={pageTitle}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>
+    <meta property="og:url" content={canonical.href}/><meta property="og:image" content={shareImage.href}/>
+    <meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="QTIA CUHK(SZ) 量化面试手册"/>
+    <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={pageTitle}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={shareImage.href}/><meta name="twitter:image:alt" content="QTIA CUHK(SZ) 量化面试手册"/>
+    <link rel="sitemap" type="application/xml" href={url('/sitemap-index.xml')}/>
+    <noscript><style is:inline>#menu-toggle,.menu-close{display:none}@media(max-width:800px){#sidebar{display:block;position:static;width:100%;height:auto;box-shadow:none}.sidebar-note{display:none}}</style></noscript>
   </head>
   <body>
     <a class="skip-link" href="#main">跳转到正文</a>
@@ -29,8 +38,10 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
       <a class="header-github" href={repoUrl}><Icon name="github"/><span>GitHub</span><Icon name="arrow" size={14}/></a>
       <button id="menu-toggle" class="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button>
     </header>
+    <div id="menu-backdrop" class="menu-backdrop" hidden aria-hidden="true"></div>
     <div class="page-shell">
-      <aside id="sidebar" class="sidebar">
+      <aside id="sidebar" class="sidebar" tabindex="-1">
+        <button id="menu-close" class="menu-close" type="button" aria-label="关闭导航">关闭 <span aria-hidden="true">×</span></button>
         <nav aria-label="主导航">
           <p class="nav-label">HANDBOOK</p>
           {mainLinks.map(([route, icon, label]) => <a class:list={['nav-link', { active: active(route) }]} href={url(route === '/' ? '/' : `${route}/`)} aria-current={active(route) ? 'page' : undefined}><Icon name={icon}/>{label}{route === '/questions' && <span class="nav-count">{questions.length}</span>}</a>)}
@@ -50,16 +61,57 @@ const mainLinks = [ ['/', 'book', '手册首页', 'Overview'], ['/questions', 'g
       </main>
     </div>
     <script>
-      const menu = document.querySelector<HTMLButtonElement>('#menu-toggle');
-      const sidebar = document.querySelector<HTMLElement>('#sidebar');
-      const setOpen = (open: boolean) => {
-        menu?.setAttribute('aria-expanded', String(open));
-        menu?.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
-        sidebar?.classList.toggle('is-open', open);
-      };
-      menu?.addEventListener('click', () => setOpen(menu.getAttribute('aria-expanded') !== 'true'));
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setOpen(false); menu?.focus(); } });
-      document.addEventListener('click', event => { if (event.target instanceof Node && !sidebar?.contains(event.target) && !menu?.contains(event.target)) setOpen(false); });
+      const menu = document.querySelector<HTMLButtonElement>('#menu-toggle')!;
+      const sidebar = document.querySelector<HTMLElement>('#sidebar')!;
+      const backdrop = document.querySelector<HTMLElement>('#menu-backdrop')!;
+      const close = document.querySelector<HTMLButtonElement>('#menu-close')!;
+      const mobile = window.matchMedia('(max-width:800px)');
+      const background = [...document.querySelectorAll<HTMLElement>('.topbar, #main, .skip-link')];
+      let opened = false;
+      let scrollY = 0;
+      let bodyStyle = '';
+      const focusable = () => [...sidebar.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex="0"]')];
+      function setOpen(open: boolean) {
+        if (open === opened || (open && !mobile.matches)) return;
+        opened = open;
+        menu.setAttribute('aria-expanded', String(open));
+        sidebar.classList.toggle('is-open', open);
+        backdrop.hidden = !open;
+        background.forEach(element => { element.inert = open; });
+        if (open) {
+          sidebar.setAttribute('role', 'dialog');
+          sidebar.setAttribute('aria-modal', 'true');
+          sidebar.setAttribute('aria-label', '主导航');
+          scrollY = window.scrollY;
+          bodyStyle = document.body.style.cssText;
+          Object.assign(document.body.style, { position: 'fixed', top: `-${scrollY}px`, width: '100%', overflow: 'hidden' });
+          close.focus({ preventScroll: true });
+        } else {
+          sidebar.removeAttribute('role');
+          sidebar.removeAttribute('aria-modal');
+          sidebar.removeAttribute('aria-label');
+          document.body.style.cssText = bodyStyle;
+          window.scrollTo(0, scrollY);
+          if (mobile.matches) menu.focus({ preventScroll: true });
+        }
+      }
+      menu.addEventListener('click', () => setOpen(true));
+      close.addEventListener('click', () => setOpen(false));
+      backdrop.addEventListener('click', () => setOpen(false));
+      sidebar.addEventListener('click', event => { if (event.target instanceof Element && event.target.closest('a')) setOpen(false); });
+      document.addEventListener('keydown', event => {
+        if (!opened) return;
+        if (event.key === 'Escape') { event.preventDefault(); setOpen(false); }
+        if (event.key === 'Tab') {
+          const items = focusable();
+          const first = items[0];
+          const last = items[items.length - 1];
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+        }
+      });
+      document.addEventListener('focusin', event => { if (opened && event.target instanceof Node && !sidebar.contains(event.target)) close.focus({ preventScroll: true }); });
+      mobile.addEventListener('change', () => { if (!mobile.matches) setOpen(false); });
     </script>
   </body>
 </html>

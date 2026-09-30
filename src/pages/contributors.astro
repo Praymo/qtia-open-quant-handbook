@@ -4,6 +4,7 @@ import ContributorAvatar from '../components/ContributorAvatar.astro';
 import ContributorDetail from '../components/ContributorDetail.astro';
 import { contributorRecords } from '../lib/contributors';
 import { getCollection } from 'astro:content';
+import snapshot from '../data/community-answers.json';
 const questions = await getCollection('questions');
 const authoredContent = questions.flatMap(question => question.data.contributors.map(github => ({
   github, label: `${question.data.id} ${question.data.title} · 题目贡献`, href: `/questions/${question.data.id}/`,
@@ -14,9 +15,10 @@ const content = people.filter(person => person.type.includes('content')).sort(by
 const technical = people.filter(person => person.contributions.some(item => item.type === 'technical')).sort(byContribution('technical'));
 const dialogId = (person: (typeof people)[number]) => `contributor-${people.indexOf(person)}`;
 ---
-<Layout title="贡献者">
+<Layout title="贡献者" description="查看 QTIA 题目整理、社区讨论和网站维护的贡献者及其贡献记录。">
   <div class="eyebrow">COMMUNITY</div>
   <h1>贡献者</h1>
+  <p class="poll-help contributor-sync">{snapshot.updatedAt && `数据更新于 ${new Date(snapshot.updatedAt).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}。`}讨论贡献随网站部署更新，并保留每小时同步；部署完成后刷新页面查看。</p>
   <div class="contribution-columns">
     <section class="contribution-column" aria-labelledby="content-title"><h2 id="content-title">Content Contributions <span>内容贡献</span></h2>
       <div class="contributor-wall">{content.map(person => <ContributorAvatar person={person} dialogId={dialogId(person)}/>)}</div>
