@@ -4,17 +4,10 @@ import ContributorAvatar from '../components/ContributorAvatar.astro';
 import ContributorDetail from '../components/ContributorDetail.astro';
 import { contributorRecords } from '../lib/contributors';
 import { getCollection } from 'astro:content';
-const [questions, solutions] = await Promise.all([getCollection('questions'), getCollection('solutions')]);
+const questions = await getCollection('questions');
 const authoredContent = questions.flatMap(question => question.data.contributors.map(github => ({
   github, label: `${question.data.id} ${question.data.title} · 题目贡献`, href: `/questions/${question.data.id}/`,
 })));
-const solutionsByQuestion = Map.groupBy(solutions, solution => solution.data.question.id);
-for (const [questionId, entries] of solutionsByQuestion) {
-  entries.sort((a, b) => a.data.order - b.data.order || a.data.date.localeCompare(b.data.date) || a.id.localeCompare(b.id));
-  entries.forEach((solution, index) => solution.data.contributors.forEach(github => authoredContent.push({
-    github, label: `${questionId} ${solution.data.title} · 社区解答`, href: `/questions/${questionId}/#solution-${index + 1}`,
-  })));
-}
 const people = contributorRecords(authoredContent);
 const byContribution = (type: 'content' | 'technical') => (a: (typeof people)[number], b: (typeof people)[number]) => b.contributions.filter(item => item.type === type).length - a.contributions.filter(item => item.type === type).length || a.name.localeCompare(b.name, 'zh-Hans-u-co-pinyin');
 const content = people.filter(person => person.type.includes('content')).sort(byContribution('content'));
