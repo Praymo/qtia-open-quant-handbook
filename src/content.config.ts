@@ -1,4 +1,4 @@
-import { defineCollection, reference } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -21,15 +21,4 @@ const questions = defineCollection({
     relatedTo: z.string().regex(/^\d{2,}\.\d+$/).optional(),
   }),
 });
-const solutions = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './content/solutions' }),
-  schema: z.object({
-    question: reference('questions'),
-    title: z.string().min(1),
-    method: z.string().min(1),
-    contributors: z.array(username).min(1),
-    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-    order: z.number().int().nonnegative().default(0),
-  }),
-});
-export const collections = { questions, solutions };
+export const collections = { questions };
