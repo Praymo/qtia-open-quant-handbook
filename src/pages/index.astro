@@ -8,7 +8,7 @@ const questions = await allQuestions();
 const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => b - a);
 const latestWeek = weeks[0];
 ---
-<Layout title="量化面试手册">
+<Layout title="量化面试手册" description="QTIA 中英双语量化面试题库，按主题和周次浏览题目，在社区讨论中分享解法、推导和公式。">
   <div class="eyebrow"><span>量化面试题库</span></div>
   <section class="intro">
     <h1>量化面试题，<br/><span class="accent">不止一种解法。</span></h1>
@@ -25,7 +25,7 @@ const latestWeek = weeks[0];
       {weeks.map((week, index) => <div class="latest-track" data-week-panel data-week-name={weekName(week)} tabindex="0" aria-label={`${weekName(week)}题目，左右滚动查看更多`} hidden={index > 0}>
         {questions.filter(question => question.data.week === week).sort(newest).map(question => <a class="latest-card" href={url(`/questions/${question.data.id}/`)} aria-label={`阅读 ${question.data.id} ${question.data.title}`}><span class="latest-card-id mono">{question.data.id}</span><h3>{question.data.title}</h3><p class="latest-card-en">{question.data.titleEn}</p><p class="latest-card-summary">{question.data.summary}</p><Badges question={question}/><span class="latest-card-arrow" aria-hidden="true">↗</span></a>)}
       </div>)}
-      <div class="latest-controls"><button type="button" data-week-direction="newer" aria-label="查看较新的一周" disabled>←</button><button type="button" data-week-direction="older" aria-label="查看更早的一周" disabled={weeks.length < 2}>→</button></div>
+      <div class="latest-controls"><button type="button" data-week-direction="older" aria-label={weeks.length > 1 ? `上一周：${weekName(weeks[1])}` : '上一周：暂无更早周次'} disabled={weeks.length < 2}>← 上一周</button><button type="button" data-week-direction="newer" aria-label="下一周：暂无更新周次" disabled>下一周 →</button></div>
     </div>
   </section>
   <section class="contribute-strip"><Icon name="branch" size={28}/><div><h2>想分享一道题，或补上一种解法？</h2></div><a class="text-link" href={url('/contributing/')}>查看提交方法 <span aria-hidden="true">↗</span></a></section>
@@ -42,8 +42,8 @@ const latestWeek = weeks[0];
     active = index;
     panels.forEach((panel, i) => { panel.hidden = i !== active; });
     if (currentWeek) currentWeek.textContent = panels[active].dataset.weekName ?? '';
-    if (newer) newer.disabled = active === 0;
-    if (older) older.disabled = active === panels.length - 1;
+    if (newer) { newer.disabled = active === 0; newer.setAttribute('aria-label', active > 0 ? `下一周：${panels[active - 1].dataset.weekName}` : '下一周：暂无更新周次'); }
+    if (older) { older.disabled = active === panels.length - 1; older.setAttribute('aria-label', active < panels.length - 1 ? `上一周：${panels[active + 1].dataset.weekName}` : '上一周：暂无更早周次'); }
   }
   newer?.addEventListener('click', () => showWeek(active - 1));
   older?.addEventListener('click', () => showWeek(active + 1));

@@ -11,7 +11,7 @@ const questions = (await allQuestions()).filter(q => q.data.week === week);
 const pollGroup = feedbackGroup(week);
 const credit = credits.find(item => item.week === week);
 ---
-<Layout title={weekName(week)}>
+<Layout title={weekName(week)} description={`${weekName(week)}量化面试题，浏览本周题目、参与答案讨论并提供反馈。`}>
   <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/week/')}>每周归档</a><span>/</span><span>{weekName(week)}</span></nav>
   <div class="eyebrow">每周归档 <span class="edition">{questions[0].data.date}</span></div>
   <h1>{weekName(week)}</h1>

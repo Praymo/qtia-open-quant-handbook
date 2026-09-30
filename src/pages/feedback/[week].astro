@@ -17,7 +17,7 @@ const { group } = Astro.props;
 const result = (results.weeks as FeedbackResult[]).find(item => item.week === group.week);
 const discussion = (discussionResults.discussions as DiscussionResult[]).find(item => item.number === group.discussion);
 ---
-<Layout title={`${weekName(group.week)}反馈`}>
+<Layout title={`${weekName(group.week)}反馈`} description={`${weekName(group.week)}习题反馈、公开汇总结果与自由讨论。`}>
   <nav class="breadcrumbs" aria-label="面包屑"><a href={url('/feedback/')}>反馈专区</a><span>/</span><span>{weekName(group.week)}</span></nav>
   <div class="eyebrow">反馈专区</div>
   <h1>{weekName(group.week)} · 题目反馈</h1>

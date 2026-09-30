@@ -7,7 +7,7 @@ import { githubAction } from '../../lib/site';
 const questions = await allQuestions();
 const weeks = [...new Set(questions.map(q => q.data.week))].sort((a, b) => a - b);
 ---
-<Layout title="全部题目">
+<Layout title="全部题目" description="浏览全部量化面试题，按周次、主题与难度筛选，并进入每道题的社区讨论。">
   <div class="eyebrow">题库 <span class="edition">{questions.length} 道题目</span></div><h1>全部题目</h1><p class="page-description">按主题、难度和周次，找到你的下一个问题。</p>
   <form id="filters" class="filters" aria-label="题目筛选" hidden>
     <label>周次<select name="week"><option value="">全部周次</option>{weeks.map(week => <option value={week}>{weekName(week)}</option>)}</select></label>
