@@ -49,7 +49,7 @@ for (const [question, number] of Object.entries(questionDiscussionNumbers)) {
     for (const comment of discussion.comments.nodes) {
       if (!comment.body.trim()) continue;
       entries.push({ author: comment.author?.login || 'GitHub 用户', avatar: comment.author?.avatarUrl || '', body: comment.body, createdAt: comment.createdAt, reactions: comment.reactions.totalCount, url: comment.url, replies: comment.replies.totalCount, commentId: comment.databaseId });
-      if (comment.author?.login) discussionContributions.push({ github: comment.author.login, label: `${question} · 答案与讨论`, href: comment.url, type: 'content' });
+      if (comment.author?.login) discussionContributions.push({ github: comment.author.login, label: `${question} · 答案与讨论`, href: `/questions/${question}/#discussion`, type: 'content' });
     }
     cursor = discussion.comments.pageInfo.hasNextPage ? discussion.comments.pageInfo.endCursor : null;
     if (!cursor) questionDiscussions.push({ question, number, url: discussion.url, entries });
