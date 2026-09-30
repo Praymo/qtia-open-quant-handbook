@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | [第一周](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S.、江 B.Y.、文 J.、颜 T.Y.、郑 Z.R. |
 | [第二周](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
+| [第三周](https://praymo.github.io/qtia-open-quant-handbook/week/03/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
 
 署名采用“姓氏＋名字拼音首字母”；每一期的整理与审核同学也列在对应的周次页面。
 
@@ -75,6 +76,7 @@ This community-maintained repository collects weekly questions shared by QTIA. T
 | --- | --- | --- |
 | [Week 1](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S., 江 B.Y., 文 J., 颜 T.Y., 郑 Z.R. |
 | [Week 2](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y., 郑 Z.R. |
+| [Week 3](https://praymo.github.io/qtia-open-quant-handbook/week/03/) | 郑 Z.R. | 江 B.Y., 郑 Z.R. |
 
 Names use the surname and given-name pinyin initials. Each week's archive page also lists the organizers and reviewers.
 

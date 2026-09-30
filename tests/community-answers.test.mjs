@@ -15,8 +15,10 @@ test('existing unlabelled answer issue appears with reactions and replies', () =
   assert.equal(thread.entries[1].reactions, 3);
 });
 test('question discussions map every seed problem and feedback votes do not become contributors', () => {
-  assert.deepEqual(Object.keys(questionDiscussions).sort(), ['01.1', '01.2', '01.3', '02.1', '02.2', '02.3', '02.4']);
-  assert.equal(new Set(Object.values(questionDiscussions)).size, 7);
+  for (const id of ['01.1', '01.2', '01.3', '02.1', '02.2', '02.3', '02.4']) {
+    assert.ok(Number.isInteger(questionDiscussions[id]) && questionDiscussions[id] > 0);
+  }
+  assert.equal(new Set(Object.values(questionDiscussions)).size, Object.keys(questionDiscussions).length);
   assert.equal(issueContribution(issue)?.github, 'vfziry');
   assert.equal(issueContribution({ ...issue, body: '<!-- qtia-weekly-feedback:v1 -->' }), null);
 });
