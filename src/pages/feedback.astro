@@ -6,13 +6,13 @@ import { url } from '../lib/site';
 const weeks = [...new Set((await allQuestions()).map(question => question.data.week))].sort((a, b) => b - a);
 const groups = weeks.map(feedbackGroup);
 ---
-<Layout title="反馈专区" description="按周提供习题难度、题量与讲解需求反馈，查看汇总结果并参与自由讨论。">
+<Layout title="反馈专区" description="按周分享习题感受、问题与建议，参与自由讨论。">
   <div class="eyebrow">反馈专区</div>
   <h1>按周分享你的感受</h1>
   <p class="page-description">你可以反馈习题难度和题量，也可以提出问题、分享对答案与讲解的建议。</p>
   <div class="week-cards">{groups.map(group => <a class="week-card" href={url(`/feedback/${weekLabel(group.week)}/`)}>
     <div class="week-card-label"><span class="small-caps">周次</span><strong>{weekLabel(group.week)}</strong></div>
-    <div><h2>{weekName(group.week)}</h2><p class="poll-week-summary">{group.questions.length ? '一次填写：难度 · 题量 · 答案与讲解' : '反馈即将开放'}</p></div>
+    <div><h2>{weekName(group.week)}</h2><p class="poll-week-summary">{group.discussion ? '分享思路、问题与建议' : '讨论即将开放'}</p></div>
     <span class="week-arrow" aria-hidden="true">↗</span>
   </a>)}</div>
 </Layout>
