@@ -11,6 +11,7 @@
 | [第一周](https://praymo.github.io/qtia-open-quant-handbook/week/01/) | 郑 Z.R. | 陈 W.S.、江 B.Y.、文 J.、颜 T.Y.、郑 Z.R. |
 | [第二周](https://praymo.github.io/qtia-open-quant-handbook/week/02/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
 | [第三周](https://praymo.github.io/qtia-open-quant-handbook/week/03/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
+| [第四周](https://praymo.github.io/qtia-open-quant-handbook/week/04/) | 郑 Z.R. | 江 B.Y.、郑 Z.R. |
 
 署名采用“姓氏＋名字拼音首字母”；每一期的整理与审核同学也列在对应的周次页面。
 
