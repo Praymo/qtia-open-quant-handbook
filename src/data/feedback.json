@@ -7,6 +7,7 @@
   "weeks": [
     { "week": 1, "discussion": 7 },
     { "week": 2, "discussion": 8 },
-    { "week": 3, "discussion": 29 }
+    { "week": 3, "discussion": 29 },
+    { "week": 4, "discussion": 35 }
   ]
 }
